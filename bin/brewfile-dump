@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+brew_file=${1:?"brew file path is required"}
+brew bundle dump --force --file $brew_file
