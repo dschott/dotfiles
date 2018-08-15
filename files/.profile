@@ -75,6 +75,11 @@ if [ -n "$(command -v lpass)" ]; then
     }
 fi
 
+# Private
+if [ -f "$DOTPATH/local/personal.profile" ]; then
+    source "$DOTPATH/local/personal.profile"
+fi
+
 # BASH
 if [ "$BASH" ] && [ -e $HOME/.bashrc ]; then
     source $HOME/.bashrc
