@@ -11,14 +11,14 @@ else
 fi
 
 echo ""
-echo "Brew bundle install"
-brewfile-install
-
-echo ""
 echo "Linking dot files"
 for dot_file in `find $scriptpath/files -type f -name ".*"`; do
     ln -svf $dot_file $HOME
 done
+
+echo ""
+echo "Brew bundle install"
+brewfile-install
 
 echo ""
 echo "Done! Open a new terminal. Be happy."
