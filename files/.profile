@@ -13,6 +13,7 @@ brewfile-dump() {
 }
 
 brewfile-install() {
+    brew update
     brew bundle install -v --file "$DOTPATH/brewfile"
 }
 
@@ -61,8 +62,6 @@ $(/usr/libexec/java_home -V 2>&1 | grep Library)"
     export PATH=$JAVA_HOME/bin:$PATH
 }
 
-jdk-setversion 10
-
 # Lastpass
 if [ -n "$(command -v lpass)" ]; then
     p() {
@@ -75,9 +74,9 @@ if [ -n "$(command -v lpass)" ]; then
     }
 fi
 
-# Private
-if [ -f "$DOTPATH/local/personal.profile" ]; then
-    source "$DOTPATH/local/personal.profile"
+# Local profile (private keys etc)
+if [ -f "$HOME/.profile.local" ]; then
+    source "$HOME/.profile.local"
 fi
 
 # BASH
