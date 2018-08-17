@@ -23,7 +23,7 @@ env-setlocal() {
         echo "$var not set!"
         read -p "Enter a value for $var: " val
         if [ ! -z "$val" ]; then
-            printf "\nexport $var=$val\n" >> "$HOME/.profile.local"
+            printf "\nexport $var='$val'\n" >> "$HOME/.profile.local"
             source "$HOME/.profile.local"
         fi
     fi

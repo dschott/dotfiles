@@ -1,9 +1,7 @@
-[user]
-    name = Doug Schott
-    email = douglas.schott@gmail.com
 [push]
     default = simple
 [url "git@github.com:"]
-	insteadOf = "https://github.com/"
+    insteadOf = "https://github.com/"
 [include]
-  path = ~/.gitconfig.local
+    path = ~/.gitconfig.user
+    path = ~/.gitconfig.local

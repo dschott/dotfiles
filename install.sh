@@ -8,6 +8,9 @@ done
 
 . "$HOME/.profile"
 
+echo "Checking USER_NAME env var"
+env-setlocal USER_FULLNAME
+
 echo "Checking USER_EMAIL env var"
 env-setlocal USER_EMAIL
 
