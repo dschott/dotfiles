@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+[ -z "$(command -v lpass)" ] && return
+
+lpass-login() {
+    lpass login --trust $USER_EMAIL
+}
+
+lpass-get() {
+    lpass show -p "$@"
+}
+
+lpass-getall() {
+    lpass show --all "$@"
+}
+
+lpass-find() {
+    lpass ls | grep -i "$@"
+}

@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+( [ "$(uname -s)" != "Darwin" ] || [ -z "$(command -v brew)" ] ) && return
+
+brewfile-install() {
+    brew update
+    brew bundle install -v --file $DOTPATH/homebrew/brewfile
+}
+
+brewfile-dump() {
+    brew bundle dump --force --file $DOTPATH/homebrew/brewfile
+}
