@@ -18,6 +18,7 @@ done
 echo "Setting local env vars"
 env-setlocal USER_FULLNAME
 env-setlocal USER_EMAIL
+env-setlocal HOMEBREW_GITHUB_API_TOKEN
 
 if [ -z "$(command -v brew)" ]; then
     echo "Installing Homebrew"
@@ -25,9 +26,6 @@ if [ -z "$(command -v brew)" ]; then
 else 
     echo "Homebrew already installed"
 fi
-
-echo "Checking HOMEBREW_GITHUB_API_TOKEN env var"
-env-setlocal HOMEBREW_GITHUB_API_TOKEN
 
 echo "Installing brew bundle"
 brewfile-install
