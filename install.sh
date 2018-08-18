@@ -15,10 +15,8 @@ done
 
 . "$HOME/.profile"
 
-echo "Checking USER_NAME env var"
+echo "Setting local env vars"
 env-setlocal USER_FULLNAME
-
-echo "Checking USER_EMAIL env var"
 env-setlocal USER_EMAIL
 
 if [ -z "$(command -v brew)" ]; then
