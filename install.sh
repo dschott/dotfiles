@@ -30,6 +30,9 @@ fi
 echo "Installing brew bundle"
 brewfile-install
 
+echo "Installing vscode extensions"
+vscode-ext-install
+
 . "$HOME/.profile"
 
 echo "Install Complete!"
