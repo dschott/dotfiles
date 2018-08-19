@@ -1,3 +1,4 @@
+JPTarquino.postgresql
 bajdzis.vscode-database
 bungcip.better-toml
 dbaeumer.jshint
@@ -7,9 +8,13 @@ eamodio.gitlens
 HookyQR.beautify
 ms-mssql.mssql
 ms-python.python
+ms-vscode.cpptools
 ms-vscode.Go
 ms-vscode.PowerShell
+peterj.proto
 PeterJausovec.vscode-docker
 tht13.html-preview-vscode
 tomoki1207.pdf
 waderyan.gitblame
+wholroyd.HCL
+zxh404.vscode-proto3
