@@ -13,8 +13,9 @@ RED="\e[0;31m"
 CYAN="\e[0;36m"
 YELLOW="\e[0;33m"
 GREEN="\e[0;32m"
-RESET="\e[m"
+RESET="\e[0m"
 PS1="\[${RED}\][\[${CYAN}\]\u@\h\[${RED}\] \$(date +%H:%M) \w\[${YELLOW}\] \$(git-whichbranch)\[${GREEN}\]\n\$ \[${RESET}\]"
+
 
 # Splash
 printf "${RED}

@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 scriptpath="$(cd "$(dirname "$0")" && pwd -P)"
 
+# Link dotfiles
 echo "Linking dot files"
 for f in $(find "$scriptpath" -maxdepth 2 -mindepth 2 -type f -name '.*'); do
-    ln -svf $f $HOME
+    if [ "$(basename $f)" != ".git" ]; then
+        ln -svf $f $HOME
+    fi
 done
 
 . "$HOME/.profile"
 
+# Setup machine local env vars
 echo "Setting local env vars"
 env-setlocal USER_FULLNAME
 env-setlocal USER_EMAIL
@@ -26,12 +30,18 @@ fi
 echo "Installing brew bundle"
 brewfile-install
 
-echo "Switch default shell to bash install via brew"
+# Default shell
 bash_path='/usr/local/bin/bash'
 file='/etc/shells'
-sudo sh -c "grep -q -F '$bash_path' $file || echo '$bash_path' >> $file"
-chsh -s "$bash_path" $USER
+if [ -z $(grep "$bash_path" "$file") ]; then
+    echo "Configure default shell"
+    sudo sh -c "grep -q -F '$bash_path' $file || echo '$bash_path' >> $file"
+    chsh -s "$bash_path" $USER
+else
+    echo "Default shell already configured"
+fi
 
+ # vscode
 echo "Installing vscode extensions"
 vscode-ext-install
 
