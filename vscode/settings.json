@@ -1,0 +1,8 @@
+{
+    "explorer.confirmDragAndDrop": false,
+    "window.zoomLevel": 1,
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "terminal.integrated.shell.osx": "/usr/local/bin/bash"
+}
