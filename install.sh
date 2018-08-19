@@ -47,6 +47,7 @@ vscode-ext-install
 
 . "$HOME/.profile"
 
+# My favorite theme
 [ "$(uname -s)" == "Darwin" ] && open "$scriptpath/terminal/macos/themes/schemes/Afterglow.terminal"
 
 echo "Install Complete!"
