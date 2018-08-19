@@ -4,3 +4,6 @@
 [submodule "terminal/macos/themes"]
 	path = terminal/macos/themes
 	url = git@github.com:dschott/macos-terminal-themes.git
+[submodule "powerline"]
+	path = powerline
+	url = git@github.com:dschott/powerline.git
