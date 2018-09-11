@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
 realvnc-restart-server() {
-    sudo /Library/vnc/vncserver -stop
+    sudo /Library/vnc/vncserver -service -stop
     sudo '/Applications/RealVNC/VNC Server.app/Contents/MacOS/vncserver_service'
 }
