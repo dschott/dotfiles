@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+realvnc-restart-server() {
+    sudo touch /etc/vnc/service/on
+}
