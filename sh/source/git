@@ -3,7 +3,10 @@
 [ -z "$(command -v git)" ] && return
 
 alias git-log='git log --pretty=format:"%h%x09%an%x09%ad%x09%s"'
-alias git-done="git commit -am '$1' && git push"
+
+git-done() {
+    git commit -am "$1" && git push
+}
 
 git-whichbranch() {
     if [ -n "$(command -v git)" ]; then
@@ -12,6 +15,7 @@ git-whichbranch() {
         echo ""
     fi
 }
+
 
 if [ "$(git config --global --includes user.name)" != "$USER_FULLNAME" ] ||
    [ "$(git config --global --includes user.email)" != "$USER_EMAIL" ]; then
