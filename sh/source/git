@@ -16,6 +16,13 @@ git-whichbranch() {
     fi
 }
 
+git-squash() {
+    if [ -z "$1" ] || ! [[ "$1" =~ ^[0-9]+$ ]]; then
+        echo "Number of commits to squash is needed"
+        return 1
+    fi
+    git rebase -i HEAD~$1
+}
 
 if [ "$(git config --global --includes user.name)" != "$USER_FULLNAME" ] ||
    [ "$(git config --global --includes user.email)" != "$USER_EMAIL" ]; then
