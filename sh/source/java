@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 function java-getversion() {
-    jdk-setversion
+    java-setversion
 }
 
 function java-setversion() {
