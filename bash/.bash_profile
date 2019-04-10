@@ -4,6 +4,8 @@
 
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
+complete -C /usr/local/bin/vault vault
+
 # Shell Config
 export CLICOLOR=1
 shopt -s checkwinsize
