@@ -36,3 +36,5 @@ env-setlocal() {
 for f in $DOTPATH/sh/source/*; do
     . $f
 done
+
+export PATH="/usr/local/sbin:$PATH"

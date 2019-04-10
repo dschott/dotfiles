@@ -18,4 +18,4 @@ function java-setversion() {
     export PATH=$JAVA_HOME/bin:$PATH
 }
 
-java-setversion 10
+java-setversion 12
