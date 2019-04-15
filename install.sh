@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 scriptpath="$(cd "$(dirname "$0")" && pwd -P)"
+cd $scriptpath
 
 # Link dotfiles
 echo "Linking dot files"
-for f in $(find "$scriptpath" -maxdepth 2 -mindepth 2 -type f -name '.*'); do
+for f in $(find "." -maxdepth 2 -mindepth 2 -type f -name '.*'); do
     if [ "$(basename $f)" != ".git" ]; then
         ln -svf $f $HOME
     fi
@@ -45,9 +46,16 @@ fi
 echo "Installing vscode extensions"
 vscode-ext-install
 
+# Docker completion
+if [ -d /usr/local/etc/bash_completion.d ] && [ -d /Applications/Docker.app/Contents/Resources/etc/ ]; then 
+    ln -fs /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion          /usr/local/etc/bash_completion.d/docker.bash-completion
+    ln -fs /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion  /usr/local/etc/bash_completion.d/docker-machine.bash-completion
+    ln -fs /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion  /usr/local/etc/bash_completion.d/docker-compose.bash-completion
+fi
+
 . "$HOME/.profile"
 
 # My favorite theme
-[ "$(uname -s)" == "Darwin" ] && open "$scriptpath/terminal/macos/themes/schemes/Afterglow.terminal"
+[ "$(uname -s)" == "Darwin" ] && open "./terminal/macos/themes/schemes/Afterglow.terminal"
 
 echo "Install Complete!"
