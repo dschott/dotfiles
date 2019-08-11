@@ -5,3 +5,5 @@
 [include]
     path = ~/.gitconfig.user
     path = ~/.gitconfig.local
+[rerere]
+	enabled = true
