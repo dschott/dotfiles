@@ -10,3 +10,11 @@ brewfile-install() {
 brewfile-dump() {
     brew bundle dump --force --file $DOTPATH/homebrew/brewfile
 }
+
+homebrew-install() {
+    if [ "$(uname -s)" == "Darwin" ]; then
+        if [ -z "$(command -v brew)" ]; then
+            /usr/bin/env ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        fi
+    fi
+}

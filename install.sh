@@ -10,7 +10,7 @@ for f in $(find "$(pwd)" -maxdepth 2 -mindepth 2 -type f -name '.*'); do
     fi
 done
 
-# Source everything
+# Source dotfiles (pre-install)
 # - Even if installs are missing, nothing should fail
 . "$HOME/.profile"
 
@@ -21,14 +21,8 @@ env-setlocal USER_EMAIL
 env-setlocal HOMEBREW_GITHUB_API_TOKEN
 
 # Homebrew
-if [ "$(uname -s)" == "Darwin" ]; then
-    if [ -z "$(command -v brew)" ]; then
-        echo "Installing Homebrew"
-        /usr/bin/env ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    else 
-        echo "Homebrew already installed"
-    fi
-fi
+echo "Installing Homebrew"
+homebrew-install
 
 echo "Installing brew bundle"
 brewfile-install
@@ -44,10 +38,6 @@ else
     echo "Default shell already configured"
 fi
 
- # vscode
-echo "Installing vscode extensions"
-vscode-ext-install
-
 # Install other stuff
 echo "Installing docker completion"
 docker-install-completion
@@ -55,11 +45,14 @@ docker-install-completion
 echo "Installing go completion"
 go-install-completion
 
-# Source everything (again)
-# - All commands should have been installed now
+ # Install vscode extensions
+echo "Installing vscode extensions"
+vscode-ext-install
+
+# Source dotfiles (post-install)
 . "$HOME/.profile"
 
 # My favorite theme
-[ "$(uname -s)" == "Darwin" ] && open "./terminal/macos/themes/schemes/Afterglow.terminal"
+[ "$(uname -s)" == "Darwin" ] && open "$(pwd)/terminal/macos/themes/schemes/Afterglow.terminal"
 
 echo "Install Complete!"
