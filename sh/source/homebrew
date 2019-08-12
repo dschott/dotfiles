@@ -2,14 +2,16 @@
 
 ( [ "$(uname -s)" != "Darwin" ] || [ -z "$(command -v brew)" ] ) && return
 
-brewfile-install() {
+brewfile-install() (
+    cd $DOTPATH
     brew update
-    brew bundle install -v --file $DOTPATH/homebrew/brewfile
-}
+    brew bundle install -v
+)
 
-brewfile-dump() {
-    brew bundle dump --force --file $DOTPATH/homebrew/brewfile
-}
+brewfile-dump() (
+    cd $DOTPATH
+    brew bundle dump --force
+)
 
 homebrew-install() {
     if [ "$(uname -s)" == "Darwin" ]; then
