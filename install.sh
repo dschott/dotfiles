@@ -4,12 +4,14 @@ cd $scriptpath
 
 # Link dotfiles
 echo "Linking dot files"
-for f in $(find "." -maxdepth 2 -mindepth 2 -type f -name '.*'); do
+for f in $(find "$(pwd)" -maxdepth 2 -mindepth 2 -type f -name '.*'); do
     if [ "$(basename $f)" != ".git" ]; then
         ln -svf $f $HOME
     fi
 done
 
+# Source everything
+# - Even if installs are missing, nothing should fail
 . "$HOME/.profile"
 
 # Setup machine local env vars
@@ -46,13 +48,15 @@ fi
 echo "Installing vscode extensions"
 vscode-ext-install
 
-# Docker completion
-if [ -d /usr/local/etc/bash_completion.d ] && [ -d /Applications/Docker.app/Contents/Resources/etc/ ]; then 
-    ln -fs /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion          /usr/local/etc/bash_completion.d/docker.bash-completion
-    ln -fs /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion  /usr/local/etc/bash_completion.d/docker-machine.bash-completion
-    ln -fs /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion  /usr/local/etc/bash_completion.d/docker-compose.bash-completion
-fi
+# Install other stuff
+echo "Installing docker completion"
+docker-install-completion
 
+echo "Installing go completion"
+go-install-completion
+
+# Source everything (again)
+# - All commands should have been installed now
 . "$HOME/.profile"
 
 # My favorite theme

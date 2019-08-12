@@ -6,3 +6,8 @@ export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 export GO=$HOME/go/src/github.com/
 export PATH=$GOBIN:$PATH
+
+go-install-completion() {
+    go get -u github.com/posener/complete/gocomplete
+    gocomplete -install -y
+}
