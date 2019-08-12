@@ -3,13 +3,13 @@
 ( [ "$(uname -s)" != "Darwin" ] || [ -z "$(command -v brew)" ] ) && return
 
 brewfile-install() (
-    cd $DOTPATH
+    cd $DOTPATH/homebrew
     brew update
     brew bundle install -v
 )
 
 brewfile-dump() (
-    cd $DOTPATH
+    cd $DOTPATH/homebrew
     brew bundle dump --force
 )
 
