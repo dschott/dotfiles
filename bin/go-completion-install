@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+[ -z "$(command -v go)" ] && exit
+
+go get -u github.com/posener/complete/gocomplete
+gocomplete -install -y

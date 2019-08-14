@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+[ -z "$(command -v brew)" ] && exit
+
+cd $DOTPATH/etc/homebrew
+brew update
+brew bundle install -v

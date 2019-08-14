@@ -4,28 +4,35 @@ cd $scriptpath
 
 # Link dotfiles
 echo "Linking dot files"
-for f in $(find "$(pwd)" -maxdepth 2 -mindepth 2 -type f -name '.*'); do
-    if [ "$(basename $f)" != ".git" ]; then
-        ln -svf $f $HOME
-    fi
+for f in $(find "$(pwd)/home" -maxdepth 1 -mindepth 1 -type f -name '.*'); do
+    ln -svf $f $HOME
 done
 
+# TODO: Link .dirs
+
 # Source dotfiles (pre-install)
-# - Even if installs are missing, nothing should fail
-. "$HOME/.profile"
+source "$HOME/.profile"
 
 # Setup machine local env vars
 echo "Setting local env vars"
 env-setlocal USER_FULLNAME
 env-setlocal USER_EMAIL
-env-setlocal HOMEBREW_GITHUB_API_TOKEN
 
-# Homebrew
+# Installs
 echo "Installing Homebrew"
 homebrew-install
 
 echo "Installing brew bundle"
 brewfile-install
+
+echo "Installing docker completion"
+docker-completion-install
+
+echo "Installing go completion"
+go-completion-install
+
+echo "Installing vscode extensions"
+vscode-ext-install
 
 # Default shell
 bash_path='/usr/local/bin/bash'
@@ -38,21 +45,10 @@ else
     echo "Default shell already configured"
 fi
 
-# Install other stuff
-echo "Installing docker completion"
-docker-install-completion
-
-echo "Installing go completion"
-go-install-completion
-
- # Install vscode extensions
-echo "Installing vscode extensions"
-vscode-ext-install
-
 # Source dotfiles (post-install)
-. "$HOME/.profile"
+source "$HOME/.profile"
 
 # My favorite theme
-[ "$(uname -s)" == "Darwin" ] && open "$(pwd)/terminal/macos/themes/schemes/Afterglow.terminal"
+[ "$(uname -s)" == "Darwin" ] && open "$(pwd)/etc/terminal/macos/themes/schemes/Afterglow.terminal"
 
 echo "Install Complete!"

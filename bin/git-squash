@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+[ -z "$(command -v git)" ] && exit
+
+if [ -z "$1" ] || ! [[ "$1" =~ ^[0-9]+$ ]]; then
+    echo "Number of commits to squash is needed"
+    exit 1
+fi
+
+git rebase -i HEAD~$1

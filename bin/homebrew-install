@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+[ "$(uname -s)" != "Darwin" ] && exit
+
+env-setlocal HOMEBREW_GITHUB_API_TOKEN
+
+if [ -z "$(command -v brew)" ]; then
+    /usr/bin/env ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+    brew update
+fi

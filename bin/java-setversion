@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+# Ref: http://www.jayway.com/2014/01/15/how-to-switch-jdk-version-on-mac-os-x-maverick/
+if [ -z "$1" ]; then
+    printf "Current Version:\n    $(javac -version 2>&1)\n\nAvailable Versions:\n$(/usr/libexec/java_home -V 2>&1 | grep Library)\n"
+    exit
+fi
+
+path-remove '/System/Library/Frameworks/JavaVM.framework/Home/bin'
+
+if [ -n "${JAVA_HOME+x}" ]; then
+    path-remove $JAVA_HOME
+fi
+
+export JAVA_HOME=`/usr/libexec/java_home -v $@`
+
+path-add "$JAVA_HOME/bin"

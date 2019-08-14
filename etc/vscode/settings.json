@@ -1,0 +1,19 @@
+{
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "window.zoomLevel": 1,
+    "editor.minimap.enabled": false,
+    "explorer.confirmDelete": false,
+    "go.formatFlags": [ "-local", "github.platforms.engineering", ],
+    "go.formatTool": "goimports",
+    "editor.renderWhitespace": "boundary",
+    "editor.rulers": [100],
+    "workbench.colorCustomizations": {
+        "editorRuler.foreground": "#3a3a3a"
+    },
+    "explorer.confirmDragAndDrop": false,
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "terminal.integrated.shell.osx": "/usr/local/bin/bash"
+}

@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+[ -z "$(command -v code)" ] && exit
+
+cat $DOTPATH/etc/vscode/extensions | xargs -L 1 echo code --install-extension | sh

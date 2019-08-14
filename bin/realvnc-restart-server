@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+sudo /Library/vnc/vncserver -service -stop
+sudo '/Applications/RealVNC/VNC Server.app/Contents/MacOS/vncserver_service'

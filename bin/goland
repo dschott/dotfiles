@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+[ ! -d "/Applications/GoLand.app" ] && exit
+
+open -a "/Applications/GoLand.app/Contents/MacOS/goland"

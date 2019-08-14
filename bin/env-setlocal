@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+var=$1
+val=$(eval 'echo $'$var)
+if [ -z "$val" ]; then     
+    echo "$var not set!"
+    read -p "Enter a value for $var: " val
+    if [ ! -z "$val" ]; then
+        printf "\nexport $var='$val'\n" >> "$HOME/.profile.local"
+        source "$HOME/.profile.local"
+    fi
+fi

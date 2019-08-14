@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")
