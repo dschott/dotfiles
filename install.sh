@@ -4,14 +4,12 @@ cd $scriptpath
 
 # Link dotfiles
 echo "Linking dot files"
-for f in $(find "$(pwd)/home" -maxdepth 1 -mindepth 1 -type f -name '.*'); do
+for f in $(find "$(pwd)/home" -maxdepth 1 -mindepth 1 -name '.*'); do
     ln -svf $f $HOME
 done
 
-# TODO: Link .dirs
-
 # Source dotfiles (pre-install)
-source "$HOME/.profile"
+source "$HOME/.bashrc"
 
 # Setup machine local env vars
 echo "Setting local env vars"
@@ -19,20 +17,20 @@ env-setlocal USER_FULLNAME
 env-setlocal USER_EMAIL
 
 # Installs
-echo "Installing Homebrew"
-homebrew-install
+# echo "Installing Homebrew"
+# homebrew-install
 
-echo "Installing brew bundle"
-brewfile-install
+# echo "Installing brew bundle"
+# brewfile-install
 
-echo "Installing docker completion"
-docker-completion-install
+# echo "Installing docker completion"
+# docker-completion-install
 
-echo "Installing go completion"
-go-completion-install
+# echo "Installing go completion"
+# go-completion-install
 
-echo "Installing vscode extensions"
-vscode-ext-install
+# echo "Installing vscode extensions"
+# vscode-ext-install
 
 # Default shell
 bash_path='/usr/local/bin/bash'
@@ -46,7 +44,7 @@ else
 fi
 
 # Source dotfiles (post-install)
-source "$HOME/.profile"
+source "$HOME/.bash_profile"
 
 # My favorite theme
 [ "$(uname -s)" == "Darwin" ] && open "$(pwd)/etc/terminal/macos/themes/schemes/Afterglow.terminal"
