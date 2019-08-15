@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+
+arg=${1:-ip}
+
+case $1 in
+"json")
+    arg="all.json"
+    ;;
+"xml")
+    arg="all.xml"
+    ;;
+"--help")
+    echo "usage: myip [arg]
+Gets external ip/connection info
+
+args:
+    ip          connection     all
+    host        encoding       xml
+    ua          mime           all.xml
+    port        charset        all.json
+    lang        via            json
+    keepalive   forwarded      all.json"
+    exit
+    ;;
+esac
+    
+curl ifconfig.me/$arg

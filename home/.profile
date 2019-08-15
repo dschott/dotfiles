@@ -8,12 +8,13 @@ else
     return
 fi
 
+# Add all bin commands to path
 export PATH="$DOTPATH/bin:$PATH"
 
 # Local profile (private keys etc)
 [ -r "$HOME/.profile.local" ] && source "$HOME/.profile.local"
 
-# Source all sub files
+# Source all shell files
 for f in $DOTPATH/shell/*; do
     source $f
 done
