@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-[ -z "$(command -v code)" ] && exit
-
-if [ "$(uname -s)" == "Darwin" ]; then
-    cp "$HOME/Library/Application Support/Code/User/settings.json" "$DOTPATH/etc/vscode/settings.json"
-elif [ "$(uname -s)" == "Linux" ]; then
-    cp "$HOME/.config/Code/User/settings.json" "$DOTPATH/etc/vscode/settings.json"
-fi

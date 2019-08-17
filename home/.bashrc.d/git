@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-[ -z "$(command -v git)" ] && return
-
-git-ensure-user-set

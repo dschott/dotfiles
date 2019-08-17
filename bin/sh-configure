@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+[ "$(uname -s)" != "Darwin" ] && exit
+
+bash_path='/usr/local/bin/bash'
+file='/etc/shells'
+if [ -z $(grep "$bash_path" "$file") ]; then
+    # Add user installed bash to os shells
+    sudo sh -c "grep -q -F '$bash_path' $file || echo '$bash_path' >> $file"
+    # Set user install bash to default shell
+    chsh -s "$bash_path" $USER
+fi

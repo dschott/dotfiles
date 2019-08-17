@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+[ -z "$(command -v code)" ] && exit
+
+file=${1:-$DOTPATH/etc/vscode/extensions}
+
+code --list-extensions > $file

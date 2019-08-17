@@ -1,0 +1,7 @@
+// Place your key bindings in this file to override the defaults
+[
+    { "key": "cmd+w", "command": "workbench.action.switchWindow", "when": "!editorIsOpen && !multipleEditorGroups" },
+    { "key": "cmd+v", "command": "telesoho.MarkdownPaste", "when": "editorTextFocus && editorLangId == 'markdown'" },
+    { "key": "cmd+b", "command": "workbench.action.toggleSidebarVisibility", "when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'" },
+    { "key": "cmd+alt+up", "command": "workbench.action.toggleMaximizedPanel" },
+]

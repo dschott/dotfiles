@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+for f in $(find "$DOTPATH/home" -maxdepth 1 -mindepth 1 -name '.*'); do
+    ln -svf $f $HOME
+done

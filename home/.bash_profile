@@ -2,9 +2,8 @@
 
 [ -r $HOME/.bashrc ] && source $HOME/.bashrc
 
-# Splash
-printf "${COLOR_RED}
- _____   _____   _____   _____ 
+# Login Shell Splash
+printf "${COLOR_RED} _____   _____   _____   _____ 
 ||   || ||   || ||   || ||   ||
 || B || || A || || S || || H ||
 ||___|| ||___|| ||___|| ||___||
@@ -15,3 +14,5 @@ ${COLOR_RED}HOSTNAME:  ${COLOR_CYAN}$HOSTNAME
 ${COLOR_RED}HOME:      ${COLOR_CYAN}$HOME
 ${COLOR_RED}USER:      ${COLOR_CYAN}$USER
 ${COLOR_RED}UPTIME:    ${COLOR_CYAN}`echo -e \`uptime\``\n\n"
+
+complete -C /Users/gkrps/go/bin/gocomplete go

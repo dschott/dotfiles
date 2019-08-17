@@ -1,52 +1,49 @@
 #!/usr/bin/env bash
-scriptpath="$(cd "$(dirname "$0")" && pwd -P)"
-cd $scriptpath
+export DOTPATH="$(cd "$(dirname "$0")" && pwd -P)"
 
 # Link dotfiles
 echo "Linking dot files"
-for f in $(find "$(pwd)/home" -maxdepth 1 -mindepth 1 -name '.*'); do
-    ln -svf $f $HOME
-done
+dotfiles-link
 
 # Source dotfiles (pre-install)
 source "$HOME/.bashrc"
 
 # Setup machine local env vars
-echo "Setting local env vars"
+echo "Setting local user env vars"
 env-setlocal USER_FULLNAME
 env-setlocal USER_EMAIL
 
 # Installs
-# echo "Installing Homebrew"
-# homebrew-install
+echo "Installing homebrew"
+homebrew-install
 
-# echo "Installing brew bundle"
-# brewfile-install
+echo "Installing brew bundle"
+brewfile-install
 
-# echo "Installing docker completion"
-# docker-completion-install
+echo "Installing docker completion"
+docker-completion-install
 
-# echo "Installing go completion"
-# go-completion-install
+echo "Installing go completion"
+gocomplete-install
 
-# echo "Installing vscode extensions"
-# vscode-ext-install
+echo "Installing vscode extensions"
+vscode-install-extensions
 
-# Default shell
-bash_path='/usr/local/bin/bash'
-file='/etc/shells'
-if [ -z $(grep "$bash_path" "$file") ]; then
-    echo "Configure default shell"
-    sudo sh -c "grep -q -F '$bash_path' $file || echo '$bash_path' >> $file"
-    chsh -s "$bash_path" $USER
-else
-    echo "Default shell already configured"
-fi
+echo "Installing vscode settings"
+vscode-install-settings
+
+echo "Installing vscode keybindings"
+vscode-install-keybindings
+
+# Set terminal theme
+echo "Setting terminal theme"
+terminal-set-theme
+
+# Configure shell
+echo "Configuring shell"
+sh-configure
 
 # Source dotfiles (post-install)
 source "$HOME/.bash_profile"
 
-# My favorite theme
-[ "$(uname -s)" == "Darwin" ] && open "$(pwd)/etc/terminal/macos/themes/schemes/Afterglow.terminal"
-
-echo "Install Complete!"
+echo "Install complete!"

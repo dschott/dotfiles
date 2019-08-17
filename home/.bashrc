@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# If .bash_profile is a link, assume it exists in dotfiles dir
-if [ ! -z "$(readlink $HOME/.bash_profile)" ]; then
-    export DOTPATH="$(cd "$(dirname "$(readlink $HOME/.bash_profile)")/.."; pwd)"
+# If .bashrc is a link, assume it exists in dotfiles dir
+if [ ! -z "$(readlink $HOME/.bashrc)" ]; then
+    export DOTPATH="$(cd "$(dirname "$(readlink $HOME/.bashrc)")/.."; pwd)"
 else
     echo "Unable to locate dotfiles!"
     return
@@ -24,6 +24,8 @@ path-add "/usr/local/sbin"
 # Shell Config
 export CLICOLOR=1
 shopt -s checkwinsize
+shopt -s cdspell
+shopt -s dirspell
 
 # Color Escape Codes
 COLOR_RED="\e[0;31m"
@@ -33,4 +35,4 @@ COLOR_GREEN="\e[0;32m"
 COLOR_NONE="\e[0m"
 
 # Prompt
-PS1="\[${COLOR_RED}\][\[${COLOR_CYAN}\]\u@\h\[${COLOR_RED}\]] \$(date +%H:%M) \w\[${COLOR_YELLOW}\] \$(git-whichbranch)\[${COLOR_GREEN}\]\n\$ \[${COLOR_NONE}\]"
+PS1="\[${COLOR_RED}\][\[${COLOR_CYAN}\]\u@\h\[${COLOR_RED}\]] \$(date +%H:%M) \w\[${COLOR_YELLOW}\] \$(git-whichbranch)\n\[${COLOR_GREEN}\]\$ \[${COLOR_NONE}\]"

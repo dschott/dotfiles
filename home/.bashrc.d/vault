@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-[ -z "$(command -v vault)" ] && return
-
-complete -C /usr/local/bin/vault vault
