@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+
+if [ -z ${NOTESPATH+x} ]; then
+    >&2 echo "\$NOTESPATH must be set"
+fi
+
+if [ ! -d ${NOTESPATH} ]; then
+    >&2 echo "\$NOTESPATH does not exist"
+fi
+
+mkdir -p ${NOTESPATH}/notes
+
+_dir_complete () {
+    local base=${1} cur=${2} i=0 ret=()
+    for dir in $(compgen -d -S / ${base}/${cur}); do
+        ret[i++]=${dir#$base/}
+    done
+    if [ $i = 1 ]; then
+        local next=($(_dir_complete ${base} ${ret[0]}))
+        for i in ${!next[@]}; do
+            next[i]=${next[i]#${ret[0]}}
+        done
+        if [ ${#next[@]} -gt 0 ]; then
+            echo ${next[@]}
+            return  
+        fi
+    fi
+    echo ${ret[@]}
+}
+
+_file_complete () {
+    local base=${1} cur=${2} i=0 ret=()
+    for dir in $(compgen -d -S / ${base}/${cur}); do
+        ret[i++]=${dir#$base/}
+    done
+    for f in $(compgen -f ${base}/${cur}); do
+        if [ -f $f ]; then
+            ret[i++]=${f#$base/}
+        fi
+    done
+    if [ $i = 1 ]; then
+        if [ -d ${ret[0]} ]; then
+            local next=($(_file_complete ${base}/${ret[0]}))
+            if [ ${#next[@]} -gt 0 ]; then
+                echo ${next[@]}
+                return  
+            fi
+        fi
+    fi
+    echo ${ret[@]}
+}
+
+_nn_complete () {
+    if [ $COMP_CWORD = 1 ]; then
+        COMPREPLY=($(_dir_complete ${NOTESPATH}/notes ${COMP_WORDS[1]}))
+    elif [ $COMP_CWORD = 2 ]; then
+        COMPREPLY=($(date +'%Y-%m-%d.md'))
+    fi
+}
+
+_nn_complete2 () {
+
+        cd ${NOTESPATH}/notes
+
+        if [ $COMP_CWORD = 1 ]; then
+            _cd
+        elif [ $COMP_CWORD = 2 ]; then
+            COMPREPLY=($(date +'%Y-%m-%d.md'))
+        fi
+
+}
+
+_n_complete () {
+    if [ $COMP_CWORD = 1 ]; then
+        COMPREPLY=($(_file_complete ${NOTESPATH}/notes ${COMP_WORDS[1]}))
+    fi
+}
+_n_complete_2()
+{
+    local cmd=$1 cur=$2 pre=$3
+    local _cur compreply
+
+    _cur=$NOTESPATH/notes/$cur
+    compreply=( $( compgen -f "$_cur" ) )
+    COMPREPLY=( ${compreply[@]#${NOTESPATH}/notes} )
+    if [[ ${#COMPREPLY[@]} -eq 1 ]]; then
+        COMPREPLY[0]=${COMPREPLY[0]}
+    fi
+}
+_n_complete_3 () {
+    # Set
+    IFS=$'\n' tmp=( $(compgen -W "$(ls "${NOTESPATH}/notes")" -- "${COMP_WORDS[$COMP_CWORD]}" ))
+    COMPREPLY=( "${tmp[@]// /\ }" )
+}
+
+_n_complete_4 () {
+    if [ $COMP_CWORD = 1 ]; then
+        temp=($(compgen -f "${NOTESPATH}/notes/${COMP_WORDS[$COMP_CWORD]}"))
+        COMPREPLY=(${temp[@]})
+    fi
+}
+
+complete -o default -F _pull pull
+compgen -o filenames -A file ...
+complete -o filenames -A file n
+
+complete -C "sh -c 'ls $NOTESPATH/notes/$1'" n
+complete -F _nn_complete2 nn
+
+complete -F _n_complete n
+# complete -C "compgen -d ${NOTESPATH}/notes/$1" n
