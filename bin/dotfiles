@@ -2,4 +2,6 @@
 
 [ -z "$(command -v code)" ] && exit
 
-code ${DOTPATH}
+if [ -d ${DOTPATH} ]; then
+    code ${DOTPATH}
+fi
