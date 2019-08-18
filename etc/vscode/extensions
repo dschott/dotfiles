@@ -5,10 +5,6 @@ bungcip.better-toml
 DavidAnson.vscode-markdownlint
 dbaeumer.jshint
 dbaeumer.vscode-eslint
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 34692e9... update vscode environment
 donjayamanne.githistory
 DougFinke.vscode-pandoc
 eamodio.gitlens
@@ -19,17 +15,11 @@ johnpapa.vscode-peacock
 JPTarquino.postgresql
 karigari.chat
 ms-azuretools.vscode-docker
-<<<<<<< HEAD
-ms-vscode.Go
-=======
->>>>>>> 30bfd1e... test
-=======
 ms-kubernetes-tools.vscode-kubernetes-tools
 ms-mssql.mssql
 ms-python.python
 ms-vscode.cpptools
 ms-vscode.Go
->>>>>>> 34692e9... update vscode environment
 ms-vscode.powershell
 ms-vsliveshare.vsliveshare
 ms-vsliveshare.vsliveshare-audio
