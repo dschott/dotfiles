@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+[ -z "$(command -v code)" ] && exit
+
+if [ -d ${NOTESPATH} ]; then
+    code ${NOTESPATH}
+fi

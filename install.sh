@@ -20,6 +20,9 @@ homebrew-install
 echo "Installing brew bundle"
 brewfile-install
 
+echo "Configuring git"
+git-config
+
 echo "Installing docker completion"
 docker-completion-install
 
@@ -35,12 +38,12 @@ vscode-install-settings
 echo "Installing vscode keybindings"
 vscode-install-keybindings
 
-echo "Configuring git"
-git-config
-
 # Set terminal theme
 echo "Setting terminal theme"
 terminal-set-theme
+
+echo "Installing notes"
+notes-install
 
 # Configure shell
 echo "Configuring shell"

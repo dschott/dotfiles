@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+[ -z "$(command -v git)" ] && exit
+
+if [ -d ${NOTESPATH} ]; then
+    if git-is-repo ${NOTESPATH}; then
+        git -C ${NOTESPATH} pull --ff-only
+    fi
+else
+    mkdir -p ${NOTESPATH}/..
+    git -C ${NOTESPATH}/.. clone git@github.com:dschott/notes.git
+fi
