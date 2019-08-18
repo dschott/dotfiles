@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+[ -z "$(command -v git)" ] && exit
+
+if [ "$(git config --global --includes user.name)" != "${USER_FULLNAME}" ] ||
+    [ "$(git config --global --includes user.email)" != "${USER_EMAIL}" ]; then
+    
+    echo "Updating ${HOME}/.gitconfig.user"
+    echo "[user]
+    name = ${USER_FULLNAME}
+    email = ${USER_EMAIL}" > ${HOME}/.gitconfig.user
+fi

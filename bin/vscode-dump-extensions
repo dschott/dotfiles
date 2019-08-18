@@ -2,6 +2,6 @@
 
 [ -z "$(command -v code)" ] && exit
 
-file=${1:-$DOTPATH/etc/vscode/extensions}
+file=${1:-${DOTPATH}/etc/vscode/extensions}
 
-code --list-extensions > $file
+code --list-extensions > ${file}

@@ -24,4 +24,4 @@ args:
     ;;
 esac
     
-curl ifconfig.me/$arg
+curl ifconfig.me/${arg}

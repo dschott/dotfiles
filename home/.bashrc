@@ -1,31 +1,30 @@
 #!/usr/bin/env bash
 
-# If .bashrc is a link, assume it exists in dotfiles dir
-if [ ! -z "$(readlink $HOME/.bashrc)" ]; then
-    export DOTPATH="$(cd "$(dirname "$(readlink $HOME/.bashrc)")/.."; pwd)"
-else
-    echo "Unable to locate dotfiles!"
-    return
-fi
-
-# Add all bin commands to path
-export PATH="$DOTPATH/bin:$PATH"
-
-# Local bashrc (private keys etc)
-[ -r "$HOME/.bashrc.local" ] && source "$HOME/.bashrc.local"
-
-# Source all shell files
-for f in $HOME/.bashrc.d/*; do
-    source $f
-done
-
-path-add "/usr/local/sbin"
-
 # Shell Config
 export CLICOLOR=1
 shopt -s checkwinsize
 shopt -s cdspell
 shopt -s dirspell
+shopt -s extglob
+
+# If .bashrc is a link, assume it exists in dotfiles dir
+if [ ! -z "$(readlink ${HOME}/.bashrc)" ]; then
+    export DOTPATH="$(cd "$(dirname "$(readlink ${HOME}/.bashrc)")/.."; pwd)"
+else
+    echo "Unable to locate dotfiles!"
+    return
+fi
+
+# Export bin paths
+export PATH="${DOTPATH}/bin:/usr/local/sbin:${PATH}"
+
+# Source remaining bashrc files
+for f in ${HOME}/.bashrc.d/*; do
+    source $f
+done
+
+# Source local bashrc file (private keys etc)
+[ -r "${HOME}/.bashrc.local" ] && source "$HOME/.bashrc.local"
 
 # Color Escape Codes
 COLOR_RED="\e[0;31m"

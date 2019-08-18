@@ -2,10 +2,10 @@
 
 [ -z "$(command -v code)" ] && exit
 
- file=${1:-$DOTPATH/etc/vscode/settings.json}
+ file=${1:-${DOTPATH}/etc/vscode/settings.json}
 
 if [ "$(uname -s)" == "Darwin" ]; then
-    cp "$file" "$HOME/Library/Application Support/Code/User/settings.json"
+    cp "${file}" "${HOME}/Library/Application Support/Code/User/settings.json"
 elif [ "$(uname -s)" == "Linux" ]; then
-    cp "$file" "$HOME/.config/Code/User/settings.json"
+    cp "${file}" "${HOME}/.config/Code/User/settings.json"
 fi

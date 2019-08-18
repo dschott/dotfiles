@@ -2,6 +2,6 @@
 
 [ -z "$(command -v brew)" ] && exit
 
-cd $DOTPATH/etc/homebrew
+cd ${DOTPATH}/etc/homebrew
 brew update
 brew bundle install -v

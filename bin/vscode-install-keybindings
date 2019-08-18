@@ -2,10 +2,10 @@
 
 [ -z "$(command -v code)" ] && exit
 
-file=${1:-$DOTPATH/etc/vscode/keybindings.json}
+file=${1:-${DOTPATH}/etc/vscode/keybindings.json}
 
 if [ "$(uname -s)" == "Darwin" ]; then
-    cp "$file" "$HOME/Library/Application Support/Code/User/keybindings.json"
+    cp "${file}" "${HOME}/Library/Application Support/Code/User/keybindings.json"
 elif [ "$(uname -s)" == "Linux" ]; then
-    cp "$file" "$HOME/.config/Code/User/keybindings.json"
+    cp "${file}" "${HOME}/.config/Code/User/keybindings.json"
 fi

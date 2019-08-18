@@ -2,4 +2,4 @@
 
 [ "$(uname -s)" != "Darwin" ] && exit
 
-open "$DOTPATH/etc/macos-terminal-themes/schemes/Afterglow.terminal"
+open "${DOTPATH}/etc/macos-terminal-themes/schemes/Afterglow.terminal"

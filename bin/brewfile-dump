@@ -2,5 +2,5 @@
 
 [ -z "$(command -v brew)" ] && exit
 
-cd $DOTPATH/etc/homebrew
+cd ${DOTPATH}/etc/homebrew
 brew bundle dump --force

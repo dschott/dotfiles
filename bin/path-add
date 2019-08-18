@@ -1,3 +1,14 @@
 #!/usr/bin/env sh
 
-export PATH="$1:$PATH"
+if [ "${BASH_SOURCE[0]}" -ef "$0" ]
+then
+    echo "$0 must be sourced"
+    exit 1
+fi
+
+if [ -z "${1}" ]; then
+    >&2 echo "a path is required"
+    exit 1
+fi
+
+export PATH="${1}:${PATH}"

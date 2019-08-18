@@ -1,12 +1,17 @@
 #!/usr/bin/env sh
 
-var=$1
-val=$(eval 'echo $'$var)
-if [ -z "$val" ]; then     
-    echo "$var not set!"
-    read -p "Enter a value for $var: " val
-    if [ ! -z "$val" ]; then
-        printf "\nexport $var='$val'\n" >> "$HOME/.bashrc.local"
-        source "$HOME/.bashrc.local"
+if [ -z "$1" ]; then
+    2&> echo "environment variable name is required."
+    return 1
+fi
+
+var=${1}
+val=$(eval 'echo $'${var})
+if [ -z "${val}" ]; then     
+    echo "${var} not set!"
+    read -p "Enter a value for ${var}: " val
+    if [ ! -z "${val}" ]; then
+        printf "\nexport ${var}='${val}'\n" >> "${HOME}/.bashrc.local"
+        source "${HOME}/.bashrc.local"
     fi
 fi

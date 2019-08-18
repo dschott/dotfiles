@@ -35,6 +35,9 @@ vscode-install-settings
 echo "Installing vscode keybindings"
 vscode-install-keybindings
 
+echo "Configuring git"
+git-config
+
 # Set terminal theme
 echo "Setting terminal theme"
 terminal-set-theme
