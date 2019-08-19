@@ -13,6 +13,7 @@ humao.rest-client
 jdinhlife.gruvbox
 johnpapa.vscode-peacock
 JPTarquino.postgresql
+jsynowiec.vscode-insertdatestring
 karigari.chat
 ms-azuretools.vscode-docker
 ms-kubernetes-tools.vscode-kubernetes-tools
@@ -25,12 +26,12 @@ ms-vsliveshare.vsliveshare
 ms-vsliveshare.vsliveshare-audio
 ms-vsliveshare.vsliveshare-pack
 mushan.vscode-paste-image
+pajoma.vscode-journal
 peterj.proto
 redhat.vscode-yaml
 rid9.datetime
 secanis.jenkinsfile-support
 stkb.rewrap
-telesoho.vscode-markdown-paste-image
 tht13.html-preview-vscode
 tomoki1207.pdf
 vscode-icons-team.vscode-icons
