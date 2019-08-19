@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+[ -z "$(command -v code)" ] && exit
+
+[ ! -d "${GOPATH}/src/github.platforms.engineering/graphroots/genomics" ] && exit
+
+code "${GOPATH}/src/github.platforms.engineering/graphroots/genomics"

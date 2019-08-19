@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+[ -z "$(command -v code)" ] && exit
+
+[ ! -d "${HOME}/projects/genomics-deploy" ] && exit
+
+code "${HOME}/projects/genomics-deploy"
