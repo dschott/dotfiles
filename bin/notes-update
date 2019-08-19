@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+[ -z "$(command -v git)" ] && exit
+
+if [ -d ${NOTESPATH} ]; then
+    if git-is-repo ${NOTESPATH}; then
+        if git -C ${NOTESPATH} pull --ff-only; then
+            git -C ${NOTESPATH} add .
+            git -C ${NOTESPATH} commit -m "more notes"
+            git -C ${NOTESPATH} push
+        fi
+    fi
+fi
