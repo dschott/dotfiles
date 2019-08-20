@@ -3,7 +3,7 @@ export DOTPATH="$(cd "$(dirname "$0")" && pwd -P)"
 
 # Link dotfiles
 echo "Linking dot files"
-dotfiles-link
+$DOTPATH/bin/dotfiles-link
 
 # Source dotfiles (pre-install)
 source "$HOME/.bashrc"
