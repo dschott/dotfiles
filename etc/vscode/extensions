@@ -8,6 +8,7 @@ dbaeumer.vscode-eslint
 donjayamanne.githistory
 DougFinke.vscode-pandoc
 eamodio.gitlens
+GrapeCity.gc-excelviewer
 HookyQR.beautify
 humao.rest-client
 jdinhlife.gruvbox
@@ -15,6 +16,7 @@ johnpapa.vscode-peacock
 JPTarquino.postgresql
 jsynowiec.vscode-insertdatestring
 karigari.chat
+mechatroner.rainbow-csv
 ms-azuretools.vscode-docker
 ms-kubernetes-tools.vscode-kubernetes-tools
 ms-mssql.mssql
@@ -31,6 +33,7 @@ peterj.proto
 redhat.vscode-yaml
 rid9.datetime
 secanis.jenkinsfile-support
+sidneys1.gitconfig
 stkb.rewrap
 tht13.html-preview-vscode
 tomoki1207.pdf
