@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-[ -z "$(command -v git)" ] && exit
-
-if [ -n "$(command -v git)" ]; then
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-else
-    echo ""
-fi

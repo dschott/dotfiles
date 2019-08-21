@@ -34,4 +34,4 @@ COLOR_GREEN="\e[0;32m"
 COLOR_NONE="\e[0m"
 
 # Prompt
-PS1="\[${COLOR_RED}\][\[${COLOR_CYAN}\]\u@\h\[${COLOR_RED}\]] \$(date +%H:%M) \w\[${COLOR_YELLOW}\] \$(git-whichbranch)\n\[${COLOR_GREEN}\]\$ \[${COLOR_NONE}\]"
+PS1="\[${COLOR_RED}\][\[${COLOR_CYAN}\]\u@\h\[${COLOR_RED}\]] \$(date +%H:%M) \w\[${COLOR_YELLOW}\] \$(git-branch | sed 's/\(.*\)/(\1)/')\n\[${COLOR_GREEN}\]\$ \[${COLOR_NONE}\]"
