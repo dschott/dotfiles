@@ -5,4 +5,8 @@
     { "key": "cmd+b", "command": "workbench.action.toggleSidebarVisibility", "when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'" },
     { "key": "alt+cmd+up", "command": "workbench.action.toggleMaximizedPanel", "when": "terminalFocus" },
     { "key": "alt+cmd+down", "command": "workbench.action.toggleMaximizedPanel", "when": "terminalFocus" },
+    { "key": "cmd+n", "command": "explorer.newFile", "when": "explorerViewletFocus" },
+    { "key": "ctrl+`", "command": "workbench.action.terminal.focus"},
+    { "key": "ctrl+`", "command": "workbench.action.focusActiveEditorGroup", "when": "terminalFocus"},
+    { "key": "cmd+w", "command": "workbench.action.terminal.toggleTerminal", "when": "terminalFocus"},
 ]
