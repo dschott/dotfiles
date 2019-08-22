@@ -2,4 +2,4 @@
 
 [ -z "$(command -v lpass)" ] && exit
 
-lpass login --trust ${USER_EMAIL}
+lpass login --trust douglas.schott@gmail.com
