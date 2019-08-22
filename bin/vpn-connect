@@ -8,7 +8,6 @@ if [ -z ${host} ]; then
     hosts=$(vpn-hosts)
     default=$(echo "${hosts}" | head -1)
     
-    echo $default
     printf "Available hosts:\n\n${hosts}\n\n"
     read  -p "Host (${default}): " host
     host=${host:-${default}}
