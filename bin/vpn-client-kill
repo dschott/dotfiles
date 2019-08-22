@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+[ ! -d '/Applications/Cisco/Cisco AnyConnect Secure Mobility Client.app' ] && exit
+
+pid=$(ps aux | grep 'Cisco AnyConnect Secure Mobility Client' | grep -v grep | awk '{print $2}')
+if [ -n "${pid}" ]; then
+    if kill -9 ${pid}; then
+        echo 'Killed: Cisco AnyConnect Secure Mobility Client'
+    else
+        echo 'Unable to Kill: Cisco AnyConnect Secure Mobility Client'
+    fi
+fi

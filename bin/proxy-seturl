@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+url=${1}
+
+networksetup -setautoproxyurl Wi-Fi "${url}"
+
+echo "Auto proxy turned on"

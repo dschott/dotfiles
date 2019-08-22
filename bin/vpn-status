@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+[ ! -f /opt/cisco/anyconnect/bin/vpn ] && exit
+
+/opt/cisco/anyconnect/bin/vpn -s status | sed -n 's# *>> *\(.*\)#\1#p'

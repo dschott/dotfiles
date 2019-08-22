@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+networksetup -setautoproxystate Wi-Fi off
+
+echo "Auto proxy turned off"

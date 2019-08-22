@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+[ ! -f /opt/cisco/anyconnect/bin/vpn ] && exit
+
+/opt/cisco/anyconnect/bin/vpn -s hosts | sed -n 's# *> *\(.*\)#\1#p'
