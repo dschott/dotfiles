@@ -44,7 +44,7 @@
     "editor.acceptSuggestionOnEnter": "off",
     "vsicons.presets.hideFolders": true,
     "workbench.colorTheme": "Gruvbox Dark Hard",
-    "workbench.iconTheme": "vs-nomo-dark",
+    "workbench.iconTheme": "vscode-icons",
     "peacock.favoriteColors": [
         {
             "name": "Angular Red",
@@ -193,4 +193,15 @@
             }
         ]
     },
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "searchOpenAllResults.resultsLimit": 250, // Maximum number of results to open
+    "searchOpenAllResults.fileResultsLimit": 10, // Maximum number of supported results per file
+    "searchOpenAllResults.delay": 150 // Delay, in milliseconds, between file openings
 }
