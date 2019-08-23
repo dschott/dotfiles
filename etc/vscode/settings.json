@@ -201,7 +201,4 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "searchOpenAllResults.resultsLimit": 250, // Maximum number of results to open
-    "searchOpenAllResults.fileResultsLimit": 10, // Maximum number of supported results per file
-    "searchOpenAllResults.delay": 150 // Delay, in milliseconds, between file openings
 }
