@@ -6,20 +6,20 @@ vscode-dump-extensions
 vscode-dump-settings
 vscode-dump-keybindings
 
-git diff --color ${DOTPATH}/etc/vscode | cat
+git -C ${DOTPATH} diff --color etc/vscode | cat
 
-if git diff --cached --exit-code; then
+if git -C ${DOTPATH} diff --cached --exit-code; then
     echo
     read -p "Commit changes (y/n)? " commit
     echo
 
     if [ "${commit}" = "y" ]; then
-        git -C ${DOTPATH} add ${DOTPATH}/etc/vscode
-        git -C ${DOTPATH} commit -m "update vscode user settings" -- ${DOTPATH}/etc/vscode
+        git -C ${DOTPATH} add etc/vscode
+        git -C ${DOTPATH} commit -m "update vscode user settings" -- etc/vscode
         git -C ${DOTPATH} push
     else
         printf "\nNot gonna do shit. Reverting and aborting commit.\n"
-        git checkout ${DOTPATH}/etc/vscode/* 2> /dev/null
+        git -C ${DOTPATH} checkout etc/vscode/* 2> /dev/null
         exit 1
     fi
 else
