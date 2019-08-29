@@ -4,7 +4,7 @@
 
 host=${1}
 
-if [ -z ${host} ]; then
+if [ -z "${host}" ]; then
     hosts=$(vpn-hosts)
     default=$(echo "${hosts}" | head -1)
     
