@@ -42,6 +42,9 @@ vscode-install-keybindings
 echo "Setting terminal theme"
 terminal-set-theme
 
+echo "Installing mac os default keybindings"
+macos-install-keybindings
+
 echo "Installing notes"
 notes-install
 

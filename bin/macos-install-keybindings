@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+[ "$(uname -s)" != "Darwin" ] && exit
+
+mkdir -p ${HOME}/Library/KeyBindings/
+ln -fs ${DOTPATH}/etc/macos/DefaultKeyBinding.dict ${HOME}/Library/KeyBindings/DefaultKeyBinding.dict
