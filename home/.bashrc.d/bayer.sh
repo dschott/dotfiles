@@ -20,7 +20,7 @@ vpn-disconnect-bayer() {
     proxy-off
 }
 
-open-bayernet() {
+bayernet-open() {
     vpn-disconnect
     proxy-on
     proxy-seturl "http://pac.hybrid-web.global.blackspider.com/proxy.pac?p=4m92bzff"

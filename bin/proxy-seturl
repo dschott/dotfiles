@@ -4,4 +4,4 @@ url=${1}
 
 networksetup -setautoproxyurl Wi-Fi "${url}"
 
-echo "Auto proxy turned on"
+echo "Auto proxy url set"
