@@ -10,4 +10,7 @@
     { "key": "ctrl+`", "command": "workbench.action.focusActiveEditorGroup", "when": "terminalFocus"},
     { "key": "cmd+w", "command": "workbench.action.terminal.toggleTerminal", "when": "terminalFocus"},
     { "key": "cmd+k cmd+k", "command": "workbench.action.terminal.kill", "when": "terminalFocus"},
+    { "key": "cmd+e cmd+c", "command": "workbench.files.action.collapseExplorerFolders"},
+    { "key": "cmd+e cmd+f", "command": "workbench.files.action.focusFilesExplorer"},
+    { "key": "cmd+e cmd+r", "command": "workbench.files.action.refreshFilesExplorer"},
 ]

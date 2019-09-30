@@ -5,6 +5,8 @@
 export USER_FULLNAME="Doug Schott"
 export USER_EMAIL="douglas.schott@monsanto.com"
 export VAULT_ADDR=https://vault.agro.services
+export PATH="/usr/local/opt/protobuf@3.6/bin:$PATH"
+export PATH="/usr/local/opt/protoc-gen-go@1.0/bin:$PATH"
 
 vault-login-bayer() {
     vault login -method=userpass -path=ping username=GKRPS
@@ -20,10 +22,14 @@ vpn-disconnect-bayer() {
     proxy-off
 }
 
-bayernet-open() {
-    vpn-disconnect
+proxy-on-bayer() {
     proxy-on
     proxy-seturl "http://pac.hybrid-web.global.blackspider.com/proxy.pac?p=4m92bzff"
+}
+
+bayernet-open() {
+    vpn-disconnect
+    proxy-on-bayer
     vpn-connect "Standard VPN - IRV"
     open "https://new.bayernet.cnb/en"
 }
