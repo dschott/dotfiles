@@ -1,10 +1,13 @@
 #!/usr/bin/env sh
 
-if [ "${BASH_SOURCE[0]}" -ef "$0" ]
+if [ "$_" = "$0" ]
 then
     echo "$0 must be sourced"
-    exit 1
+    return
 fi
+
+echo X
+[ -z "$(command -v javac)" ] && return
 
 # Ref: http://www.jayway.com/2014/01/15/how-to-switch-jdk-version-on-mac-os-x-maverick/
 if [ -z "$1" ]; then
