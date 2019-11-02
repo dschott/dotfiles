@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+match=${1}
+line=${2}
+filename=${3}
+
+esc_line="$(echo ${line} | sed -e 's/[\/&]/\\&/g')"
+
+grep -qe "^${match}" "${filename}" && \
+    sed -i'' -e "s/^${match}.*/${esc_line}/" "${filename}" || \
+    echo "${line}" >> "${filename}"
+
+#sed -e "/^\(${match}\)/!{q100}; {s/^\(${match}\).*/${line}/}" ${filename}
+#echo $?
+# sed -e 's/^\('"${match}"'\).*/'"${line}"'/g'
+    #-e '$aoption=value' ${filename}
+# sed -i '' \
+#     -e '/^#\?\(\s*'"${name}"'\s*=\s*\).*/{s//\1'"${value}"'/;:a;n;ba;q}' \
+#     -e '$a'"${name}"'='"${value}" $3
