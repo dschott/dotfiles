@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+
+if [ "$(uname -s)" == "Darwin" ]; then
+    versions=$(brew list -1 | grep -E '^go$|^go@')
+    if [ -z "${1}" ]; then
+        echo "Current version:"
+        echo "    $(go version)"
+        echo
+        echo "Available versions:"
+        echo "${versions}" | sed 's/^/    /'
+    else
+        if brew info "${1}" > /dev/null 2>&1; then
+            for version in "${versions}"; do
+                if [ "${version}" != "${1}" ]; then
+                    brew unlink ${version}
+                fi
+            done
+            brew link --force ${1}
+        else
+            echo "Invalid verison: $1"
+        fi
+    fi
+elif [ "$(uname -s)" == "Linux" ]; then
+    echo "LINUX!"
+fi
