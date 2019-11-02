@@ -20,6 +20,7 @@ brew "python"
 brew "docker-compose", link: false
 brew "git"
 brew "git-lfs"
+brew "go@1.12"
 brew "hub"
 brew "imagemagick"
 brew "jq"
