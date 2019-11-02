@@ -1,0 +1,89 @@
+#!/usr/bin/env sh
+
+[ -z "$(command -v apt)" ] && exit
+
+# vscode
+# https://code.visualstudio.com/docs/setup/linux
+if [ ! -f /usr/share/keyrings/packages.microsoft.gpg ]; then
+    curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+    sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
+    sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+fi
+
+packages="
+apt-transport-https
+bash
+bash-completion
+default-jdk
+code
+python3
+make
+golang-1.12
+golang-1.13
+"
+$ ls -la /usr/bin/go
+lrwxrwxrwx 1 root root 21 Aug  4 16:46 /usr/bin/go -> ../lib/go-1.12/bin/go
+
+lrwxrwxrwx   1 root root       7 Aug  4 16:46 go -> go-1.12
+drwxr-xr-x   4 root root    4096 Nov  2 12:21 go-1.12
+drwxr-xr-x   4 root root    4096 Nov  2 12:19 go-1.13
+golang-1.13-go ->
+
+brew "dep"
+brew "direnv"
+brew "docker", link: false
+brew "openssl"
+brew "python"
+brew "docker-compose", link: false
+brew "git"
+brew "git-lfs"
+brew "go@1.12"
+brew "hub"
+brew "imagemagick"
+brew "jq"
+brew "kubernetes-cli"
+brew "kubectx"
+brew "kubernetes-helm"
+brew "lastpass-cli"
+brew "make"
+brew "node"
+brew "nvm"
+brew "openconnect"
+brew "p7zip"
+brew "pkg-config"
+brew "postgresql"
+brew "protobuf@3.6"
+brew "python-yq"
+brew "python@2"
+brew "stern"
+brew "tcpflow"
+brew "tcptrace"
+brew "tesseract"
+brew "the_silver_searcher"
+brew "tmux"
+brew "vault"
+brew "vim"
+brew "wget"
+brew "yarn"
+brew "datawire/blackbird/telepresence"
+brew "graphroots/tap/gogen-avro@5.3.0"
+brew "graphroots/tap/ocelotctl"
+brew "graphroots/tap/protoc-gen-go@1.0", link: false
+brew "graphroots/tap/seabolt"
+brew "rockymadden/rockymadden/slack-cli"
+cask "boostnote"
+cask "docker"
+cask "google-chrome"
+cask "google-cloud-sdk"
+cask "intellij-idea"
+cask "java"
+cask "java8"
+cask "keepingyouawake"
+cask "postman"
+cask "slack"
+cask "spotify"
+cask "visual-studio-code"
+
+
+sudo apt update
+sudo apt install $packages
