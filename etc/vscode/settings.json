@@ -201,4 +201,5 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
+    "go.useLanguageServer": false,
 }
