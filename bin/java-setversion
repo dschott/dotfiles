@@ -7,14 +7,14 @@ elif [ $(command -v javac) ]; then
     if [ -z "$1" ]; then
         printf "Current Version:\n    $(javac -version 2>&1)\n\nAvailable Versions:\n$(/usr/libexec/java_home -V 2>&1 | grep Library)\n"
     else
-        source path-remove '/System/Library/Frameworks/JavaVM.framework/Home/bin'
+        . path-remove '/System/Library/Frameworks/JavaVM.framework/Home/bin'
 
         if [ -n "${JAVA_HOME+x}" ]; then
-            source path-remove ${JAVA_HOME}
+            . path-remove ${JAVA_HOME}
         fi
 
         export JAVA_HOME=`/usr/libexec/java_home -v $@`
 
-        source path-add "${JAVA_HOME}/bin"
+        . path-add "${JAVA_HOME}/bin"
     fi
 fi

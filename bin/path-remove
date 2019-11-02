@@ -1,14 +1,9 @@
 #!/usr/bin/env sh
 
-if [ "${BASH_SOURCE[0]}" -ef "$0" ]
-then
+if [ "$_" = "$0" ]; then
     echo "$0 must be sourced"
-    exit 1
-fi
-
-if [ -z "${1}" ]; then
+elif [ -z "${1}" ]; then
     >&2 echo "a path is required"
-    exit 1
+else
+    export PATH=$(echo ${PATH} | sed -E -e "s;:${1};;" -e "s;${1}:?;;")    
 fi
-
-export PATH=$(echo ${PATH} | sed -E -e "s;:${1};;" -e "s;${1}:?;;")    
