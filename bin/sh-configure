@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-[ "$(uname -s)" != "Darwin" ] && exit
+! os-is-darwin && exit
 
 bash_path='/usr/local/bin/bash'
 file='/etc/shells'

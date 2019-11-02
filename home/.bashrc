@@ -20,11 +20,11 @@ export PATH="${DOTPATH}/bin:/usr/local/sbin:${PATH}"
 
 # Source remaining bashrc files
 for f in ${HOME}/.bashrc.d/*; do
-    source $f
+    . $f
 done
 
 # Source local bashrc file (private keys etc)
-[ -r "${HOME}/.bashrc.local" ] && source "$HOME/.bashrc.local"
+[ -r "${HOME}/.bashrc.local" ] && . "$HOME/.bashrc.local"
 
 # Color Escape Codes
 COLOR_RED="\e[0;31m"

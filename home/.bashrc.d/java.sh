@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-source java-setversion 12
+. java-setversion 12

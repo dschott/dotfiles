@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-[ -r ${HOME}/.bashrc ] && source ${HOME}/.bashrc
+[ -r ${HOME}/.bashrc ] && . ${HOME}/.bashrc
 
 # Login Shell Splash
 printf "${COLOR_RED} _____   _____   _____   _____ 

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-if [ "$_" = "$0" ]; then
+if . shell-is-subshell; then
     echo "$0 must be sourced"
 elif [ -z "${1}" ]; then
     >&2 echo "a path is required"

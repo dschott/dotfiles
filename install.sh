@@ -6,7 +6,7 @@ echo "Linking dot files"
 $DOTPATH/bin/dotfiles-link
 
 # Source dotfiles (pre-install)
-source "$HOME/.bashrc"
+. "$HOME/.bashrc"
 
 # Setup machine local env vars
 echo "Setting local user env vars"
@@ -53,6 +53,6 @@ echo "Configuring shell"
 sh-configure
 
 # Source dotfiles (post-install)
-source "$HOME/.bash_profile"
+. "$HOME/.bash_profile"
 
 echo "Install complete!"

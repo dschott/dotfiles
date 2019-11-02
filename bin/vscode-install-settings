@@ -4,8 +4,8 @@
 
  file=${1:-${DOTPATH}/etc/vscode/settings.json}
 
-if [ "$(uname -s)" == "Darwin" ]; then
+if os-is-darwin; then
     cp "${file}" "${HOME}/Library/Application Support/Code/User/settings.json"
-elif [ "$(uname -s)" == "Linux" ]; then
+elif os-is-linux; then
     cp "${file}" "${HOME}/.config/Code/User/settings.json"
 fi

@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-if [ "$(uname -s)" == "Darwin" ]; then
+if os-is-darwin; then
     versions=$(brew list -1 | grep -E '^go$|^go@')
     if [ -z "${1}" ]; then
         echo "Current version:"

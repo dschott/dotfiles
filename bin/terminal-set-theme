@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-[ "$(uname -s)" != "Darwin" ] && exit
+! os-is-darwin && exit
 
 open "${DOTPATH}/etc/macos-terminal-themes/schemes/Afterglow.terminal"

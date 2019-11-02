@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-[ "$(uname -s)" != "Darwin" ] && exit
+! os-is-darwin && exit
 
 env-setlocal HOMEBREW_GITHUB_API_TOKEN
 

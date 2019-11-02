@@ -4,8 +4,8 @@
 
 file=${1:-${DOTPATH}/etc/vscode/keybindings.json}
 
-if [ "$(uname -s)" == "Darwin" ]; then
+if os-is-darwin; then
     cp "${HOME}/Library/Application Support/Code/User/keybindings.json" "${file}"
-elif [ "$(uname -s)" == "Linux" ]; then
+elif os-is-linux; then
     cp "${HOME}/.config/Code/User/keybindings.json" "${file}"
 fi
