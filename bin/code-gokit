@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-[ -z "$(command -v code)" ] && exit
-
-[ ! -d "${GOPATH}/src/github.platforms.engineering/graphroots/gokit" ] && exit
-
-code "${GOPATH}/src/github.platforms.engineering/graphroots/gokit"

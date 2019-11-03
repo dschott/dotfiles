@@ -20,6 +20,13 @@ if os-is-darwin; then
             echo "Invalid verison: $1"
         fi
     fi
-elif [ "$(uname -s)" == "Linux" ]; then
-    echo "LINUX!"
+elif os-is-linux; then
+#     "
+# $ ls -la /usr/bin/go
+# lrwxrwxrwx 1 root root 21 Aug  4 16:46 /usr/bin/go -> ../lib/go-1.12/bin/go
+
+# lrwxrwxrwx   1 root root       7 Aug  4 16:46 go -> go-1.12
+# drwxr-xr-x   4 root root    4096 Nov  2 12:21 go-1.12
+# drwxr-xr-x   4 root root    4096 Nov  2 12:19 go-1.13
+# golang-1.13-go ->
 fi

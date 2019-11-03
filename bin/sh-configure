@@ -2,6 +2,8 @@
 
 ! os-is-darwin && exit
 
+echo "configuring shell"
+
 bash_path='/usr/local/bin/bash'
 file='/etc/shells'
 if [ -z $(grep "${bash_path}" "${file}") ]; then

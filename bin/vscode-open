@@ -2,6 +2,4 @@
 
 ! command-exists code && exit
 
-if [ -d ${DOTPATH} ]; then
-    code ${DOTPATH}
-fi
+[ -d "${1}" ] && code "${1}"

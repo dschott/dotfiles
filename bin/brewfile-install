@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-[ -z "$(command -v brew)" ] && exit
+! command-exists brew && exit
+
+echo "installing brew bundle"
 
 cd ${DOTPATH}/etc/homebrew
 brew update

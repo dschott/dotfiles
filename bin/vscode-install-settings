@@ -1,8 +1,10 @@
 #!/usr/bin/env sh
 
-[ -z "$(command -v code)" ] && exit
+! command-exists code && exit
 
- file=${1:-${DOTPATH}/etc/vscode/settings.json}
+echo "installing vscode settings"
+
+file=${1:-${DOTPATH}/etc/vscode/settings.json}
 
 if os-is-darwin; then
     cp "${file}" "${HOME}/Library/Application Support/Code/User/settings.json"

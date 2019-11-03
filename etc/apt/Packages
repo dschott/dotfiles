@@ -1,0 +1,9 @@
+apt-transport-https
+bash
+bash-completion
+default-jdk
+code
+python3
+make
+golang-1.12
+golang-1.13

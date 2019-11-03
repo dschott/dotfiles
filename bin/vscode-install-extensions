@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-[ -z "$(command -v code)" ] && exit
+! command-exists code && exit
+
+echo "Installing vscode extensions"
 
 file=${1:-${DOTPATH}/etc/vscode/extensions}
 

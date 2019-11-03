@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-# Shell Config
-export CLICOLOR=1
-shopt -s checkwinsize
-shopt -s cdspell
-shopt -s dirspell
-shopt -s extglob
-
 # If .bashrc is a link, assume it exists in dotfiles dir
 if [ ! -z "$(readlink ${HOME}/.bashrc)" ]; then
     export DOTPATH="$(cd "$(dirname "$(readlink ${HOME}/.bashrc)")/.."; pwd)"

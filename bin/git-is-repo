@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-[ -z "$(command -v git)" ] && exit
+! command-exists git && exit
 
 path=${1:-.}
 

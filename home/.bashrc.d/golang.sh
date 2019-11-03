@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-[ -z "$(command -v go)" ] && return
+! command-exists go && return
 
 export GOPATH=${HOME}/go
 export GOBIN=${GOPATH}/bin

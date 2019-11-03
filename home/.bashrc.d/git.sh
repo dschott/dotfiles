@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-[ -z "$(command -v git)" ] && exit
+! command-exists git && return
 
 # alias g='git'
 

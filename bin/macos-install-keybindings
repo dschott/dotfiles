@@ -2,5 +2,7 @@
 
 ! os-is-darwin && exit
 
+echo "Installing mac os default keybindings"
+
 mkdir -p ${HOME}/Library/KeyBindings/
 ln -fs ${DOTPATH}/etc/macos/DefaultKeyBinding.dict ${HOME}/Library/KeyBindings/DefaultKeyBinding.dict

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-[ -z "$(command -v vault)" ] && return
+! command-exists vault && return
 
 complete -C /usr/local/bin/vault vault

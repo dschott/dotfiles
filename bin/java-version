@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
 
-if . shell-is-subshell; then
+if . sh-is-subshell; then
     echo "$0 must be sourced"
-elif [ $(command -v javac) ]; then
+elif command-exists javac; then
     if os-is-darwin; then
         # Ref: http://www.jayway.com/2014/01/15/how-to-switch-jdk-version-on-mac-os-x-maverick/
         if [ -z "$1" ]; then

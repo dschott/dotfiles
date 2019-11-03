@@ -202,4 +202,7 @@
         "**/.factorypath": true
     },
     "go.useLanguageServer": false,
+    "window.enableMenuBarMnemonics": false,
+    "window.titleBarStyle": "custom",
+    "window.menuBarVisibility": "hidden",
 }

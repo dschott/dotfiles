@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-[ -z "$(command -v git)" ] && exit
+! command-exists git && exit
+
+echo "Installing notes"
 
 if [ -d ${NOTESPATH} ]; then
     if git-is-repo ${NOTESPATH}; then

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-[ -z "$(command -v brew)" ] && return
+! command-exists brew && return
 
 HOMEBREW_PREFIX=$(brew --prefix)
 if type brew &>/dev/null; then

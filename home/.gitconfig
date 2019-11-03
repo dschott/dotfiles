@@ -6,7 +6,7 @@
     path = ~/.gitconfig.user
     path = ~/.gitconfig.local
 [rerere]
-	enabled = false
+	enabled = true
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f

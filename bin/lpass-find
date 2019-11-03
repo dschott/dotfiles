@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-[ -z "$(command -v lpass)" ] && exit
+! command-exists lpass && exit
 
 lpass ls | grep -i "$@"

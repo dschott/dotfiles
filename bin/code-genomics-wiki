@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-[ -z "$(command -v code)" ] && exit
-
-[ ! -d "${HOME}/projects/genomics.wiki" ] && exit
-
-code "${HOME}/projects/genomics.wiki"

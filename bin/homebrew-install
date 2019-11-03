@@ -4,8 +4,10 @@
 
 env-setlocal HOMEBREW_GITHUB_API_TOKEN
 
-if [ -z "$(command -v brew)" ]; then
+if ! command-exists brew; then
+    echo "installing homebrew"
     /usr/bin/env ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
+    echo "updating homebrew"
     brew update
 fi

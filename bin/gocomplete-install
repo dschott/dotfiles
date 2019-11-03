@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
-[ -z "$(command -v go)" ] && exit
+! command-exists go && exit
 
+echo "installing go completion"
 go get -u github.com/posener/complete/gocomplete
