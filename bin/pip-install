@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+! command-exists pip3 && exit
+
+packages="$(cat ${DOTPATH}/etc/pip/Packages)"
+
+pip3 install ${packages}

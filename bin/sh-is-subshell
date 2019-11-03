@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
 
+# this script should be sourced
 test "$_" = "$0"

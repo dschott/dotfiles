@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+! command-exists docker && exit
+
+if os-is-darwin; then
+    if [ -d /usr/local/etc/bash_completion.d ] && [ -d /Applications/Docker.app/Contents/Resources/etc/ ]; then 
+        echo "installing docker completion"
+        ln -fs /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion          /usr/local/etc/bash_completion.d/docker.bash-completion
+        ln -fs /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion  /usr/local/etc/bash_completion.d/docker-machine.bash-completion
+        ln -fs /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion  /usr/local/etc/bash_completion.d/docker-compose.bash-completion
+    fi
+elif os-is-debian; then
+    sudo systemctl start docker
+    sudo systemctl enable docker
+    if ! groups ${USER} | grep -q docker; then
+        sudo groupadd docker
+        sudo usermod -aG docker $USER
+        echo "docker group added"
+        echo "you will need to log out and back in for the new group to take effect"
+    fi
+fi

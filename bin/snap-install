@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+! command-exists snap && exit
+
+sudo snap refresh
+
+packages="$(cat ${DOTPATH}/etc/snap/Packages)"
+for package in ${packages}; do
+    sudo snap install --classic ${package}
+done

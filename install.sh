@@ -10,17 +10,19 @@ homebrew-install
 
 brewfile-install
 
+apt-install
+
+pip-install
+
 git-config
 
-docker-completion-install
+docker-install
+
+bin-install
 
 gocomplete-install
 
-#vscode-install-extensions
-
-vscode-install-settings
-
-vscode-install-keybindings
+vscode-install-all
 
 terminal-set-theme
 

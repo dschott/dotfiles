@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+! command-exists code && exit
+
+vscode-install-extensions
+vscode-install-keybindings
+vscode-install-settings

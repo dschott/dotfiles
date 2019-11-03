@@ -15,7 +15,19 @@ if ! apt-cache policy | grep -q 'ppa:longsleep/golang-backports'; then
     sudo add-apt-repository -y ppa:longsleep/golang-backports
 fi
 
-packages="$(cat ${DOTPATH}/etc/apt/Packages)"
+# https://www.telepresence.io/reference/install
+if ! apt-cache policy | grep -q 'packagecloud.io/datawireio/telepresence/ubuntu'; then
+    curl -s https://packagecloud.io/install/repositories/datawireio/telepresence/script.deb.sh | sudo bash
+fi
+
+# https://cloud.google.com/sdk/docs/downloads-apt-get
+if ! apt-cache policy | grep -q 'packages.cloud.google.com/apt'; then
+    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+fi
 
 sudo apt update
+
+packages="$(cat ${DOTPATH}/etc/apt/Packages)"
+
 sudo apt install -y ${packages}

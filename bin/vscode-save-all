@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+! command-exists code && exit
+
+vscode-save-extensions
+vscode-save-keybindings
+vscode-save-settings
