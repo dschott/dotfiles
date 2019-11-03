@@ -18,7 +18,6 @@ elif command-exists javac; then
 
             . path-add "${JAVA_HOME}/bin"
         fi
-    elif os-is-linux; then
-        # TODO: Handle Linux
+    # elif os-is-linux; then
     fi
 fi
