@@ -5,5 +5,7 @@ default-jdk
 code
 python3
 make
+golang-1.10
+golang-1.11
 golang-1.12
 golang-1.13

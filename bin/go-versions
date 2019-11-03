@@ -1,0 +1,49 @@
+#!/usr/bin/env sh
+
+new_version=${1}
+
+if command-exists brew; then
+    versions=$(brew list -1 | grep -E '^go$|^go@')
+elif command-exists apt; then
+    versions=$(apt list --installed golang*-go 2> /dev/null | sed -n 's/golang-\(.*\)-go\/.*/\1/p')
+else
+    >&2 echo "unsupported os"
+    exit 1
+fi
+
+if command-exists go; then
+    current_version=$(go version)
+else
+    current_version=-
+fi
+
+if [ -z "${new_version}" ]; then
+    echo "current version:"
+    echo "    ${current_version}"
+    echo
+    echo "available versions:"
+    echo "${versions}" | sed 's/^/    /'
+    exit
+fi
+
+if command-exists brew; then
+    if brew info "${new_version}" > /dev/null 2>&1; then
+        for version in "${versions}"; do
+            if [ "${version}" != "${new_version}" ]; then
+                brew unlink ${version}
+            fi
+        done
+        brew link --force ${new_version}
+    else
+        echo "invalid verison: $1"
+    fi
+
+elif command-exists apt; then
+    f="/usr/lib/go-${new_version}/bin/go"
+    if [ -f "${f}" ]; then
+        sudo ln -svf "${f}" /usr/bin/go
+    else
+        >&2 echo "go binary not found: ${f}"
+        exit 1
+    fi
+fi

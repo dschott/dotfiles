@@ -20,6 +20,5 @@ elif command-exists javac; then
         fi
     elif os-is-linux; then
         # TODO: Handle Linux
-        echo "LINUX!"
     fi
 fi

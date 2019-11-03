@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+if os-is-linux; then
+    if [ -r /etc/os-release ]; then
+        file=/etc/os-release
+    else
+        file=/usr/lib/os-release
+    fi
+    grep -qe 'ID_LIKE=.*debian.*' "${file}"
+else
+    exit 1
+fi
