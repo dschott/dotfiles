@@ -9,7 +9,12 @@ else
 fi
 
 # Export bin paths
-export PATH="${DOTPATH}/bin:/usr/local/sbin:${PATH}"
+if ! echo "${PATH}" | grep -q "${DOTPATH}/bin"; then
+    export PATH="${DOTPATH}/bin:${PATH}"
+fi
+
+. path-add "/usr/local/sbin"
+
 
 # Source remaining bashrc files
 for f in ${HOME}/.bashrc.d/*; do

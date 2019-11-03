@@ -4,9 +4,9 @@ if [ "$(hostname)" = "C02XP0MFJGH5" ]; then
     export USER_FULLNAME="Doug Schott"
     export USER_EMAIL="douglas.schott.ext@bayer.com"
     export VAULT_ADDR=https://vault.agro.services
-    export PATH="/usr/local/opt/protobuf@3.6/bin:$PATH"
-    export PATH="/usr/local/opt/protoc-gen-go@1.0/bin:$PATH"
-    
+    . path-add "/usr/local/opt/protobuf@3.6/bin"
+    . path-add "/usr/local/opt/protoc-gen-go@1.0/bin"
+
     code-genomics() {
         vscode-open "${GOPATH}/src/github.platforms.engineering/graphroots/genomics"
     }

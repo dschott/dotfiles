@@ -5,5 +5,9 @@ if . sh-is-subshell; then
 elif [ -z "${1}" ]; then
     >&2 echo "a path is required"
 else
-    export PATH="${1}:${PATH}"
+    esc_path="$(regex-esc ${1})"
+    if ! echo "${PATH}" | grep -qe "${esc_path}[:$]"; then
+        echo "ADDED: ${1}"
+        export PATH="${1}:${PATH}"
+    fi
 fi

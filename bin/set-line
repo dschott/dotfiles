@@ -4,7 +4,7 @@ match=${1}
 line=${2}
 filename=${3}
 
-esc_line="$(echo ${line} | sed -e 's/[\/&]/\\&/g')"
+esc_line="$(regex-esc ${line})"
 
 grep -qe "^${match}" "${filename}" && \
     sed -i'' -e "s/^${match}.*/${esc_line}/" "${filename}" || \
