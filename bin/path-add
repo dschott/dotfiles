@@ -7,7 +7,6 @@ elif [ -z "${1}" ]; then
 else
     esc_path="$(regex-esc ${1})"
     if ! echo "${PATH}" | grep -qe "${esc_path}[:$]"; then
-        echo "ADDED: ${1}"
         export PATH="${1}:${PATH}"
     fi
 fi
