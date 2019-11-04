@@ -1,12 +1,50 @@
 #!/usr/bin/env sh
 
-if [ "$(hostname)" = "C02XP0MFJGH5" ]; then
-    export USER_FULLNAME="Doug Schott"
-    export USER_EMAIL="douglas.schott.ext@bayer.com"
-    export VAULT_ADDR=https://vault.agro.services
-    . path-add "/usr/local/opt/protobuf@3.6/bin"
-    . path-add "/usr/local/opt/protoc-gen-go@1.0/bin"
+env-setlocal() {
+    if [ -z "$1" ]; then
+        >&2 echo "environment variable name is required."
+        return 1
+    fi
 
+    var=${1}
+    val=$(sed -n "s/^export ${var}=\(.*\)/\1/p" "${HOME}/.bashrc.local")
+
+    if [ -n "${val}" ]; then
+        read -p "enter ${var} (${val}): " entered
+    else
+        read -p "enter ${var}: " entered
+    fi
+
+    if [ -n "${entered}" ]; then
+        val="${entered}"
+    fi
+
+    if [ -n ${val} ]; then
+        set-line "export ${var}=" "export ${var}=${val}" "${HOME}/.bashrc.local"
+        . "${HOME}/.bashrc.local"
+    fi
+}
+
+path-add() {
+    if [ -z "${1}" ]; then
+        >&2 echo "a path is required"
+    else
+        esc_path="$(regex-esc ${1})"
+        if ! echo "${PATH}" | grep -qe "${esc_path}[:$]"; then
+            export PATH="${1}:${PATH}"
+        fi
+    fi
+}
+
+path-remove() {
+    if [ -z "${1}" ]; then
+        >&2 echo "a path is required"
+    else
+        export PATH=$(echo ${PATH} | sed -E -e "s;:${1};;" -e "s;${1}:?;;")    
+    fi
+}
+
+if [ "$(hostname)" = "C02XP0MFJGH5" ]; then
     code-genomics() {
         vscode-open "${GOPATH}/src/github.platforms.engineering/graphroots/genomics"
     }
@@ -52,8 +90,4 @@ if [ "$(hostname)" = "C02XP0MFJGH5" ]; then
         vpn-connect "Standard VPN - IRV"
         open "https://new.bayernet.cnb/en"
     }
-
-else
-    export USER_FULLNAME="Doug Schott"
-    export USER_EMAIL="douglas.schott@gmail.com"
 fi

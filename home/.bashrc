@@ -13,13 +13,20 @@ if ! echo "${PATH}" | grep -q "${DOTPATH}/bin"; then
     export PATH="${DOTPATH}/bin:${PATH}"
 fi
 
-. path-add "/usr/local/sbin"
+# Login shell functions
+. ${HOME}/.bash_lib
 
+# User settings
+. ${HOME}/.bash_settings
 
 # Source remaining bashrc files
 for f in ${HOME}/.bashrc.d/*; do
-    . $f
+    if [ -f ${f} ]; then
+        . $f
+    fi
 done
+
+path-add "/usr/local/sbin"
 
 # Source local bashrc file (private keys etc)
 [ -r "${HOME}/.bashrc.local" ] && . "$HOME/.bashrc.local"

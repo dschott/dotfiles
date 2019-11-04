@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-if . sh-is-subshell; then
-    echo "$0 must be sourced"
-elif [ -z "${1}" ]; then
-    >&2 echo "a path is required"
-else
-    export PATH=$(echo ${PATH} | sed -E -e "s;:${1};;" -e "s;${1}:?;;")    
-fi
