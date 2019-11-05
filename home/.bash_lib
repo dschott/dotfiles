@@ -46,23 +46,28 @@ path-remove() {
 
 if [ "$(hostname)" = "C02XP0MFJGH5" ]; then
     code-genomics() {
-        vscode-open "${GOPATH}/src/github.platforms.engineering/graphroots/genomics"
+        vscode-open-git "${GOPATH}/src/github.platforms.engineering/graphroots/genomics" "git@github.platforms.engineering:graphroots/genomics"
     }
 
     code-genomics-deploy() {
-        vscode-open "${GOPATH}/src/github.platforms.engineering/graphroots/genomics-deploy"
+        vscode-open-git "${GOPATH}/src/github.platforms.engineering/graphroots/genomics-deploy" "git@github.platforms.engineering:graphroots/genomics-deploy"
     }
 
     code-genomics-deploy() {
-        vscode-open "${HOME}/projects/genomics.wiki"
+        vscode-open-git "${HOME}/projects/genomics.wiki" "git@github.platforms.engineering:graphroots/genomics.wiki"
     }
 
     code-gokit() {
-        codvscode-opene "${GOPATH}/src/github.platforms.engineering/graphroots/gokit"
+        vscode-open-git "${GOPATH}/src/github.platforms.engineering/graphroots/gokit" "git@github.platforms.engineering:graphroots/gokit"
     }
 
+    code-docs() {
+        vscode-open-git "${HOME}/projects/docs" "git@github.platforms.engineering:graphroots/docs"
+    }
+
+
     code-golang-build() {
-        vscode-open "${GOPATH}/src/github.platforms.engineering/graphroots/golang-build"
+        vscode-open-git "${GOPATH}/src/github.platforms.engineering/graphroots/golang-build" "git@github.platforms.engineering:graphroots/golang-build"
     }
 
     vault-login-bayer() {
