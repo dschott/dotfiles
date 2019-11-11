@@ -70,6 +70,10 @@ if [ "$(hostname)" = "C02XP0MFJGH5" ]; then
         vscode-open-git "${GOPATH}/src/github.platforms.engineering/graphroots/golang-build" "git@github.platforms.engineering:graphroots/golang-build"
     }
 
+    code-product360-apis() {
+        vscode-open-git "${HOME}/projects/product360-apis" "git@github.platforms.engineering:GraphRoots/product360-apis"
+    }
+
     vault-login-bayer() {
         vault login -method=userpass -path=ping username=GKRPS
     }
