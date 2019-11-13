@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+! command-exists git && exit
+
+git submodule deinit --all --force
+git submodule update --init
