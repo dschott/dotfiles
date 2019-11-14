@@ -3,7 +3,7 @@
 ! command-exists git && exit
 
 last_message="$(git log --pretty=format:"%s" -1)"
-if [ "${last_message}" == "WIP" ]; then
+if [ "${last_message}" = "WIP" ]; then
     git reset --soft HEAD~1
 fi
 
