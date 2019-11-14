@@ -14,8 +14,10 @@ echo "Stashing with message '${message}'"
 git reset --soft HEAD~1
 git stash save "${message}"
 
-echo "git log"
-git log --pretty=format:"%s" -4
+echo
+echo "LOG"
+git log --pretty=format:"%s" -4 | sed 's/^/    /'
 
-echo "git stash"
-git stash list --pretty=format:"%s" -4
+echo
+echo "STASH"
+git stash list --pretty=format:"%s" -4 | sed 's/^/    /'

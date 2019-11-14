@@ -8,15 +8,22 @@ if git-has-changes; then
     exit 1
 fi
 
-message="$(git stash list --pretty=format:"%s" -1)"
-
+message="$(git stash list -1 | sed -n 's/^.*:.*:[^ ]* *\(.*\)$/\1/p')"
 echo "Committing with message '${message}'"
 
-git stash pop
+if [ -z "${message}" ]; then
+    echo "stash message is empty. aborting!"
+    exit 1
+fi
+
+git stash pop --quiet
+git add .
 git commit -m "${message}"
 
-echo "git log"
-git log --pretty=format:"%s" -4
+echo
+echo "LOG"
+git log --pretty=format:"%s" -4 | sed 's/^/    /'
 
-echo "git stash"
-git stash list --pretty=format:"%s" -4 
+echo
+echo "STASH"
+git stash list --pretty=format:"%s" -4 | sed 's/^/    /'
