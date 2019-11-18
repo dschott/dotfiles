@@ -2,7 +2,14 @@
 
 ! command-exists kubectl && return
 
-alias kc='kubectl'
-alias kcc='kubectl config current-context'
+alias k='kubectl'
+complete -F _complete_alias k
 
-complete -o default -F __start_kubectl kc
+alias kc='kubectl config'
+complete -F _complete_alias kc
+
+alias kcu='kubectl config use-context'
+complete -F _complete_alias kcu
+
+alias kcc='kubectl config current-context'
+complete -F _complete_alias kcc
