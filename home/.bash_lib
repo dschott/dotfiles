@@ -50,7 +50,7 @@ if [ "$(hostname)" = "C02XP0MFJGH5" ]; then
     }
 
     code-genomics-deploy() {
-        vscode-open-git "${GOPATH}/src/github.platforms.engineering/graphroots/genomics-deploy" "git@github.platforms.engineering:graphroots/genomics-deploy"
+        vscode-open-git "${GOPATH}/projects/genomics-deploy" "git@github.platforms.engineering:graphroots/genomics-deploy"
     }
 
     code-genomics-wiki() {

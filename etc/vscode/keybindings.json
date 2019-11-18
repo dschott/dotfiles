@@ -22,3 +22,18 @@
     { "key": "cmd+k n", "command": "merge-conflict.next"},
     { "key": "cmd+k p", "command": "merge-conflict.previous"},
 ]
+
+
+// { "key": "cmd+k c",               "command": "workbench.files.action.compareWithClipboard" },
+// { "key": "cmd+k d",               "command": "workbench.files.action.compareWithSaved" },
+// { "key": "cmd+k e",               "command": "workbench.files.action.focusOpenEditorsView",
+// { "key": "cmd+k f",               "command": "workbench.action.closeFolder" },
+// { "key": "cmd+k m",               "command": "workbench.action.editor.changeLanguageMode" },
+// { "key": "cmd+k o",               "command": "workbench.action.files.showOpenedFileInNewWindow" },
+// { "key": "cmd+k p",               "command": "workbench.action.files.copyPathOfActiveFile" },
+// { "key": "cmd+k r",               "command": "workbench.action.files.revealActiveFileInWindows" },
+// { "key": "cmd+k s",               "command": "workbench.action.files.saveWithoutFormatting" },
+// { "key": "cmd+k u",               "command": "workbench.action.closeUnmodifiedEditors" },
+// { "key": "cmd+k w",               "command": "workbench.action.closeEditorsInGroup" },
+// { "key": "cmd+k z",               "command": "workbench.action.toggleZenMode" },
+// { "key": "cmd+k enter",           "command": "workbench.action.keepEditor" },
