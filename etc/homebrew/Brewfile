@@ -40,6 +40,7 @@ brew "pkg-config"
 brew "postgresql"
 brew "protobuf@3.6", link: true
 brew "python@2"
+brew "shellcheck"
 brew "stern"
 brew "tcpflow"
 brew "tcptrace"

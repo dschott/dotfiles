@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 shopt -s checkwinsize
 shopt -s cdspell
