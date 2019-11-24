@@ -28,12 +28,12 @@ fi
 
 if command-exists brew; then
     if brew info "${new_version}" > /dev/null 2>&1; then
-        for version in "${versions}"; do
+        for version in ${versions}; do
             if [ "${version}" != "${new_version}" ]; then
-                brew unlink ${version}
+                brew unlink "${version}"
             fi
         done
-        brew link --force ${new_version}
+        brew link --force "${new_version}"
     else
         echo "invalid verison: $1"
     fi

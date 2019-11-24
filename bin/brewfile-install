@@ -4,6 +4,6 @@
 
 echo "installing brew bundle"
 
-cd ${DOTPATH}/etc/homebrew
+cd "${DOTPATH}/etc/homebrew" || exit 1
 brew update
 brew bundle install -v

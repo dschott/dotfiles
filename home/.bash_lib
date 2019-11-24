@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 env-setlocal() {
     if [ -z "$1" ]; then
@@ -10,17 +10,18 @@ env-setlocal() {
     val=$(sed -n "s/^export ${var}=\(.*\)/\1/p" "${HOME}/.bashrc.local")
 
     if [ -n "${val}" ]; then
-        read -p "enter ${var} (${val}): " entered
+        read -rp "enter ${var} (${val}): " entered
     else
-        read -p "enter ${var}: " entered
+        read -rp "enter ${var}: " entered
     fi
 
     if [ -n "${entered}" ]; then
         val="${entered}"
     fi
 
-    if [ -n ${val} ]; then
+    if [ -n "${val}" ]; then
         set-line "export ${var}=" "export ${var}=${val}" "${HOME}/.bashrc.local"
+        # shellcheck disable=SC1090
         . "${HOME}/.bashrc.local"
     fi
 }
@@ -29,7 +30,7 @@ path-add() {
     if [ -z "${1}" ]; then
         >&2 echo "a path is required"
     else
-        esc_path="$(regex-esc ${1})"
+        esc_path=$(regex-esc "${1}")
         if ! echo "${PATH}" | grep -qe "${esc_path}[:$]"; then
             export PATH="${1}:${PATH}"
         fi
@@ -40,7 +41,8 @@ path-remove() {
     if [ -z "${1}" ]; then
         >&2 echo "a path is required"
     else
-        export PATH=$(echo ${PATH} | sed -E -e "s;:${1};;" -e "s;${1}:?;;")    
+        PATH=$(echo "${PATH}" | sed -E -e "s;:${1};;" -e "s;${1}:?;;")
+        export PATH
     fi
 }
 

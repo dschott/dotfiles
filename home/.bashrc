@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 # If .bashrc is a link, assume it exists in dotfiles dir
-if [ ! -z "$(readlink ${HOME}/.bashrc)" ]; then
-    export DOTPATH="$(cd "$(dirname "$(readlink ${HOME}/.bashrc)")/.."; pwd)"
+if [ -n "$(readlink "${HOME}/.bashrc")" ]; then
+    # shellcheck disable=SC2164
+    DOTPATH="$(cd "$(dirname "$(readlink "${HOME}/.bashrc")")/.."; pwd)"
+    export DOTPATH
 else
     echo "Unable to locate dotfiles!"
     return
@@ -14,21 +16,25 @@ if ! echo "${PATH}" | grep -q "${DOTPATH}/bin"; then
 fi
 
 # Login shell functions
-. ${HOME}/.bash_lib
+# shellcheck disable=SC1090
+. "${HOME}/.bash_lib"
 
 # User settings
-. ${HOME}/.bash_settings
+# shellcheck disable=SC1090
+. "${HOME}/.bash_settings"
 
 # Source remaining bashrc files
-for f in ${HOME}/.bashrc.d/*; do
-    if [ -f ${f} ]; then
-        . $f
+for f in "${HOME}"/.bashrc.d/*; do
+    if [ -f "${f}" ]; then
+        # shellcheck disable=SC1090
+        . "${f}"
     fi
 done
 
 path-add "/usr/local/sbin"
 
 # Source local bashrc file (private keys etc)
+# shellcheck disable=SC1090
 [ -r "${HOME}/.bashrc.local" ] && . "$HOME/.bashrc.local"
 
 # Color Escape Codes

@@ -2,4 +2,4 @@
 
 ! command-exists lpass && exit
 
-lpass login --trust ${USER_EMAIL}
+lpass login --trust "${USER_EMAIL}"

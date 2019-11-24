@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 if [ "$(hostname)" = "C02XP0MFJGH5" ]; then
     export USER_FULLNAME="Schott, Douglas"

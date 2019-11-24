@@ -12,9 +12,9 @@ if os-is-darwin; then
 elif os-is-debian; then
     sudo systemctl start docker
     sudo systemctl enable docker
-    if ! groups ${USER} | grep -q docker; then
+    if ! groups "${USER}" | grep -q docker; then
         sudo groupadd docker
-        sudo usermod -aG docker $USER
+        sudo usermod -aG docker "${USER}"
         echo "docker group added"
         echo "you will need to log out and back in for the new group to take effect"
     fi

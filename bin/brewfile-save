@@ -2,5 +2,5 @@
 
 ! command-exists brew && exit
 
-cd ${DOTPATH}/etc/homebrew
+cd "${DOTPATH}/etc/homebrew" || exit 1
 brew bundle dump --force

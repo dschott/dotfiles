@@ -2,6 +2,6 @@
 
 ! command-exists code && exit
 
-if [ -d ${DOTPATH} ]; then
-    code ${DOTPATH}
+if [ -d "${DOTPATH}" ]; then
+    code "${DOTPATH}"
 fi

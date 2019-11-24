@@ -2,6 +2,6 @@
 
 ! command-exists code && exit
 
-if [ -d ${NOTESPATH} ]; then
-    code ${NOTESPATH}
+if [ -d "${NOTESPATH}" ]; then
+    code "${NOTESPATH}"
 fi

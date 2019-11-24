@@ -2,4 +2,4 @@
 
 ! command-exists git && exit
 
-git config branch.$(git-branch).remote
+git config "branch.$(git-branch).remote"

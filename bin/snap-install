@@ -5,9 +5,9 @@
 sudo snap refresh
 
 failed=()
-packages="$(cat ${DOTPATH}/etc/snap/Packages)"
+packages=$(cat "${DOTPATH}/etc/snap/Packages")
 for package in ${packages}; do
-    if ! sudo snap install --classic ${package}; then
+    if ! sudo snap install --classic "${package}"; then
         failed+=("${package}")
     fi
 done

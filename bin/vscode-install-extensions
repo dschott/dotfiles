@@ -6,4 +6,4 @@ echo "Installing vscode extensions"
 
 file=${1:-${DOTPATH}/etc/vscode/extensions}
 
-cat ${file} | xargs -L 1 echo code --install-extension | sh
+< "${file}" xargs -L 1 echo code --install-extension | sh

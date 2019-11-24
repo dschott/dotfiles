@@ -8,5 +8,5 @@ if [ "$(git config --global --includes user.name)" != "${USER_FULLNAME}" ] ||
     echo "Updating ${HOME}/.gitconfig.user"
     echo "[user]
     name = ${USER_FULLNAME}
-    email = ${USER_EMAIL}" > ${HOME}/.gitconfig.user
+    email = ${USER_EMAIL}" > "${HOME}/.gitconfig.user"
 fi

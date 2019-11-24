@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 ! command-exists git && exit
 
@@ -7,4 +7,4 @@ if [ -z "$1" ] || ! [[ "$1" =~ ^[0-9]+$ ]]; then
     exit 1
 fi
 
-git rebase -i HEAD~$1
+git rebase -i "HEAD~${1}"

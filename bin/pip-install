@@ -3,9 +3,9 @@
 ! command-exists pip3 && exit
 
 failed=()
-packages="$(cat ${DOTPATH}/etc/pip/Packages)"
+packages=$(cat "${DOTPATH}/etc/pip/Packages")
 for package in ${packages}; do
-    if ! pip3 install ${package}; then
+    if ! pip3 install "${package}"; then
         failed+=("${package}")
     fi
 done

@@ -18,12 +18,14 @@ java-version() {
         echo "    ${current_version}"
         echo
         echo "available versions:"
+        # shellcheck disable=SC2001
         echo "${versions}" | sed 's/^/    /'
         return
     fi
 
     if os-is-darwin; then
-        export JAVA_HOME="$(/usr/libexec/java_home -v ${1})"
+        JAVA_HOME=$(/usr/libexec/java_home -v "${1}")
+        export JAVA_HOME
     elif os-is-linux; then
         sudo update-java-alternatives -s "${1}"
     fi

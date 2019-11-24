@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
-export DOTPATH="$(cd "$(dirname "$0")" && pwd -P)"
+DOTPATH="$(cd "$(dirname "$0")" && pwd -P)"
+export DOTPATH
 
-$DOTPATH/bin/dotfiles-link
+"${DOTPATH}"/bin/dotfiles-link
 
+# shellcheck disable=SC1090
 . "$HOME/.bashrc"
 
 homebrew-install
@@ -36,4 +38,5 @@ sh-configure
 
 echo "Install complete!"
 
+# shellcheck disable=SC1090
 . "$HOME/.bash_profile"

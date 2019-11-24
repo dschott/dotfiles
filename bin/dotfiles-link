@@ -2,6 +2,4 @@
 
 echo "linking dot files"
 
-for f in $(find "${DOTPATH}/home" -maxdepth 1 -mindepth 1 -name '.*'); do
-    ln -svf $f ${HOME}
-done
+find "${DOTPATH}/home" -maxdepth 1 -mindepth 1 -name '.*' -exec ln -svf {} "${HOME}" \;
