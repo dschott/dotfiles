@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 ! command-exists apt && exit
 
@@ -30,7 +30,17 @@ curl -s https://packagecloud.io/install/repositories/datawireio/telepresence/scr
 
 sudo apt update
 
+failed=()
 packages="$(cat ${DOTPATH}/etc/apt/Packages)"
 for package in ${packages}; do
-    sudo apt install -y ${package}
+    if ! sudo apt install -y ${package}; then
+        failed+=("${package}")
+    fi
 done
+
+if (( ${#failed[@]} > 0 )); then
+    echo
+    echo "Failed to install the following packages!"
+    printf '\t%s\n' "${failed[@]}"
+    exit 1
+fi

@@ -43,3 +43,4 @@ telepresence
 google-chrome-stable
 google-cloud-sdk
 code
+shellcheck

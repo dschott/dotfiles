@@ -1,10 +1,20 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 ! command-exists snap && exit
 
 sudo snap refresh
 
+failed=()
 packages="$(cat ${DOTPATH}/etc/snap/Packages)"
 for package in ${packages}; do
-    sudo snap install --classic ${package}
+    if ! sudo snap install --classic ${package}; then
+        failed+=("${package}")
+    fi
 done
+
+if (( ${#failed[@]} > 0 )); then
+    echo
+    echo "Failed to install the following packages!"
+    printf '\t%s\n' "${failed[@]}"
+    exit 1
+fi
