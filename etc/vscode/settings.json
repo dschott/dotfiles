@@ -202,4 +202,5 @@
         "**/.factorypath": true
     },
     "go.useLanguageServer": false,
+    "window.menuBarVisibility": "toggle",
 }
