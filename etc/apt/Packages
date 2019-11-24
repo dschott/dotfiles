@@ -9,8 +9,6 @@ make
 python3
 python-pip
 python3-pip
-golang-1.10
-golang-1.11
 golang-1.12
 golang-1.13
 go-dep
@@ -42,8 +40,6 @@ vim
 wget
 yarnpkg
 telepresence
-slack-desktop
 google-chrome-stable
 google-cloud-sdk
 code
-spotify-client

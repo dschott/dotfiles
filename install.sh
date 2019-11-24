@@ -12,6 +12,8 @@ brewfile-install
 
 apt-install
 
+snap-install
+
 pip-install
 
 git-config

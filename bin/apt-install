@@ -26,8 +26,11 @@ if ! apt-cache policy | grep -q 'packages.cloud.google.com/apt'; then
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 fi
 
+curl -s https://packagecloud.io/install/repositories/datawireio/telepresence/script.deb.sh | sudo bash
+
 sudo apt update
 
 packages="$(cat ${DOTPATH}/etc/apt/Packages)"
-
-sudo apt install -y ${packages}
+for package in ${packages}; do
+    sudo apt install -y ${package}
+done
