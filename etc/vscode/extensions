@@ -1,5 +1,5 @@
+adityavm.vscode-monokai-seti
 bajdzis.vscode-database
-be5invis.vscode-icontheme-nomo-dark
 bierner.markdown-mermaid
 bungcip.better-toml
 DavidAnson.vscode-markdownlint
@@ -26,9 +26,11 @@ ms-vscode.powershell
 ms-vsliveshare.vsliveshare
 ms-vsliveshare.vsliveshare-audio
 ms-vsliveshare.vsliveshare-pack
+mtdmali.daybreak-theme
 mushan.vscode-paste-image
 pajoma.vscode-journal
 peterj.proto
+rastikerdar.vscode-seedling-icon-theme
 redhat.java
 redhat.vscode-yaml
 rid9.datetime
@@ -44,7 +46,6 @@ vscjava.vscode-java-dependency
 vscjava.vscode-java-pack
 vscjava.vscode-java-test
 vscjava.vscode-maven
-vscode-icons-team.vscode-icons
 waderyan.gitblame
 wholroyd.HCL
 yzhang.markdown-all-in-one

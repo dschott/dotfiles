@@ -42,9 +42,7 @@
     // "files.autoSave": "onFocusChange",
     "editor.cursorStyle": "line",
     "editor.acceptSuggestionOnEnter": "off",
-    "vsicons.presets.hideFolders": true,
-    "workbench.colorTheme": "Gruvbox Dark Hard",
-    "workbench.iconTheme": "vscode-icons",
+    "vsicons.presets.hideFolders": false,
     "peacock.favoriteColors": [
         {
             "name": "Angular Red",
@@ -203,4 +201,6 @@
     },
     "go.useLanguageServer": false,
     "window.menuBarVisibility": "toggle",
+    "workbench.colorTheme": "Gruvbox Dark Hard",
+    "workbench.iconTheme": "Monokai Seti Icons",
 }
