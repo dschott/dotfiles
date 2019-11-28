@@ -3,9 +3,9 @@
 ! command-exists npm && exit
 
 failed=()
-packages=$(cat "${DOTPATH}/etc/apt/Packages")
+packages=$(cat "${DOTPATH}/etc/npm/Packages")
 for package in ${packages}; do
-    if ! sudo apt install -y "${package}"; then
+    if ! sudo npm install -y "${package}"; then
         failed+=("${package}")
     fi
 done
