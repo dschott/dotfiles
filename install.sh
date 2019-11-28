@@ -24,6 +24,8 @@ docker-install
 
 bin-install
 
+npm-install
+
 gocomplete-install
 
 vscode-install-all

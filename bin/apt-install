@@ -16,9 +16,9 @@ if ! apt-cache policy | grep -q 'ppa:longsleep/golang-backports'; then
 fi
 
 # https://www.telepresence.io/reference/install
-if ! apt-cache policy | grep -q 'packagecloud.io/datawireio/telepresence/ubuntu'; then
-    curl -s https://packagecloud.io/install/repositories/datawireio/telepresence/script.deb.sh | sudo bash
-fi
+# if ! apt-cache policy | grep -q 'packagecloud.io/datawireio/telepresence/ubuntu'; then
+#     curl -s https://packagecloud.io/install/repositories/datawireio/telepresence/script.deb.sh | sudo bash
+# fi
 
 # https://cloud.google.com/sdk/docs/downloads-apt-get
 if ! apt-cache policy | grep -q 'packages.cloud.google.com/apt'; then
@@ -26,7 +26,16 @@ if ! apt-cache policy | grep -q 'packages.cloud.google.com/apt'; then
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 fi
 
-curl -s https://packagecloud.io/install/repositories/datawireio/telepresence/script.deb.sh | sudo bash
+# Nodejs
+if ! apt-cache policy | grep -q 'deb.nodesource.com/node_13.x'; then
+    curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+fi
+
+# Yarn
+if ! apt-cache policy | grep -q 'dl.yarnpkg.com/debian'; then
+    curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+fi
 
 sudo apt update
 

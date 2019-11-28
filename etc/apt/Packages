@@ -44,3 +44,6 @@ google-chrome-stable
 google-cloud-sdk
 code
 shellcheck
+nodejs
+yarn
+xclip
