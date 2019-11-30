@@ -5,7 +5,7 @@
 new_name=${1:?Specify a new branch name}
 
 old_name=$(git-branch)
-remote=$(git-remote)
+remote=$(git rn)
 
 if [ "${old_name}" = "master" ] || [ "${old_name}" = "develop" ]; then
     >&2 echo "Yeah. Not gonna rename this branch!"

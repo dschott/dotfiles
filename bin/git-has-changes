@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-! command-exists git && exit
-
-! git diff-index --quiet HEAD --

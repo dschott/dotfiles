@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-! command-exists git && exit
-
-path=${1:-.}
-
-git -C "${path}" rev-parse --is-inside-work-tree > /dev/null 2>&1

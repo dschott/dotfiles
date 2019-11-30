@@ -38,7 +38,7 @@ notes-install
 
 sh-configure
 
-git-sub
+g sub
 
 echo "Install complete!"
 
