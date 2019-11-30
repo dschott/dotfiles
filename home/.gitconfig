@@ -18,7 +18,8 @@
     p = push
     b = branch
     f = fetch
-    d = diff --cached
+    d = diff
+    dc = diff --cached
     cl = clone
     pl = pull
     plr = pull --rebase
