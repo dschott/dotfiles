@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+
+! command-exists code jq && exit
+
+if [ ! -f "${HOME}/.projects" ]; then
+    >&2 echo "configuration missing! ${HOME}/.projects"
+    exit 1
+fi
+
+cmd="${1}"
+
+case "${cmd}" in
+complete)
+    _projects_complete() {
+        case "${COMP_CWORD}" in
+        1)
+            cmds="list code open complete"
+            mapfile -t COMPREPLY <<< "$(compgen -W "${cmds}" -- "${COMP_WORDS[1]}")"
+            ;;
+
+        2)
+            cmd="${COMP_WORDS[1]}"
+            case "${cmd}" in
+            code|open)
+                mapfile -t COMPREPLY <<< "$(compgen -W "$(projects list)" -- "${COMP_WORDS[2]}")"
+                ;;
+            esac
+            ;;
+        esac
+    }
+    complete -F _projects_complete projects
+    ;;
+
+list)
+    jq -r ".[].name" "${HOME}/.projects"
+    ;;
+
+code|open)
+    name="${2}"
+    entry="$(jq ".[] | select(.name == \"${name}\")" "${HOME}/.projects")"
+    if [ -z "${entry}" ]; then 
+        >&2 echo "project not found! ${name}"
+        exit 1
+    fi
+
+    case "${cmd}" in
+    code)
+        path=$(eval echo -e "$(echo "${entry}" | jq -r '.path')")
+        repo=$(echo "${entry}" | jq -r '.repo')
+        
+        vscode-open-git "${path}" "${repo}"
+        ;;
+
+    open)
+        url=$(echo "${entry}" | jq -r '.url')
+
+        if os-is-linux; then
+            nohup xdg-open "${url}" > /dev/null 2>&1
+        elif os-is-darwin; then
+            open "${url}"
+        fi
+        ;;
+    esac
+    ;;
+esac

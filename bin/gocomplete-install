@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-! command-exists go && exit
+if ! command-exists go; then
+    go-version "$(go-version | tail -1 | tr -d ' ')"
+fi
 
 echo "installing go completion"
 go get -u github.com/posener/complete/gocomplete

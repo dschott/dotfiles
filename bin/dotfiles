@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-! command-exists code && exit
-
-if [ -d "${DOTPATH}" ]; then
-    code "${DOTPATH}"
-fi

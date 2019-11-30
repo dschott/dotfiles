@@ -1,0 +1,62 @@
+[
+    {
+        "name": "mix",
+        "path": "${HOME}/projects/mix",
+        "repo": "git@github.com:dschott/mix",
+        "url":  "https://github.com/dschott/mix"
+    },
+    {
+        "name": "notes",
+        "path": "${HOME}/projects/notes",
+        "repo": "git@github.com:dschott/notes",
+        "url":  "https://github.com/dschott/notes"
+    },
+    {
+        "name": "dotfiles",
+        "path": "${DOTPATH}",
+        "repo": "git@github.com:dschott/dotfiles",
+        "url":  "https://github.com/dschott/dotfiles"
+    },
+    {
+        "name": "genomics",
+        "path": "${GOPATH}/src/github.platforms.engineering/graphroots/genomics",
+        "repo": "git@github.platforms.engineering:graphroots/genomics",
+        "url": "https://github.platforms.engineering/graphroots/genomics"
+    },
+    {
+        "name": "genomics-deploy",
+        "path": "${GOPATH}/projects/genomics-deploy",
+        "repo": "git@github.platforms.engineering:graphroots/genomics-deploy",
+        "url": "https://github.platforms.engineering/graphroots/genomics-deploy"
+    },
+    {
+        "name": "genomics-wiki",
+        "path": "${HOME}/projects/genomics.wiki",
+        "repo": "git@github.platforms.engineering:graphroots/genomics.wiki",
+        "url": "https://github.platforms.engineering/graphroots/genomics/wiki"
+    },
+    {
+        "name": "graphroots-gokit",
+        "path": "${GOPATH}/src/github.platforms.engineering/graphroots/gokit",
+        "repo": "git@github.platforms.engineering:graphroots/gokit",
+        "url": "https://github.platforms.engineering/graphroots/gokit"
+    },
+    {
+        "name": "graphroots-docs",
+        "path": "${HOME}/projects/docs",
+        "repo": "git@github.platforms.engineering:graphroots/docs",
+        "url": "https://github.platforms.engineering/graphroots/docs"
+    },
+    {
+        "name": "graphroots-golang-build",
+        "path": "${GOPATH}/src/github.platforms.engineering/graphroots/golang-build",
+        "repo": "git@github.platforms.engineering:graphroots/golang-build",
+        "url": "https://github.platforms.engineering/graphroots/golang-build"
+    },
+    {
+        "name": "graphroots-product360-apis",
+        "path": "${HOME}/projects/product360-apis",
+        "repo": "git@github.platforms.engineering:GraphRoots/product360-apis",
+        "url": "https://github.platforms.engineering/graphroots/product360-apis"
+    }
+]

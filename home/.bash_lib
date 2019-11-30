@@ -47,35 +47,6 @@ path-remove() {
 }
 
 if [ "$(hostname)" = "C02XP0MFJGH5" ]; then
-    code-genomics() {
-        vscode-open-git "${GOPATH}/src/github.platforms.engineering/graphroots/genomics" "git@github.platforms.engineering:graphroots/genomics"
-    }
-
-    code-genomics-deploy() {
-        vscode-open-git "${GOPATH}/projects/genomics-deploy" "git@github.platforms.engineering:graphroots/genomics-deploy"
-    }
-
-    code-genomics-wiki() {
-        vscode-open-git "${HOME}/projects/genomics.wiki" "git@github.platforms.engineering:graphroots/genomics.wiki"
-    }
-
-    code-gokit() {
-        vscode-open-git "${GOPATH}/src/github.platforms.engineering/graphroots/gokit" "git@github.platforms.engineering:graphroots/gokit"
-    }
-
-    code-docs() {
-        vscode-open-git "${HOME}/projects/docs" "git@github.platforms.engineering:graphroots/docs"
-    }
-
-
-    code-golang-build() {
-        vscode-open-git "${GOPATH}/src/github.platforms.engineering/graphroots/golang-build" "git@github.platforms.engineering:graphroots/golang-build"
-    }
-
-    code-product360-apis() {
-        vscode-open-git "${HOME}/projects/product360-apis" "git@github.platforms.engineering:GraphRoots/product360-apis"
-    }
-
     vault-login-bayer() {
         vault login -method=userpass -path=ping username=GKRPS
     }

@@ -20,11 +20,11 @@ pip-install
 
 git-config
 
-docker-install
-
 bin-install
 
 npm-install
+
+docker-install
 
 gocomplete-install
 
