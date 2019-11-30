@@ -38,6 +38,8 @@ notes-install
 
 sh-configure
 
+git-sub
+
 echo "Install complete!"
 
 # shellcheck disable=SC1090
