@@ -2,11 +2,6 @@
 
 ! command-exists code jq && exit
 
-if [ ! -f "${HOME}/.projects" ]; then
-    >&2 echo "configuration missing! ${HOME}/.projects"
-    exit 1
-fi
-
 cmd="${1}"
 
 case "${cmd}" in
@@ -32,37 +27,41 @@ complete)
     ;;
 
 list)
-    jq -r ".[].name" "${HOME}/.projects"
+    if [ -f "${HOME}/.projects" ]; then
+        jq -r ".[].name" "${HOME}/.projects"
+    fi
     ;;
 
 code|open)
-    name="${2}"
-    entry="$(jq ".[] | select(.name == \"${name}\")" "${HOME}/.projects")"
-    if [ -z "${entry}" ]; then 
-        >&2 echo "project not found! ${name}"
-        exit 1
-    fi
+    if [ -f "${HOME}/.projects" ]; then
+        name="${2}"
+        entry="$(jq ".[] | select(.name == \"${name}\")" "${HOME}/.projects")"
+        if [ -z "${entry}" ]; then 
+            >&2 echo "project not found! ${name}"
+            exit 1
+        fi
 
-    case "${cmd}" in
-    code)
-        path=$(eval echo -e "$(echo "${entry}" | jq -r '.path')")
-        repo=$(echo "${entry}" | jq -r '.repo')
-        
-        vscode-open-git "${path}" "${repo}"
-        ;;
-
-    open)
-        url=$(echo "${entry}" | jq -r '.url')
-
-        case "$(uname -s)" in
-        Darwin)
-            open "${url}"
+        case "${cmd}" in
+        code)
+            path=$(eval echo -e "$(echo "${entry}" | jq -r '.path')")
+            repo=$(echo "${entry}" | jq -r '.repo')
+            
+            vscode-open-git "${path}" "${repo}"
             ;;
-        Linux)
-            nohup xdg-open "${url}" > /dev/null 2>&1
+
+        open)
+            url=$(echo "${entry}" | jq -r '.url')
+
+            case "$(uname -s)" in
+            Darwin)
+                open "${url}"
+                ;;
+            Linux)
+                nohup xdg-open "${url}" > /dev/null 2>&1
+                ;;
+            esac
             ;;
         esac
-        ;;
-    esac
+    fi
     ;;
 esac
