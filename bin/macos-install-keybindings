@@ -1,8 +1,10 @@
 #!/usr/bin/env sh
 
-! os-is-darwin && exit
+case "$(uname -s)" in
+Darwin)
+    echo "Installing mac os default keybindings"
 
-echo "Installing mac os default keybindings"
-
-mkdir -p "${HOME}/Library/KeyBindings/"
-ln -fs "${DOTPATH}/etc/macos/DefaultKeyBinding.dict" "${HOME}/Library/KeyBindings/DefaultKeyBinding.dict"
+    mkdir -p "${HOME}/Library/KeyBindings/"
+    ln -fs "${DOTPATH}/etc/macos/DefaultKeyBinding.dict" "${HOME}/Library/KeyBindings/DefaultKeyBinding.dict"
+    ;;
+esac

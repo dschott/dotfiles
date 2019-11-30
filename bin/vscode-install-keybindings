@@ -6,8 +6,11 @@ echo "Installing vscode keybindings"
 
 file=${1:-${DOTPATH}/etc/vscode/keybindings.json}
 
-if os-is-darwin; then
+case "$(uname -s)" in
+Darwin)
     cp "${file}" "${HOME}/Library/Application Support/Code/User/keybindings.json"
-elif os-is-linux; then
+    ;;
+Linux)
     cp "${file}" "${HOME}/.config/Code/User/keybindings.json"
-fi
+    ;;
+esac

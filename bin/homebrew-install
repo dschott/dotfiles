@@ -1,13 +1,16 @@
 #!/usr/bin/env sh
 
-! os-is-darwin && exit
+case "$(uname -s)" in
+Darwin)
+    env-setlocal HOMEBREW_GITHUB_API_TOKEN
 
-env-setlocal HOMEBREW_GITHUB_API_TOKEN
+    if ! command-exists brew; then
+        echo "installing homebrew"
+        /usr/bin/env ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    else
+        echo "updating homebrew"
+        brew update
+    fi
 
-if ! command-exists brew; then
-    echo "installing homebrew"
-    /usr/bin/env ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-else
-    echo "updating homebrew"
-    brew update
-fi
+    ;;
+esac

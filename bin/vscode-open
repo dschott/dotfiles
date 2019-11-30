@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-! command-exists code && exit
-
-[ -d "${1}" ] && code "${1}"

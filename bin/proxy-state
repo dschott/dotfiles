@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 
-! os-is-darwin && exit
+! command-exists networksetup && exit
 
 networksetup -getautoproxyurl Wi-Fi

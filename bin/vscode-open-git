@@ -22,4 +22,6 @@ if [ ! -d "${dir}" ]; then
     fi
 fi
 
-vscode-open "${dir}"
+if [ -d "${dir}" ]; then
+    code "${dir}"
+fi

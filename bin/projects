@@ -54,11 +54,14 @@ code|open)
     open)
         url=$(echo "${entry}" | jq -r '.url')
 
-        if os-is-linux; then
-            nohup xdg-open "${url}" > /dev/null 2>&1
-        elif os-is-darwin; then
+        case "$(uname -s)" in
+        Darwin)
             open "${url}"
-        fi
+            ;;
+        Linux)
+            nohup xdg-open "${url}" > /dev/null 2>&1
+            ;;
+        esac
         ;;
     esac
     ;;

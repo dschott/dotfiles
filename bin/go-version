@@ -7,7 +7,7 @@ if command-exists brew; then
 elif command-exists apt; then
     versions=$(apt list --installed golang*-go 2> /dev/null | sed -n 's/golang-\(.*\)-go\/.*/\1/p')
 else
-    >&2 echo "unsupported os"
+    >&2 echo "unsupported package manager"
     exit 1
 fi
 

@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+! command-exists curl && exit
+
 arg=${1:-ip}
 
 case $1 in

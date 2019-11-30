@@ -7,11 +7,14 @@ java-version() {
         current_version="-"
     fi
 
-    if os-is-darwin; then
+    case "$(uname -s)" in
+    Darwin)
         versions=$(/usr/libexec/java_home -V 2>&1 | sed -n 's/.*"\(.*\)".*/\1/p')
-    elif os-is-linux; then
+        ;;
+    Linux)
         versions=$(update-java-alternatives -l)
-    fi
+        ;;
+    esac
 
     if [ -z "${1}" ]; then
         echo "current version:"
@@ -23,14 +26,19 @@ java-version() {
         return
     fi
 
-    if os-is-darwin; then
+    case "$(uname -s)" in
+    Darwin)
         JAVA_HOME=$(/usr/libexec/java_home -v "${1}")
         export JAVA_HOME
-    elif os-is-linux; then
+        ;;
+    Linux)
         sudo update-java-alternatives -s "${1}"
-    fi
+        ;;
+    esac
 }
 
-if os-is-darwin; then
+case "$(uname -s)" in
+Darwin)
     java-version 12
-fi
+    ;;
+esac

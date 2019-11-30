@@ -11,7 +11,8 @@ HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-if os-is-darwin; then
+case "$(uname -s)" in
+Darwin)
     export CLICOLOR=1
     
     if [[ -e "/usr/local/share/bash-completion/bash_completion" ]]; then
@@ -25,8 +26,9 @@ if os-is-darwin; then
         # shellcheck disable=SC1091
         source "/etc/bash_completion"
     fi
+    ;;
 
-elif os-is-linux; then
+Linux)
     [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
     if [ -x /usr/bin/dircolors ]; then
@@ -48,4 +50,5 @@ elif os-is-linux; then
             . /etc/bash_completion
         fi
     fi
-fi
+    ;;
+esac

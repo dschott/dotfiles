@@ -1,7 +1,6 @@
 #!/usr/bin/env sh
 
-! os-is-darwin && exit
+! command-exists networksetup && exit
 
 networksetup -setautoproxystate Wi-Fi on
-
 echo "Auto proxy turned on"

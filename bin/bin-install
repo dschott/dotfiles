@@ -1,30 +1,35 @@
 #!/usr/bin/env sh
 
-! os-is-linux && exit
+case "$(uname -s)" in
+Darwin)
+    ;;
 
-# stern
-sudo curl -L https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64 -o /usr/local/bin/stern
-sudo chmod ugo+x /usr/local/bin/stern
+Linux)
+    # stern
+    sudo curl -L https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64 -o /usr/local/bin/stern
+    sudo chmod ugo+x /usr/local/bin/stern
 
-# kubectx
-if [ -d '/opt/kubectx' ]; then
-    sudo su -c "cd /opt/kubectx && git pull"
-else
-    sudo su -c "git clone https://github.com/ahmetb/kubectx /opt/kubectx"
-fi
+    # kubectx
+    if [ -d '/opt/kubectx' ]; then
+        sudo su -c "cd /opt/kubectx && git pull"
+    else
+        sudo su -c "git clone https://github.com/ahmetb/kubectx /opt/kubectx"
+    fi
 
-COMPDIR=$(pkg-config --variable=completionsdir bash-completion)
-sudo ln -sf /opt/kubectx/kubectx /usr/local/bin/kubectx
-sudo ln -sf /opt/kubectx/kubens /usr/local/bin/kubens
-sudo ln -sf /opt/kubectx/completion/kubens.bash "$COMPDIR/kubens"
-sudo ln -sf /opt/kubectx/completion/kubectx.bash "$COMPDIR/kubectx"
+    COMPDIR=$(pkg-config --variable=completionsdir bash-completion)
+    sudo ln -sf /opt/kubectx/kubectx /usr/local/bin/kubectx
+    sudo ln -sf /opt/kubectx/kubens /usr/local/bin/kubens
+    sudo ln -sf /opt/kubectx/completion/kubens.bash "${COMPDIR}/kubens"
+    sudo ln -sf /opt/kubectx/completion/kubectx.bash "${COMPDIR}/kubectx"
 
-# protoc-gen-go
-go get -d -u github.com/golang/protobuf/protoc-gen-go
-git -C "$(go env GOPATH)"/src/github.com/golang/protobuf checkout v1.3.2 > /dev/null
-go install github.com/golang/protobuf/protoc-gen-go
+    # protoc-gen-go
+    go get -d -u github.com/golang/protobuf/protoc-gen-go
+    git -C "$(go env GOPATH)"/src/github.com/golang/protobuf checkout v1.3.2 > /dev/null
+    go install github.com/golang/protobuf/protoc-gen-go
 
-# gogen-avro
-go get -d github.com/actgardner/gogen-avro/gogen-avro
-git -C "$(go env GOPATH)"/src/github.com/actgardner/gogen-avro checkout v6.2.0 > /dev/null
-go install github.com/actgardner/gogen-avro/gogen-avro
+    # gogen-avro
+    go get -d github.com/actgardner/gogen-avro/gogen-avro
+    git -C "$(go env GOPATH)"/src/github.com/actgardner/gogen-avro checkout v6.2.0 > /dev/null
+    go install github.com/actgardner/gogen-avro/gogen-avro
+    ;;
+esac

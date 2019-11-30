@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-if os-is-darwin; then
+case "$(uname -s)" in
+Darwin)
     echo "setting terminal theme"
     open "${DOTPATH}/etc/macos-terminal-themes/schemes/Afterglow.terminal"
-fi
+    ;;
+esac

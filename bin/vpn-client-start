@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
-[ ! -d '/Applications/Cisco/Cisco AnyConnect Secure Mobility Client.app' ] && exit
-
-open '/Applications/Cisco/Cisco AnyConnect Secure Mobility Client.app'
+case "$(uname -s)" in
+Darwin)
+    if [ ! -d '/Applications/Cisco/Cisco AnyConnect Secure Mobility Client.app' ]; then
+        open '/Applications/Cisco/Cisco AnyConnect Secure Mobility Client.app'
+    fi
+    ;;
+esac
