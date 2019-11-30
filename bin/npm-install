@@ -5,7 +5,7 @@
 failed=()
 packages=$(cat "${DOTPATH}/etc/npm/Packages")
 for package in ${packages}; do
-    if ! sudo npm install -y "${package}"; then
+    if ! sudo npm install -g -y "${package}"; then
         failed+=("${package}")
     fi
 done
