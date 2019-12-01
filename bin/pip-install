@@ -1,20 +1,18 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 if ! check-command pip3; then
     exit 1
 fi
 
-failed=()
+failed=
 packages=$(cat "${DOTPATH}/etc/pip/Packages")
 for package in ${packages}; do
     if ! pip3 install "${package}"; then
-        failed+=("${package}")
+        failed="${failed}\n\t${package}"
     fi
 done
 
-if (( ${#failed[@]} > 0 )); then
-    echo
-    echo "Failed to install the following packages!"
-    printf '\t%s\n' "${failed[*]}"
+if [ -n "${failed}" ]; then
+    printf '\nFailed to install the following packages!%b\n' "${failed}"
     exit 1
 fi

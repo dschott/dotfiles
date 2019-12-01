@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 if ! check-command /opt/cisco/anyconnect/bin/vpn; then
     exit 1
@@ -10,8 +10,8 @@ if [ -z "${host}" ]; then
     hosts=$(vpn-hosts)
     default=$(echo "${hosts}" | head -1)
     
-    printf "Available hosts:\n\n%s\n\n" "${hosts}"
-    read  -rp "Host (${default}): " host
+    printf "Available hosts:\n\n%s\n\nHost (${default}): " "${hosts}"
+    read -r host
     host=${host:-${default}}
 fi
 
