@@ -17,13 +17,10 @@ Darwin)
     
     if [[ -e "/usr/local/share/bash-completion/bash_completion" ]]; then
         export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
-        # shellcheck disable=SC1091
         source "/usr/local/share/bash-completion/bash_completion"
     elif [[ -e "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
-        # shellcheck disable=SC1091
         source "/usr/local/etc/profile.d/bash_completion.sh"
     elif [[ -e "/etc/bash_completion" ]]; then
-        # shellcheck disable=SC1091
         source "/etc/bash_completion"
     fi
     ;;
@@ -43,10 +40,8 @@ Linux)
 
     if ! shopt -oq posix; then
         if [ -f /usr/share/bash-completion/bash_completion ]; then
-            # shellcheck disable=SC1091
             . /usr/share/bash-completion/bash_completion
         elif [ -f /etc/bash_completion ]; then
-            # shellcheck disable=SC1091
             . /etc/bash_completion
         fi
     fi

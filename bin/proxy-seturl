@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-! command-exists networksetup && exit
+if ! check-command networksetup; then
+    exit 1
+fi
 
 url=${1}
 networksetup -setautoproxyurl Wi-Fi "${url}"

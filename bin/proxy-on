@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-! command-exists networksetup && exit
+if ! check-command networksetup; then
+    exit 1
+fi
 
 networksetup -setautoproxystate Wi-Fi on
 echo "Auto proxy turned on"

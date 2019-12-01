@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-! command-exists code && exit
+if ! check-command code; then
+    exit 1
+fi
 
 echo "Installing vscode keybindings"
 
@@ -13,4 +15,7 @@ Darwin)
 Linux)
     cp "${file}" "${HOME}/.config/Code/User/keybindings.json"
     ;;
+*)
+    >&2 echo "unsupported os"
+    exit 1
 esac

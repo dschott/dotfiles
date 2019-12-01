@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-if ! command-exists go; then
-    go-version "$(go-version | tail -1 | tr -d ' ')"
+if ! check-command go; then
+    exit 1
 fi
 
 echo "installing go completion"

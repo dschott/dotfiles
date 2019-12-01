@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-! command-exists brew && exit
+if ! check-command brew; then
+    exit 1
+fi
 
 cd "${DOTPATH}/etc/homebrew" || exit 1
 brew bundle dump --force

@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-! command-exists docker && exit
+if ! check-command docker; then
+    exit 1
+fi
 
 case "$(uname -s)" in
 Darwin)
@@ -13,6 +15,10 @@ Darwin)
     ;;
 
 Linux)
+    if ! check-command systemctl groupadd usermod; then
+        exit 1
+    fi
+
     sudo systemctl start docker
     sudo systemctl enable docker
     if ! groups "${USER}" | grep -q docker; then
@@ -22,4 +28,7 @@ Linux)
         echo "you will need to log out and back in for the new group to take effect"
     fi
     ;;
+*)
+    >&2 echo "unsupported os"
+    exit 1
 esac

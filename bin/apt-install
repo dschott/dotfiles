@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-! command-exists apt && exit
+if ! check-command apt curl; then
+    exit 1
+fi
 
 # https://code.visualstudio.com/docs/setup/linux
 if [ ! -f /usr/share/keyrings/packages.microsoft.gpg ]; then

@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-! command-exists brew && exit
+if ! check-command brew; then
+    exit
+fi
 
 echo "installing brew bundle"
 

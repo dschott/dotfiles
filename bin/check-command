@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+if [ "${1}" = "-q" ]; then
+    quiet="TRUE"
+    shift
+fi
+
+msg=
+missing=
+for cmd in "${@}"; do
+    if ! command -v "${cmd}" > /dev/null; then
+        if [ -n "${missing}" ]; then
+            msg="commands not found:"
+        else
+            msg="command not found:"
+        fi
+        missing="${missing} ${cmd}"
+    fi
+done
+
+if [ -n "${missing}" ]; then
+    if [ ! "${quiet}" = "TRUE" ]; then
+        echo "${msg}${missing}"
+    fi
+    exit 1
+fi

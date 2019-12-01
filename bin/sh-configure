@@ -2,15 +2,23 @@
 
 case "$(uname -s)" in
 Darwin)
-    echo "configuring shell"
-
     bash_path='/usr/local/bin/bash'
-    file='/etc/shells'
-    if grep -q "${bash_path}" "${file}"; then
-        # Add user installed bash to os shells
-        sudo sh -c "grep -q -F '${bash_path}' ${file} || echo '${bash_path}' >> ${file}"
-        # Set user install bash to default shell
-        chsh -s "${bash_path}" "${USER}"
-    fi
     ;;
+Linux)
+    bash_path='/usr/bin/bash'
+    ;;
+*)
+    >&2 echo "unsupported os"
+    exit 1
 esac
+
+echo "configuring shell"
+
+shells_path='/etc/shells'
+if grep -q "${bash_path}" "${shells_path}"; then
+    # Add user installed bash to os shells
+    sudo sh -c "grep -q -F '${bash_path}' ${shells_path} || echo '${bash_path}' >> ${shells_path}"
+fi
+
+# Set user install bash to default shell
+chsh -s "${bash_path}" "${USER}"

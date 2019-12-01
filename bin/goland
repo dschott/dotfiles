@@ -5,6 +5,8 @@ Darwin)
     test -d "/Applications/GoLand.app" && open -a "/Applications/GoLand.app/Contents/MacOS/goland"
     ;;
 
-Linux)
+*)
+    >&2 echo "unsupported os"
+    exit 1
     ;;
 esac

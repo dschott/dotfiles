@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
-! command-exists lpass && exit
+if ! check-command lpass; then
+    exit 1
+fi
 
 lpass show -p "$@"

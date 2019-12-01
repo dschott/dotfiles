@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-! command-exists projects && return
-
-source projects complete
+# source projects complete
 
 alias c='projects code'
-complete -F _complete_alias c
+# complete -F _complete_alias c

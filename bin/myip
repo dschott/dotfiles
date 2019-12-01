@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-! command-exists curl && exit
+if ! check-command curl; then
+    exit 1
+fi
 
 arg=${1:-ip}
 

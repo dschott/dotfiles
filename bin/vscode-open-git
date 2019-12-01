@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-! command-exists code && exit
+if ! check-command code git; then
+    exit 1
+fi
 
 dir="${1}"
 repository="${2}"

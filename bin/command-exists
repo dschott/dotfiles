@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-for c in "${@}"; do
-    command -v "${c}" > /dev/null
-    rtn="${?}"
-    if [ "${rtn}" != "0" ]; then
-        exit ${rtn}
-    fi
-done

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-! command-exists sbt && return
-
-path-add "/usr/local/opt/sbt@0.13/bin"
+if check-command -q sbt; then
+    path-add "/usr/local/opt/sbt@0.13/bin"
+fi

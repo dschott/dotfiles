@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-! command-exists code && exit
+if ! check-command code; then
+    exit 1
+fi
 
 vscode-install-extensions
 vscode-install-keybindings

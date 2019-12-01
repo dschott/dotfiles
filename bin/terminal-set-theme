@@ -5,4 +5,7 @@ Darwin)
     echo "setting terminal theme"
     open "${DOTPATH}/etc/macos-terminal-themes/schemes/Afterglow.terminal"
     ;;
+*)
+    >&2 echo "unsupported os"
+    exit 1
 esac

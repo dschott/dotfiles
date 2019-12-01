@@ -6,4 +6,7 @@ Darwin)
         open '/Applications/Cisco/Cisco AnyConnect Secure Mobility Client.app'
     fi
     ;;
+*)
+    >&2 echo "unsupported os"
+    exit 1
 esac

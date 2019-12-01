@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-! command-exists go && return
+if check-command -q go; then
+    export GOPATH=${HOME}/go
+    export GOBIN=${GOPATH}/bin
+    export GO=${HOME}/go/src/github.com/
+    path-add "${GOBIN}"
 
-export GOPATH=${HOME}/go
-export GOBIN=${GOPATH}/bin
-export GO=${HOME}/go/src/github.com/
-path-add "${GOBIN}"
-
-complete -C gocomplete go
+    complete -C gocomplete go
+fi

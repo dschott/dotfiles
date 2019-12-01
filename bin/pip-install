@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-! command-exists pip3 && exit
+if ! check-command pip3; then
+    exit 1
+fi
 
 failed=()
 packages=$(cat "${DOTPATH}/etc/pip/Packages")

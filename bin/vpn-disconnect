@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-[ ! -f /opt/cisco/anyconnect/bin/vpn ] && exit
+if ! check-command /opt/cisco/anyconnect/bin/vpn; then
+    exit 1
+fi
 
 /opt/cisco/anyconnect/bin/vpn -s disconnect | sed -n 's# *>> *\(.*\)#\1#p'

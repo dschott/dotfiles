@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-! command-exists git && exit
+if ! check-command git; then
+    exit 1
+fi
 
 if [ "$(git config --global --includes user.name)" != "${USER_FULLNAME}" ] ||
     [ "$(git config --global --includes user.email)" != "${USER_EMAIL}" ]; then

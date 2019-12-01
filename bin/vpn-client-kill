@@ -13,4 +13,7 @@ Darwin)
         fi
     fi
     ;;
+*)
+    >&2 echo "unsupported os"
+    exit 1
 esac
