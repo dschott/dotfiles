@@ -5,8 +5,7 @@ export DOTPATH
 
 "${DOTPATH}"/bin/dotfiles-link
 
-# shellcheck disable=SC1090
-. "$HOME/.bashrc"
+. "${HOME}/.bashrc"
 
 homebrew-install
 
@@ -42,5 +41,4 @@ g sub
 
 echo "Install complete!"
 
-# shellcheck disable=SC1090
 . "$HOME/.bash_profile"

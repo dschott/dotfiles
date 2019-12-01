@@ -21,7 +21,6 @@ env-setlocal() {
 
     if [ -n "${val}" ]; then
         set-line "export ${var}=" "export ${var}=${val}" "${HOME}/.bashrc.local"
-        # shellcheck disable=SC1090
         . "${HOME}/.bashrc.local"
     fi
 }

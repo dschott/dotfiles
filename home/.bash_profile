@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# shellcheck disable=SC1090
 [ -r "${HOME}/.bashrc" ] && . "${HOME}/.bashrc"
 
 # Login Shell Splash
