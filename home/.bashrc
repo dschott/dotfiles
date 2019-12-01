@@ -33,12 +33,31 @@ path-add "/usr/local/sbin"
 # Source local bashrc file (private keys etc)
 [ -r "${HOME}/.bashrc.local" ] && . "$HOME/.bashrc.local"
 
-# Color Escape Codes
-COLOR_RED="\e[0;31m"
-COLOR_CYAN="\e[0;36m"
-COLOR_YELLOW="\e[0;33m"
-COLOR_GREEN="\e[0;32m"
-COLOR_NONE="\e[0m"
+# Splash & Prompt
+red="\e[0;31m"
+cyan="\e[0;36m"
+yellow="\e[0;33m"
+green="\e[0;32m"
+normal="\e[0m"
 
-# Prompt
-PS1="\[${COLOR_RED}\][\[${COLOR_CYAN}\]\u@\h\[${COLOR_RED}\]] \$(date +%H:%M) \w\[${COLOR_YELLOW}\] \$(git bn | sed 's/\(.*\)/(\1)/')\n\[${COLOR_GREEN}\]\$ \[${COLOR_NONE}\]"
+PS1="\[${red}\][\[${cyan}\]\u@\h\[${red}\]] \$(date +%H:%M) \w\[${yellow}\] \$(git bn | sed 's/\(.*\)/(\1)/')\n\[${green}\]\$ \[${normal}\]"
+
+if [ "${SHLVL}" = "1" ]; then
+    printf "%b
+ _____   _____   _____   _____ 
+||   || ||   || ||   || ||   ||
+|| B || || A || || S || || H ||
+||___|| ||___|| ||___|| ||___||
+|/___\| |/___\| |/___\| |/___\|
+
+%bSHELL:     %b${BASH}, version ${BASH_VERSION}
+%bHOSTNAME:  %b${HOSTNAME}
+%bHOME:      %b${HOME}
+%bUSER:      %b${USER}
+%bUPTIME:   %b$(uptime)%b\n\n" "${red}" "${red}" "${cyan}" "${red}" "${cyan}" "${red}" "${cyan}" "${red}" "${cyan}" "${red}" "${cyan}" "${normal}"
+
+else
+    PS1="\[${red}\]*${PS1}"
+fi
+
+unset red cyan yellow green normal
