@@ -1,107 +1,172 @@
 #!/usr/bin/env sh
 
-for cmd in git code jq; do
-    if ! command -v "${cmd}" > /dev/null; then
-        >&2 echo "required dependency not found! ${cmd}"
-        exit 1
-    fi
-done
-
-if test $# -eq 0; then
-    set -- -h
+if ! check-command git code jq; then
+    exit 1
 fi
-OPTIONS_SPEC="\
-projects list
-projects code
-projects show
 
-projects manages git projects
+# shellcheck disable=2034
+OPTIONS_SPEC="\
+projects [list|edit]
+projects [code|open|show] <projectname>
+projects completion <shell>
+
+Manage git projects
 --
 h,help     show help
-o,output=  output
-t,tag=     tag
 "
 
-main() {
+. "${DOTPATH}/lib/sh-setup"
 
-    eval "$(echo "$OPTIONS_SPEC" | git rev-parse --parseopt -- "$@" || echo exit $?)"
-    # local cmd
-    # while [ $# -gt 0 ]; do
-    #     opt="${1}"
-    #     shift
-    #     case ${opt} in
-    #     --) break ;;
-    #     complete) cmd=
-    #     list)
-    #     code)
-    #     open)
-    #     esac
-    # done
+shell=
+project_name=
+
+main() {
+    while test $# -gt 0; do
+        opt="$1"
+        shift
+
+        case "$opt" in
+        --)
+            break
+            ;;
+        *)
+            die "Invalid option: ${opt}"
+            ;;
+        esac
+    done
+
+    cmd="${1}"
+    shift
+
+    case "${cmd}" in
+    completion)
+        shell="${1}"
+        shift
+        completion
+        ;;
+    list)
+        list_projects
+        ;;
+    code)
+        project_name="${1}"
+        shift
+        code_project
+        ;;
+    open)
+        project_name="${1}"
+        shift
+        open_project
+        ;;
+    show)
+        project_name="${1}"
+        shift
+        show_project
+        ;;
+    edit)
+        edit_projects
+        ;;
+    *)
+        usage
+        ;;
+    esac
+    
+}
+
+# shellcheck disable=2039
+__projects_bash_complete() {
+    case "${COMP_CWORD}" in
+    1)
+        cmds="completion list code open show edit"
+        mapfile -t COMPREPLY <<< "$(compgen -W "${cmds}" -- "${COMP_WORDS[1]}")"
+        ;;
+    2)
+        cmd="${COMP_WORDS[1]}"
+        case "${cmd}" in
+        completion)
+            mapfile -t COMPREPLY <<< "$(compgen -W "bash" -- "${COMP_WORDS[2]}")"
+            ;;
+        show|code|open)
+            mapfile -t COMPREPLY <<< "$(compgen -W "$(projects list)" -- "${COMP_WORDS[2]}")"
+            ;;
+        esac
+        ;;
+    esac
+}
+
+completion() {
+    if [ -z "${shell}" ]; then 
+        say "Shell not specified"
+        usage
+    fi
+    case "${shell}" in
+    bash)
+        type __projects_bash_complete | tail -n +2
+        echo
+        echo "complete -o default -F __projects_bash_complete projects"
+        ;;
+    *)
+        die "Unsupported shell: ${shell}"
+        ;;
+    esac
+}
+
+list_projects() {
+    if [ -f "${HOME}/.projects" ]; then
+        jq -r ".[].name" "${HOME}/.projects"
+    fi
+}
+
+edit_projects() {
+    if [ -f "${HOME}/.projects" ]; then
+        code "${HOME}/.projects"
+    fi
+}
+
+project_entry() {
+    if [ -z "${project_name}" ]; then 
+        die "Project not specified"
+    fi
+    if [ -f "${HOME}/.projects" ]; then
+        entry="$(jq ".[] | select(.name == \"${project_name}\")" "${HOME}/.projects")"
+    fi
+    if [ -z "${entry}" ]; then 
+        die "Project not found: ${project_name}"
+    fi
+    echo "${entry}"
+}
+
+show_project() {
+    project_entry
+}
+
+code_project() {
+    if ! entry="$(project_entry)"; then
+        usage
+    fi
+    
+    path="$(echo "${entry}" | jq -r '.path')"
+    path="$(eval printf "${path}")"
+    repo=$(echo "${entry}" | jq -r '.repo')
+    vscode-open-git "${path}" "${repo}"
+}
+
+open_project() {
+    if ! entry="$(project_entry)"; then
+        usage
+    fi
+
+    url="$(echo "${entry}" | jq -r '.url')"
+
+    case "$(uname -s)" in
+    Darwin)
+        open "${url}"
+        ;;
+    Linux)
+        nohup xdg-open "${url}" > /dev/null 2>&1
+        ;;
+    *)
+        die "Unsupported os: $(uname -s)"
+    esac
 }
 
 main "${@}"
-exit
-
-# cmd="${1}"
-
-# case "${cmd}" in
-# complete)
-#     _projects_complete() {
-#         case "${COMP_CWORD}" in
-#         1)
-#             cmds="list code open complete"
-#             mapfile -t COMPREPLY <<< "$(compgen -W "${cmds}" -- "${COMP_WORDS[1]}")"
-#             ;;
-
-#         2)
-#             cmd="${COMP_WORDS[1]}"
-#             case "${cmd}" in
-#             code|open)
-#                 mapfile -t COMPREPLY <<< "$(compgen -W "$(projects list)" -- "${COMP_WORDS[2]}")"
-#                 ;;
-#             esac
-#             ;;
-#         esac
-#     }
-#     complete -F _projects_complete projects
-#     ;;
-
-# list)
-#     if [ -f "${HOME}/.projects" ]; then
-#         jq -r ".[].name" "${HOME}/.projects"
-#     fi
-#     ;;
-
-# code|open)
-#     if [ -f "${HOME}/.projects" ]; then
-#         name="${2}"
-#         entry="$(jq ".[] | select(.name == \"${name}\")" "${HOME}/.projects")"
-#         if [ -z "${entry}" ]; then 
-#             >&2 echo "project not found! ${name}"
-#             exit 1
-#         fi
-
-#         case "${cmd}" in
-#         code)
-#             path=$(eval echo -e "$(echo "${entry}" | jq -r '.path')")
-#             repo=$(echo "${entry}" | jq -r '.repo')
-            
-#             vscode-open-git "${path}" "${repo}"
-#             ;;
-
-#         open)
-#             url=$(echo "${entry}" | jq -r '.url')
-
-#             case "$(uname -s)" in
-#             Darwin)
-#                 open "${url}"
-#                 ;;
-#             Linux)
-#                 nohup xdg-open "${url}" > /dev/null 2>&1
-#                 ;;
-#             esac
-#             ;;
-#         esac
-#     fi
-#     ;;
-# esac

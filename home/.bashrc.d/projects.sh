@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-# source projects complete
+eval "$(projects completion bash)"
 
 alias c='projects code'
-# complete -F _complete_alias c
+complete -F _complete_alias c
+
+alias p='projects'
+complete -F _complete_alias p
