@@ -1,13 +1,14 @@
 #!/usr/bin/env sh
 
-if ! check-command git code jq; then
+if ! check-command git jq; then
     exit 1
 fi
 
 # shellcheck disable=2034
 OPTIONS_SPEC="\
-projects [list|edit]
-projects [code|open|show] <projectname>
+projects list
+projects [edit|open] <projectname>
+projects config [projectname]
 projects completion <shell>
 
 Manage git projects
@@ -39,31 +40,28 @@ main() {
     shift
 
     case "${cmd}" in
-    completion)
-        shell="${1}"
-        shift
-        completion
-        ;;
     list)
         list_projects
         ;;
-    code)
+    edit)
         project_name="${1}"
         shift
-        code_project
+        edit_project
         ;;
     open)
         project_name="${1}"
         shift
         open_project
         ;;
-    show)
+    config)
         project_name="${1}"
         shift
-        show_project
+        config
         ;;
-    edit)
-        edit_projects
+    completion)
+        shell="${1}"
+        shift
+        completion
         ;;
     *)
         usage
@@ -76,7 +74,7 @@ main() {
 __projects_bash_complete() {
     case "${COMP_CWORD}" in
     1)
-        cmds="completion list code open show edit"
+        cmds="list edit open config completion"
         mapfile -t COMPREPLY <<< "$(compgen -W "${cmds}" -- "${COMP_WORDS[1]}")"
         ;;
     2)
@@ -85,7 +83,7 @@ __projects_bash_complete() {
         completion)
             mapfile -t COMPREPLY <<< "$(compgen -W "bash" -- "${COMP_WORDS[2]}")"
             ;;
-        show|code|open)
+        edit|open|config)
             mapfile -t COMPREPLY <<< "$(compgen -W "$(projects list)" -- "${COMP_WORDS[2]}")"
             ;;
         esac
@@ -112,42 +110,26 @@ completion() {
 
 list_projects() {
     if [ -f "${HOME}/.projects" ]; then
-        jq -r ".[].name" "${HOME}/.projects"
+        jq -r ".projects[].name" "${HOME}/.projects"
     fi
 }
 
-edit_projects() {
-    if [ -f "${HOME}/.projects" ]; then
-        code "${HOME}/.projects"
-    fi
-}
-
-project_entry() {
-    if [ -z "${project_name}" ]; then 
-        die "Project not specified"
-    fi
-    if [ -f "${HOME}/.projects" ]; then
-        entry="$(jq ".[] | select(.name == \"${project_name}\")" "${HOME}/.projects")"
-    fi
-    if [ -z "${entry}" ]; then 
-        die "Project not found: ${project_name}"
-    fi
-    echo "${entry}"
-}
-
-show_project() {
-    project_entry
-}
-
-code_project() {
+edit_project() {
     if ! entry="$(project_entry)"; then
         usage
     fi
-    
+
     path="$(echo "${entry}" | jq -r '.path')"
     path="$(eval printf "${path}")"
     repo=$(echo "${entry}" | jq -r '.repo')
-    vscode-open-git "${path}" "${repo}"
+
+    if [ ! -r "${path}" ]; then
+        mkdir -p "${path}"
+        if ! git clone "${repo}" "${path}"; then
+            rm -rf "${path}"
+        fi
+    fi
+    edit "${path}"
 }
 
 open_project() {
@@ -167,6 +149,55 @@ open_project() {
     *)
         die "Unsupported os: $(uname -s)"
     esac
+}
+
+config() {
+    if [ -n "${project_name}" ]; then
+        if ! entry="$(project_entry)"; then
+            usage
+        fi
+        echo "${entry}"
+    else
+        path="${HOME}/.projects"
+        if [ ! -r "${path}" ]; then
+            touch "${path}"
+        fi
+        edit "${path}"
+    fi
+}
+
+edit() {
+    path="${1}"
+    if [ -r "${path}" ]; then
+        prj_path="${HOME}/.projects"
+        editor="${EDITOR:-vi}"
+        if [ -f "${prj_path}" ]; then
+            e="$(jq -r ".editor" "${prj_path}")"
+            if [ "${e}" != "null" ]; then
+                editor="${e}"
+            fi
+            if [ -n "${project_name}" ]; then
+                e="$(jq -r ".projects[] | select(.name == \"${project_name}\").editor" "${prj_path}")"
+                if [ "${e}" != "null" ]; then
+                    editor="${e}"
+                fi
+            fi
+        fi
+        "${editor}" "${path}"
+    fi
+}
+
+project_entry() {
+    if [ -z "${project_name}" ]; then 
+        die "Project not specified"
+    fi
+    if [ -f "${HOME}/.projects" ]; then
+        entry="$(jq ".projects[] | select(.name == \"${project_name}\")" "${HOME}/.projects")"
+    fi
+    if [ -z "${entry}" ]; then 
+        die "Project not found: ${project_name}"
+    fi
+    echo "${entry}"
 }
 
 main "${@}"

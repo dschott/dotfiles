@@ -2,8 +2,8 @@
 
 eval "$(projects completion bash)"
 
-alias c='projects code'
-complete -F _complete_alias c
+alias e='projects edit'
+complete -F _complete_alias e
 
 alias p='projects'
 complete -F _complete_alias p
