@@ -10,6 +10,7 @@ donjayamanne.githistory
 DougFinke.vscode-pandoc
 eamodio.gitlens
 ecmel.vscode-html-css
+GitHub.vscode-pull-request-github
 HookyQR.beautify
 humao.rest-client
 jdinhlife.gruvbox
@@ -46,6 +47,7 @@ vscjava.vscode-java-dependency
 vscjava.vscode-java-pack
 vscjava.vscode-java-test
 vscjava.vscode-maven
+vscoss.vscode-ansible
 waderyan.gitblame
 wholroyd.HCL
 yzhang.markdown-all-in-one
