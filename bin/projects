@@ -171,21 +171,23 @@ config() {
 edit() {
     path="${1}"
     if [ -r "${path}" ]; then
+        editor=
         prj_path="${HOME}/.projects"
-        editor="${EDITOR:-vi}"
         if [ -f "${prj_path}" ]; then
-            e="$(jq -r ".editor" "${prj_path}")"
-            if [ "${e}" != "null" ]; then
-                editor="${e}"
-            fi
             if [ -n "${project_name}" ]; then
                 e="$(jq -r ".projects[] | select(.name == \"${project_name}\").editor" "${prj_path}")"
                 if [ "${e}" != "null" ]; then
                     editor="${e}"
                 fi
             fi
+            if [ -z "${editor}" ]; then
+                e="$(jq -r ".editor" "${prj_path}")"
+                if [ "${e}" != "null" ]; then
+                    editor="${e}"
+                fi
+            fi
         fi
-        "${editor}" "${path}"
+        "${editor:-vi}" "${path}"
     fi
 }
 
