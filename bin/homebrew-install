@@ -4,7 +4,7 @@ case "$(uname -s)" in
 Darwin)
     env-setlocal HOMEBREW_GITHUB_API_TOKEN
 
-    if ! command-exists brew; then
+    if ! check-command -q brew; then
         echo "installing homebrew"
         /usr/bin/env ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     else

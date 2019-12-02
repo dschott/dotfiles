@@ -2,7 +2,7 @@
 
 if check-command -q java; then
     java-version() {
-        if command-exists javac; then
+        if check-command -q javac; then
             current_version="$(javac -version 2>&1 | sed -n 's/javac \(.*\)/\1/p')"
         else
             current_version="-"
