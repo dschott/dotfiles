@@ -16,7 +16,7 @@ Manage git projects
 h,help     show help
 "
 
-. "${DOTPATH}/lib/sh-setup"
+eval "$(echo "$OPTIONS_SPEC" | git rev-parse --parseopt -- "$@" || echo exit $?)"
 
 shell=
 project_name=
@@ -31,7 +31,8 @@ main() {
             break
             ;;
         *)
-            die "Invalid option: ${opt}"
+            err "Invalid option: ${opt}"
+            usage
             ;;
         esac
     done
@@ -64,6 +65,7 @@ main() {
         completion
         ;;
     *)
+        err "Invalid command: ${cmd}"
         usage
         ;;
     esac
@@ -93,7 +95,7 @@ __projects_bash_complete() {
 
 completion() {
     if [ -z "${shell}" ]; then 
-        say "Shell not specified"
+        err "Shell not specified"
         usage
     fi
     case "${shell}" in
@@ -198,6 +200,20 @@ project_entry() {
         die "Project not found: ${project_name}"
     fi
     echo "${entry}"
+}
+
+err () {
+	printf >&2 '%s\n' "$*"
+}
+
+die () {
+	err "$@"
+	exit 1
+}
+
+usage() {
+    "$0" -h
+    exit 1
 }
 
 main "${@}"
