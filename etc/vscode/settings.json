@@ -5,10 +5,16 @@
     "window.zoomLevel": 1,
     "editor.minimap.enabled": false,
     "explorer.confirmDelete": false,
-    "go.formatFlags": ["-local", "github.platforms.engineering", ],
+    "go.formatFlags": [
+        "-local",
+        "github.platforms.engineering",
+    ],
     "go.formatTool": "goimports",
     "editor.renderWhitespace": "boundary",
-    "editor.rulers": [80, 100],
+    "editor.rulers": [
+        80,
+        100
+    ],
     "workbench.colorCustomizations": {
         "editorRuler.foreground": "#3a3a3a",
         "activityBarBadge.background": "#64FFDA",
@@ -40,7 +46,6 @@
     "terminal.integrated.shell.osx": "/usr/local/bin/bash",
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.editor.showTabs": false,
-    // "files.autoSave": "onFocusChange",
     "editor.cursorStyle": "line",
     "editor.acceptSuggestionOnEnter": "off",
     "pasteImage.basePath": "${projectRoot}/assets",
@@ -58,7 +63,8 @@
     "terminal.integrated.showExitAlert": false,
     "journal.base": "${homeDir}/notes/journal/",
     "editor.tokenColorCustomizations": {
-        "textMateRules": [{
+        "textMateRules": [
+            {
                 "scope": "text.html.markdown.journal.task.open.bullet",
                 "settings": {
                     "foreground": "#FFFF00"
