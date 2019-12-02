@@ -4,4 +4,4 @@ if ! check-command lpass; then
     exit 1
 fi
 
-lpass login --trust "${USER_EMAIL}"
+lpass login --trust "douglas.schott@gmail.com"
