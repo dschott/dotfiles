@@ -11,3 +11,5 @@ else
     export USER_FULLNAME="Schott, Douglas"
     export USER_EMAIL="douglas.schott@gmail.com"
 fi
+
+git-config || true
