@@ -60,6 +60,12 @@
             "path": "${HOME}/projects/product360-apis",
             "repo": "git@github.platforms.engineering:GraphRoots/product360-apis",
             "url": "https://github.platforms.engineering/graphroots/product360-apis"
+        },
+        {
+            "name": "srekit",
+            "path": "${GOPATH}/src/github.platforms.engineering/graphroots/srekit",
+            "repo": "git@github.platforms.engineering:GraphRoots/srekit",
+            "url": "https://github.platforms.engineering/GraphRoots/srekit"
         }
     ]
 }
