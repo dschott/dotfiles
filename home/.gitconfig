@@ -15,14 +15,13 @@
 [alias]
     a = add
     aa = add -A
-    p = push
     b = branch
     f = fetch
     d = diff
     dc = diff --cached
     cl = clone
-    pl = pull
-    plr = pull --rebase
+    p = pull
+    pr = pull --rebase
     rn = !git config "branch.$(git bn).remote"
     bn = !git rev-parse --abbrev-ref HEAD 2> /dev/null
     s = status -s -b
