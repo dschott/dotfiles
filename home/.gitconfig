@@ -31,7 +31,7 @@
     c = commit
     cm = commit -m
     co = checkout
-    rbi = rebase
+    rb = rebase
     rbi = rebase -i
     rba = rebase --abort
     rbc = rebase --continue
