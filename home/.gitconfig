@@ -31,7 +31,8 @@
     c = commit
     cm = commit -m
     co = checkout
-    rb = rebase -i
+    rbi = rebase
+    rbi = rebase -i
     rba = rebase --abort
     rbc = rebase --continue
     t = tag
