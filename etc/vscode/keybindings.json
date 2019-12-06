@@ -10,6 +10,7 @@
     { "key": "cmd+k cmd+x",     "command": "workbench.files.action.collapseExplorerFolders"},
     { "key": "cmd+k n",         "command": "merge-conflict.next"},
     { "key": "cmd+k p",         "command": "merge-conflict.previous"},
+
     { "key": "ctrl+.",           "command": "workbench.action.terminal.focus"},
     { "key": "ctrl+.",           "command": "workbench.action.focusActiveEditorGroup",  "when": "terminalFocus" },
     { "key": "ctrl+cmd+up",     "command": "workbench.action.terminal.resizePaneUp"},
@@ -18,5 +19,7 @@
     { "key": "alt+cmd+down",    "command": "workbench.action.toggleMaximizedPanel",     "when": "terminalFocus" },
     { "key": "cmd+k cmd+k",     "command": "workbench.action.terminal.kill",            "when": "terminalFocus" },
     { "key": "cmd+alt+right",   "command": "workbench.action.terminal.focusNext",       "when": "terminalFocus" },
-    { "key": "cmd+alt+left",    "command": "workbench.action.terminal.focusPrevious",   "when": "terminalFocus" }
+    { "key": "cmd+alt+left",    "command": "workbench.action.terminal.focusPrevious",   "when": "terminalFocus" },
+
+    { "key": "alt+cmd+c",    "command": "githd.diffUncommittedFile"},
 ]
