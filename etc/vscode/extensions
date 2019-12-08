@@ -22,6 +22,7 @@ ms-azuretools.vscode-docker
 ms-kubernetes-tools.vscode-kubernetes-tools
 ms-mssql.mssql
 ms-python.python
+ms-vscode-remote.remote-containers
 ms-vscode.cpptools
 ms-vscode.Go
 ms-vscode.powershell
@@ -29,9 +30,9 @@ ms-vsliveshare.vsliveshare
 ms-vsliveshare.vsliveshare-audio
 ms-vsliveshare.vsliveshare-pack
 mtdmali.daybreak-theme
-mushan.vscode-paste-image
 pajoma.vscode-journal
 peterj.proto
+qcz.text-power-tools
 rastikerdar.vscode-seedling-icon-theme
 redhat.java
 redhat.vscode-yaml
