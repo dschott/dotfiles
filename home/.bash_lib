@@ -44,3 +44,32 @@ path-remove() {
         export PATH
     fi
 }
+
+truncate_path() {
+    last_part="${1}"
+    num_head_dirs="${2}"
+    max_tail_len="${3}"
+    first_part=""
+    for (( i = 0; i <= num_head_dirs; i++ )); do
+        next_part="${last_part%%/*}"
+        len_last_part="${#last_part}"
+        last_part="${last_part/#${next_part}\/}"
+        if [ "${next_part}" == "" ]; then
+            first_part="${first_part}"
+        elif [ "${first_part}" == "" ]; then
+            first_part="${next_part}"
+        else
+            first_part="${first_part}${next_part}"
+        fi
+        if [ "${len_last_part}" = "${#last_part}" ]; then
+            last_part=""
+            break;
+        else
+            first_part="${first_part}/"
+        fi
+    done
+    if [[ ${#last_part} -gt ${max_tail_len} ]]; then
+        last_part="...${last_part: -${max_tail_len}}"
+    fi
+    echo "${first_part}${last_part}"
+}
