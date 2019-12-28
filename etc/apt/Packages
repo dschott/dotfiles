@@ -47,3 +47,4 @@ shellcheck
 nodejs
 yarn
 xclip
+linuxbrew-wrapper
