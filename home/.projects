@@ -20,49 +20,49 @@
             "url":  "https://github.com/dschott/dotfiles"
         },
         {
-            "name": "genomics",
+            "name": "bayer-genomics",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/genomics",
             "repo": "git@github.platforms.engineering:graphroots/genomics",
             "url": "https://github.platforms.engineering/graphroots/genomics"
         },
         {
-            "name": "genomics-deploy",
+            "name": "bayer-genomics-deploy",
             "path": "${GOPATH}/projects/genomics-deploy",
             "repo": "git@github.platforms.engineering:graphroots/genomics-deploy",
             "url": "https://github.platforms.engineering/graphroots/genomics-deploy"
         },
         {
-            "name": "genomics-wiki",
+            "name": "bayer-genomics-wiki",
             "path": "${HOME}/projects/genomics.wiki",
             "repo": "git@github.platforms.engineering:graphroots/genomics.wiki",
             "url": "https://github.platforms.engineering/graphroots/genomics/wiki"
         },
         {
-            "name": "gokit",
+            "name": "bayer-gokit",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/gokit",
             "repo": "git@github.platforms.engineering:graphroots/gokit",
             "url": "https://github.platforms.engineering/graphroots/gokit"
         },
         {
-            "name": "docs",
+            "name": "bayer-docs",
             "path": "${HOME}/projects/docs",
             "repo": "git@github.platforms.engineering:graphroots/docs",
             "url": "https://github.platforms.engineering/graphroots/docs"
         },
         {
-            "name": "golang-build",
+            "name": "bayer-golang-build",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/golang-build",
             "repo": "git@github.platforms.engineering:graphroots/golang-build",
             "url": "https://github.platforms.engineering/graphroots/golang-build"
         },
         {
-            "name": "product360-apis",
+            "name": "bayer-product360-apis",
             "path": "${HOME}/projects/product360-apis",
             "repo": "git@github.platforms.engineering:GraphRoots/product360-apis",
             "url": "https://github.platforms.engineering/graphroots/product360-apis"
         },
         {
-            "name": "srekit",
+            "name": "bayer-srekit",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/srekit",
             "repo": "git@github.platforms.engineering:GraphRoots/srekit",
             "url": "https://github.platforms.engineering/GraphRoots/srekit"
