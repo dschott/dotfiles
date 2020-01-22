@@ -66,6 +66,12 @@
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/srekit",
             "repo": "git@github.platforms.engineering:GraphRoots/srekit",
             "url": "https://github.platforms.engineering/GraphRoots/srekit"
+        },
+        {
+            "name": "bayer-api-docs",
+            "path": "${HOME}/projects/api-docs",
+            "repo": "git@github.platforms.engineering:GraphRoots/api-docs",
+            "url": "https://github.platforms.engineering/GraphRoots/api-docs"
         }
     ]
 }
