@@ -72,6 +72,30 @@
             "path": "${HOME}/projects/api-docs",
             "repo": "git@github.platforms.engineering:GraphRoots/api-docs",
             "url": "https://github.platforms.engineering/GraphRoots/api-docs"
+        },
+        {
+            "name": "pctl",
+            "path": "${GOPATH}/src/github.platforms.engineering/graphroots/pctl",
+            "repo": "git@github.platforms.engineering:graphroots/pctl",
+            "url": "https://github.platforms.engineering/graphroots/pctl"
+        },
+        {
+            "name": "product360-admin-apis",
+            "path": "${GOPATH}/src/github.platforms.engineering/graphroots/product360-admin-apis",
+            "repo": "git@github.platforms.engineering:graphroots/product360-admin-apis",
+            "url": "https://github.platforms.engineering/graphroots/product360-admin-apis"
+        },
+        {
+            "name": "ops",
+            "path": "${GOPATH}/src/github.platforms.engineering/graphroots/ops",
+            "repo": "git@github.platforms.engineering:graphroots/ops",
+            "url": "https://github.platforms.engineering/graphroots/ops"
+        },
+        {
+            "name": "p360-tainted",
+            "path": "${GOPATH}/src/github.platforms.engineering/graphroots/p360-tainted",
+            "repo": "git@github.platforms.engineering:graphroots/p360-tainted",
+            "url": "https://github.platforms.engineering/graphroots/p360-tainted"
         }
     ]
 }
