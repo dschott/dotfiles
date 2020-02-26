@@ -12,27 +12,22 @@ if [ -z "${environment}" ]; then
     exit 1
 fi
 
-if [ -z "${client_id}" ]; then
-    echo >&2 "expected ping client_id"
-    exit 1
-fi
-
 case "${client_id}" in
 "")
     echo "expected ping client_id" >&2
     exit 1
     ;;
 "product360")
-    client_id="graphroots"
-    if [ "${environment}" == "prod" ]; then
-        client_id="DATA-PRODUCT360-SVC"
-    fi
+    token_file="${HOME}/.vault-token"
+    ;;
+*)
+    token_file="${HOME}/.ping/${environment}_${client_id}" 
     ;;
 esac
 
-if [ ! -f "${HOME}/.ping/${environment}_${client_id}" ]; then
+if [ ! -f "${token_file}" ]; then
     echo >&2 "token not found"
     exit 1
 fi
 
-echo "Authorization: bearer $(cat "${HOME}/.ping/${environment}_${client_id}")"
+echo "Authorization: bearer $(cat "${token_file}")"

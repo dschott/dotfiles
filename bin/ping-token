@@ -24,18 +24,16 @@ case "${environment}" in
     ;;
 esac
 
-case "${client_id}" in
-"")
+if [ -z "${client_id}" ]; then
     echo "expected ping client_id" >&2
     exit 1
-    ;;
-"product360")
-    client_id="graphroots"
-    if [ "${environment}" == "prod" ]; then
-        client_id="DATA-PRODUCT360-SVC"
-    fi
-    ;;
-esac
+fi
+
+if [ "${client_id}" = "product360" ]; then
+    vault login -method=userpass -path=ping username=GKRPS
+    token="$(cat ~/.vault-token)"
+    exit
+fi
 
 token=$(curl -L -s -X POST "${ping_url}" \
     -H 'Content-Type: application/x-www-form-urlencoded' \
@@ -43,8 +41,8 @@ token=$(curl -L -s -X POST "${ping_url}" \
     --data-urlencode "client_secret=$(vault read -field client_secret "${vault_path}/${client_id}")" \
     --data-urlencode "grant_type=client_credentials" | jq -r '.access_token')
 
-if [ "${token}" == "null" ]; then
-    echo "failed to generate a token" >&2
+if [ "${token}" = "null" ]; then
+    echo "failed to read token" >&2
     exit 1
 else
     mkdir -p "${HOME}/.ping"
