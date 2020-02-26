@@ -27,7 +27,7 @@
         },
         {
             "name": "genomics-deploy",
-            "path": "${GOPATH}/projects/genomics-deploy",
+            "path": "${HOME}/projects/genomics-deploy",
             "repo": "git@github.platforms.engineering:graphroots/genomics-deploy",
             "url": "https://github.platforms.engineering/graphroots/genomics-deploy"
         },
