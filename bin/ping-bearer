@@ -1,0 +1,38 @@
+#!/usr/bin/env sh
+
+if ! check-command vault curl; then
+    exit 1
+fi
+
+environment="${1}"; shift
+client_id="${1}"; shift
+
+if [ -z "${environment}" ]; then
+    echo >&2 "expected environment: nonprod | prod"
+    exit 1
+fi
+
+if [ -z "${client_id}" ]; then
+    echo >&2 "expected ping client_id"
+    exit 1
+fi
+
+case "${client_id}" in
+"")
+    echo "expected ping client_id" >&2
+    exit 1
+    ;;
+"product360")
+    client_id="graphroots"
+    if [ "${environment}" == "prod" ]; then
+        client_id="DATA-PRODUCT360-SVC"
+    fi
+    ;;
+esac
+
+if [ ! -f "${HOME}/.ping/${environment}_${client_id}" ]; then
+    echo >&2 "token not found"
+    exit 1
+fi
+
+echo "Authorization: bearer $(cat "${HOME}/.ping/${environment}_${client_id}")"
