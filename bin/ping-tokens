@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+printf "Environment_Client\n-----------_------\nnonprod_product360\n$(ls -1 "${HOME}/.ping")\n" |  tr "_" " " | column -t

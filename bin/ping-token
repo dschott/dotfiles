@@ -47,5 +47,5 @@ if [ "${token}" = "null" ]; then
 else
     mkdir -p "${HOME}/.ping"
     echo "${token}" > "${HOME}/.ping/${environment}_${client_id}"
-    echo "token successfully generated"
+    echo "token successfully read"
 fi

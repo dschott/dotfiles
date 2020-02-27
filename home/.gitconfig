@@ -1,17 +1,25 @@
+[core]
+    excludesfile = ~/.gitignore
+
 [push]
     default = simple
+
 [url "git@github.com:"]
     insteadOf = "https://github.com/"
+
 [include]
     path = ~/.gitconfig.user
     path = ~/.gitconfig.local
+
 [rerere]
 	enabled = true
+
 [filter "lfs"]
     required = true
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
+
 [alias]
     a = add
     aa = add -A
