@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# shellcheck disable=2064
+set -e
+
+spanner_instance=${SPANNER_INSTANCE:?expected SPANNER_INSTANCE environment var}
+spanner_db=${SPANNER_DB:?expected SPANNER_DB environment var}
+sql=${1:?expected sql as an argument}
+
+mkdir -p /tmp/spanner-queries
+tmp=$(mktemp /tmp/spanner-queries/query.XXXX)
+trap "rm -f ${tmp}" 0 2 3 15
+
+gcloud spanner databases execute-sql "${spanner_db}" \
+	--instance "${spanner_instance}" \
+	--format json \
+	--sql "${sql}" > "${tmp}"
+
+jq -r '[ .metadata.rowType.fields[].name ] | @csv' "${tmp}"
+jq -r '.rows[] | @csv' "${tmp}"

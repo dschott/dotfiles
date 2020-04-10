@@ -96,6 +96,18 @@
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/p360-tainted",
             "repo": "git@github.platforms.engineering:graphroots/p360-tainted",
             "url": "https://github.platforms.engineering/graphroots/p360-tainted"
+        },
+        {
+            "name": "private-apis",
+            "path": "${GOPATH}/src/github.platforms.engineering/graphroots/private-apis",
+            "repo": "git@github.platforms.engineering:graphroots/private-apis",
+            "url": "https://github.platforms.engineering/GraphRoots/private-apis"
+        },
+        {
+            "name": "integration-harness",
+            "path": "${GOPATH}/src/github.platforms.engineering/graphroots/integration-harness",
+            "repo": "git@github.platforms.engineering:graphroots/integration-harness",
+            "url": "https://github.platforms.engineering/GraphRoots/integration-harness"
         }
     ]
 }

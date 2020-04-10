@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+spanner_instance=${SPANNER_INSTANCE:?expected SPANNER_INSTANCE environment var}
+spanner_db=${SPANNER_DB:?expected SPANNER_DB environment var}
+sql=${1:?expected sql as an argument}
+
+gcloud spanner databases execute-sql "${spanner_db}" \
+	--instance "${spanner_instance}" \
+	--format json \
+	--sql "${sql}" | jq '.rows[]'

@@ -112,7 +112,7 @@ completion() {
 
 list_projects() {
     if [ -f "${HOME}/.projects" ]; then
-        jq -r ".projects[].name" "${HOME}/.projects"
+        jq -r ".projects[].name" "${HOME}/.projects" | column
     fi
 }
 
