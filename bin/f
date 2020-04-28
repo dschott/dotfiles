@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+ag "$@" -A5 -B5 --pager 'less -R'
