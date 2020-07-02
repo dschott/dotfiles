@@ -1,0 +1,139 @@
+#!/usr/bin/env bash
+
+main() {
+    set -o errexit -o pipefail
+
+    if ! command -v "${vpn_cli}" > /dev/null
+    then
+        echo "${vpn_cli} not found" >&2
+        return 1
+    fi
+
+    source "$(git --exec-path)/git-sh-setup"
+
+    while [ $# -gt 0 ]
+    do
+        local opt=${1}; shift
+        case "${opt}" in
+            --) break ;;
+            -n) local host=${1}; shift ;;
+            -p) local proxy=true ;;
+            -d) local disconnect=true ;;
+            -l) local list=true ;;
+            -s) local status=true ;;
+        esac
+    done
+
+    if [ -n "${status}" ]
+    then
+        printf "%s\n\n%s\n" "$(vpn_status)" "$(auto_proxy_status)"
+        return 0
+    fi
+
+    if [ -n "${list}" ]
+    then
+        vpn_hosts
+        return 0
+    fi
+
+    if [ -n "${disconnect}" ]
+    then
+        vpn_disconnect
+    else
+        vpn_connect "${host}"
+    fi
+    
+    if [ -n "${proxy}" ]
+    then
+        auto_proxy_on
+    else
+        auto_proxy_off
+    fi
+}
+
+vpn_connect() {
+    local host=${1}
+
+    if [ -z "${host}" ]
+    then
+        hosts=$(vpn_hosts)
+        default=$(echo "${hosts}" | head -1)
+        
+        printf "Available hosts:\n\n%s\n\nHost (${default}): " "${hosts}"
+        read -r host
+        host=${host:-${default}}
+    fi
+
+    if [ -n "${host}" ]
+    then
+        pid=$(pgrep -f "${vpn_client}" || true)
+        if [ -n "${pid}" ]
+        then
+            # Can't connect with vpn cli if the app is running
+            if kill -9 "${pid}"
+            then
+                echo "Killed: ${vpn_client}" >&2
+            else
+                echo "Unable to Kill: ${vpn_client}" >&2
+                return 1
+            fi
+        fi
+        
+        ${vpn_cli} -s connect "${host}"
+    fi
+}
+
+vpn_disconnect() {
+    ${vpn_cli} -s disconnect | sed -n 's# *>> *\(.*\)#\1#p'
+}
+
+vpn_hosts() {
+    ${vpn_cli} -s hosts | sed -n 's# *> *\(.*\)#\1#p'
+}
+
+vpn_status() {
+    echo "${vpn_client}"
+    ${vpn_cli} -s status | sed -n 's# *>> *\(.*\)#\1#p'
+}
+
+auto_proxy_off() {
+    networksetup -setautoproxystate Wi-Fi off
+    echo "Auto proxy turned off"
+}
+
+auto_proxy_on() {
+    networksetup -setautoproxystate Wi-Fi on
+    echo "Auto proxy turned on"
+}
+
+auto_proxy_status() {
+    echo "Auto Proxy"
+    networksetup -getautoproxyurl Wi-Fi
+}
+
+vpn_cli='/opt/cisco/anyconnect/bin/vpn'
+vpn_client='Cisco AnyConnect Secure Mobility Client'
+
+# shellcheck disable=SC2034
+# SUBDIRECTORY_OK is used by `git-sh-setup`.
+SUBDIRECTORY_OK=1
+
+# shellcheck disable=SC2034
+# OPTIONS_SPEC is used by `git-sh-setup`.
+OPTIONS_SPEC="\
+vpn [options]
+
+Manage ${vpn_client} connections
+
+Connects to the VPN and disables the auto proxy. Use the following options to
+perform other actions.
+--
+h,help         show help
+n,host=        the host to use when connecting
+p,proxy        enable auto proxy on connect/disconnect (auto proxy is disabled by default)
+d,disconnect   disconnect from vpn
+l,list         list available hosts and exit
+s,status       print vpn and proxy status and exit
+"
+
+main "$@"

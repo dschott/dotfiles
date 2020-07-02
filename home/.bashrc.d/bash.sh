@@ -14,6 +14,10 @@ HISTFILESIZE=2000
 case "$(uname -s)" in
 Darwin)
     export CLICOLOR=1
+
+    alias less='less -R'
+    alias more='more -R'
+    alias ag='ag --color'
     
     if [[ -e "/usr/local/share/bash-completion/bash_completion" ]]; then
         export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
