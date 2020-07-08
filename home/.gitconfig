@@ -25,8 +25,8 @@
     aa = add -A
     b = branch
     f = fetch
-    d = diff
-    dc = diff --cached
+    d = diff --color-words
+    dc = diff --color-words --cached
     cl = clone
     p = pull
     pr = pull --rebase

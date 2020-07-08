@@ -39,8 +39,8 @@ cyan="\e[0;36m"
 yellow="\e[0;33m"
 green="\e[0;32m"
 normal="\e[0m"
-
-PS1="\[${red}\][\[${cyan}\]\u@\h\[${red}\]] \$(date +%H:%M) \w\[${yellow}\] \$(git bn | sed 's/\(.*\)/(\1)/')\n\[${green}\]\$ \[${normal}\]"
+# ${red}${?##0}${normal}
+PS1="\$([ \${?} != 0 ] && echo ❗)\[${red}\][\[${cyan}\]\u@\h\[${red}\]] \$(date +%H:%M) \w\[${yellow}\] \$(git bn | sed 's/\(.*\)/(\1)/')\n\[${green}\]\$ \[${normal}\]"
 
 if [ "${SHLVL}" = "1" ]; then
     printf "%b
