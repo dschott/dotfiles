@@ -20,6 +20,12 @@
             "url":  "https://github.com/dschott/dotfiles"
         },
         {
+            "name": "scripts",
+            "path": "${HOME}/scripts",
+            "repo": "git@github.com:dschott/scripts",
+            "url": "https://github.com/dschott/scripts"
+        },
+        {
             "name": "genomics",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/genomics",
             "repo": "git@github.platforms.engineering:graphroots/genomics",
