@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+while read -r line
+do
+    echo "----------------------------------------------------------------------------------------------------"
+
+    if [[ "${line}" = \{* ]]
+    then
+        # Assume Json
+        printf '%s\nmessage:\n%s\n' \
+            "$( echo "${line}" | jq -r 'del(.message) | to_entries | .[] | .key + ": " + .value' )" \
+            "$( echo "${line}" | jq -r '.message' | tr '\n' '\n')"
+    else
+        # Assume quoted key value pairs
+        declare -a tokens
+        eval "tokens=(${line})"
+
+        for token in "${tokens[@]}"
+        do
+            if [[ "${token}" = msg=* ]]
+            then
+                # shellcheck disable=SC1004
+                printf "message:\n%s\n" \
+                    "$(echo "${token#*=}" | sed -e 's/\\n/\
+/g' -e 's/\\t/	/g' )"
+            else
+                echo "${token/=/: }"
+            fi
+        done  
+    fi
+done
