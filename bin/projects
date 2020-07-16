@@ -4,7 +4,10 @@ if ! check-command git jq; then
     exit 1
 fi
 
-# shellcheck disable=2034
+# shellcheck disable=SC2034
+NONGIT_OK=1
+
+# shellcheck disable=SC2034
 OPTIONS_SPEC="\
 projects list
 projects [edit|open] <projectname>

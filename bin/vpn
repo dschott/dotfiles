@@ -40,6 +40,14 @@ main() {
     then
         vpn_disconnect
     else
+
+        if [ -n "${proxy}" ]
+        then
+            auto_proxy_on
+        else
+            auto_proxy_off
+        fi
+        
         vpn_connect "${host}"
     fi
     
@@ -113,6 +121,9 @@ auto_proxy_status() {
 
 vpn_cli='/opt/cisco/anyconnect/bin/vpn'
 vpn_client='Cisco AnyConnect Secure Mobility Client'
+
+# shellcheck disable=SC2034
+NONGIT_OK=1
 
 # shellcheck disable=SC2034
 # SUBDIRECTORY_OK is used by `git-sh-setup`.
