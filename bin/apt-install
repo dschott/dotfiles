@@ -13,9 +13,10 @@ if [ ! -f /usr/share/keyrings/packages.microsoft.gpg ]; then
 fi
 
 # https://github.com/golang/go/wiki/Ubuntu
-if ! apt-cache policy | grep -q 'ppa:longsleep/golang-backports'; then
-    sudo add-apt-repository -y ppa:longsleep/golang-backports
-fi
+# if ! apt-cache policy | grep -q 'ppa:longsleep/golang-backports'; then
+#     sudo add-apt-repository -y ppa:longsleep/golang-backports
+# fi
+
 
 # https://www.telepresence.io/reference/install
 # if ! apt-cache policy | grep -q 'packagecloud.io/datawireio/telepresence/ubuntu'; then
@@ -29,8 +30,9 @@ if ! apt-cache policy | grep -q 'packages.cloud.google.com/apt'; then
 fi
 
 # Nodejs
-if ! apt-cache policy | grep -q 'deb.nodesource.com/node_13.x'; then
-    curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+
+if ! apt-cache policy | grep -q 'deb.nodesource.com/node_14.x'; then
+    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 fi
 
 # Yarn
@@ -39,7 +41,7 @@ if ! apt-cache policy | grep -q 'dl.yarnpkg.com/debian'; then
     echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 fi
 
-sudo apt update
+sudo apt update --allow-insecure-repositories
 
 failed=
 packages=$(cat "${DOTPATH}/etc/apt/Packages")

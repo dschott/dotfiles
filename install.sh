@@ -14,7 +14,7 @@ git sub
 case "$(uname -s)" in
 Linux)
     apt-install
-    snap-install
+    # snap-install
     ;;
 Darwin)
     homebrew-install

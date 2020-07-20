@@ -26,5 +26,5 @@
     { "key": "cmd+g",           "command": "textPowerTools.filterLinesIncludingStringToNewEditor",         "when": "editorTextFocus && !findWidgetVisible" },
     { "key": "shift+cmd+g",     "command": "textPowerTools.filterLinesNotIncludingStringToNewEditor",      "when": "editorTextFocus && !findWidgetVisible" },
     { "key": "cmd+r",           "command": "textPowerTools.filterLinesMatchingRegexToNewEditor",           "when": "editorTextFocus && !findWidgetVisible" },
-    { "key": "shift+cmd+r",     "command": "textPowerTools.filterLinesNotMatchingRegexToNewEditor",        "when": "editorTextFocus && !findWidgetVisible" },
+    { "key": "shift+cmd+r",     "command": "textPowerTools.filterLinesNotMatchingRegexToNewEditor",        "when": "editorTextFocus && !findWidgetVisible" }
 ]
