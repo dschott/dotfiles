@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+set -o errexit -o pipefail
+
+main() {
+    declare -a kubectl_args
+    
+    while test $# -gt 0; do
+        opt="$1"
+        shift
+
+        case "$opt" in
+        --)
+            break
+            ;;
+        -c)
+            kubectl_args+=("--context" "${1}")
+            shift
+            ;;
+        -n)
+            kubectl_args+=("--namespace" "${1}")
+            shift
+            ;;
+        -o)
+            output="${1}"
+            shift
+            ;;
+        *)
+            err "invalid option: ${opt}"
+            usage
+            ;;
+        esac
+    done
+
+    if [ "${output}" == json ]; then
+        images "${kubectl_args[@]}"
+    else
+        printf 'KIND\tNAME\tREPOSITORY\tTAG\n%s\n' \
+            "$(jq -r '[.kind, .name, .repository, .tag] | @tsv' <(images "${kubectl_args[@]}"))" | column -t
+    fi
+}
+
+images() {
+    kubectl "${@}" get deployments -o json |
+        jq '.items[]?, .? |
+            {
+                kind: .kind,
+                name: .metadata.name
+            } *
+            (
+                .spec.template.spec.containers[].image |
+                {
+                    repository: . | split(":")[0],
+                    tag: . | split(":")[1]
+                }
+            )'
+
+    kubectl "${@}" get cronjobs -o json |
+        jq '.items[]?, .? |
+            {
+                kind: .kind,
+                name: .metadata.name
+            } *
+            (
+                .spec.jobTemplate.spec.template.spec.containers[].image |
+                {
+                    repository: . | split(":")[0],
+                    tag: . | split(":")[1]
+                }
+            )'
+
+
+    kubectl "${@}" get jobs -o json |
+        jq '.items[]?, .? |
+            {
+                kind: .kind,
+                name: .metadata.name
+            } *
+            (
+                .spec.template.spec.containers[].image |
+                {
+                    repository: . | split(":")[0],
+                    tag: . | split(":")[1]
+                }
+            )'
+}
+
+err () {
+	printf >&2 '%s\n' "$*"
+}
+
+# shellcheck disable=SC2034
+NONGIT_OK=1
+
+# shellcheck disable=SC2034
+SUBDIRECTORY_OK=1
+
+# shellcheck disable=SC2034
+OPTIONS_SPEC="\
+kube-images
+
+List images used by kubernetes resources
+--
+h,help          show help
+c,context=      context
+n,namespace=    namespace
+o,output=       output format; one of: json
+"
+
+source "$(git --exec-path)/git-sh-setup"
+
+main "${@}"

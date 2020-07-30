@@ -62,6 +62,12 @@
             "url": "https://github.platforms.engineering/graphroots/golang-build"
         },
         {
+            "name": "product360-cli",
+            "path": "${GOPATH}/src/github.platforms.engineering/graphroots/product360-cli",
+            "repo": "git@github.platforms.engineering:graphroots/product360-cli",
+            "url": "https://github.platforms.engineering/graphroots/product360-cli"
+        },
+        {
             "name": "product360-apis",
             "path": "${HOME}/projects/product360-apis",
             "repo": "git@github.platforms.engineering:GraphRoots/product360-apis",
