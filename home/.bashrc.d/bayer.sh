@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 vault-login-bayer() {
-    vault login -method=userpass -path=ping username=GKRPS
+    vault login -method=oidc
 }
 
 vpn-connect-bayer() {
