@@ -120,6 +120,11 @@
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/integration-harness",
             "repo": "git@github.platforms.engineering:graphroots/integration-harness",
             "url": "https://github.platforms.engineering/GraphRoots/integration-harness"
+        },{
+            "name": "product360-python-client",
+            "path": "${HOME}/projects/product360-python-client",
+            "repo": "git@github.platforms.engineering:graphroots/product360-python-client",
+            "url": "https://github.platforms.engineering/GraphRoots/product360-python-client"
         }
     ]
 }

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+if ! check-command vault; then
+    exit 1
+fi
+
+from=${1:?Expected key to copy}
+to=${2:?Expected key to copy to}
+
+vault kv put "${to}" @<(vault kv get -format=json "${from}" | jq .data)
+
+vault read "${to}"

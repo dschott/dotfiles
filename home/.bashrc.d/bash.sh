@@ -4,7 +4,6 @@ shopt -s checkwinsize
 shopt -s cdspell
 shopt -s dirspell
 shopt -s extglob
-shopt -s histappend
 shopt -s globstar
 
 HISTCONTROL=ignoreboth
