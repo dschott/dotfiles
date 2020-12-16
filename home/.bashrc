@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+if [ "${USER}" == '' ]; then
+    # VSCODE terminal with inheritEnv: false, is missing USER env var for some f-ing reason
+    # shellcheck disable=SC2155
+    export USER="$(whoami)"
+fi
+
 # If .bashrc is a link, assume it exists in dotfiles dir
 if [ -n "$(readlink "${HOME}/.bashrc")" ]; then
     # shellcheck disable=SC2164
@@ -44,7 +50,7 @@ PS1="\$([ \${?} != 0 ] && echo ❗)\[${red}\][\[${cyan}\]\u@\h\[${red}\]] \$(dat
 
 if [ "${SHLVL}" = "1" ]; then
     printf "%b
- _____   _____   _____   _____ 
+ _____   _____   _____   _____
 ||   || ||   || ||   || ||   ||
 || B || || A || || S || || H ||
 ||___|| ||___|| ||___|| ||___||
@@ -53,7 +59,7 @@ if [ "${SHLVL}" = "1" ]; then
 %bSHELL:     %b${BASH}, version ${BASH_VERSION}
 %bHOSTNAME:  %b${HOSTNAME}
 %bHOME:      %b${HOME}
-%bUSER:      %b${USER}
+%bUSER:      %b$(whoami)
 %bUPTIME:   %b$(uptime)%b\n\n" "${red}" "${red}" "${cyan}" "${red}" "${cyan}" "${red}" "${cyan}" "${red}" "${cyan}" "${red}" "${cyan}" "${normal}"
 
 else

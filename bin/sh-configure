@@ -21,4 +21,4 @@ if grep -q "${bash_path}" "${shells_path}"; then
 fi
 
 # Set user install bash to default shell
-chsh -s "${bash_path}" "${USER}"
+chsh -s "${bash_path}" "$(whoami)"
