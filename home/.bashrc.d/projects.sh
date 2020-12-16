@@ -10,3 +10,6 @@ complete -F _complete_alias e
 
 alias o='projects open'
 complete -F _complete_alias o
+
+alias cdp='. projects cd'
+complete -F _complete_alias cdp

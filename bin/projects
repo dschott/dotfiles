@@ -10,7 +10,7 @@ NONGIT_OK=1
 # shellcheck disable=SC2034
 OPTIONS_SPEC="\
 projects list
-projects [edit|open] <projectname>
+projects [edit|open|cd] <projectname>
 projects config [projectname]
 projects completion <shell>
 
@@ -52,6 +52,11 @@ main() {
         shift
         edit_project
         ;;
+    cd)
+        project_name="${1}"
+        shift
+        cd_project
+        ;;
     open)
         project_name="${1}"
         shift
@@ -72,14 +77,14 @@ main() {
         usage
         ;;
     esac
-    
+
 }
 
 # shellcheck disable=2039
 __projects_bash_complete() {
     case "${COMP_CWORD}" in
     1)
-        cmds="list edit open config completion"
+        cmds="list edit cd open config completion"
         mapfile -t COMPREPLY <<< "$(compgen -W "${cmds}" -- "${COMP_WORDS[1]}")"
         ;;
     2)
@@ -88,7 +93,7 @@ __projects_bash_complete() {
         completion)
             mapfile -t COMPREPLY <<< "$(compgen -W "bash" -- "${COMP_WORDS[2]}")"
             ;;
-        edit|open|config)
+        edit|open|cd|config)
             mapfile -t COMPREPLY <<< "$(compgen -W "$(projects list)" -- "${COMP_WORDS[2]}")"
             ;;
         esac
@@ -97,7 +102,7 @@ __projects_bash_complete() {
 }
 
 completion() {
-    if [ -z "${shell}" ]; then 
+    if [ -z "${shell}" ]; then
         err "Shell not specified"
         usage
     fi
@@ -156,6 +161,17 @@ open_project() {
     esac
 }
 
+cd_project() {
+    if ! entry="$(project_entry)"; then
+        usage
+    fi
+
+    path="$(echo "${entry}" | jq -r '.path')"
+    path="$(eval printf "${path}")"
+    # shellcheck disable=SC2164
+    cd "${path}"
+}
+
 config() {
     if [ -n "${project_name}" ]; then
         if ! entry="$(project_entry)"; then
@@ -195,13 +211,13 @@ edit() {
 }
 
 project_entry() {
-    if [ -z "${project_name}" ]; then 
+    if [ -z "${project_name}" ]; then
         die "Project not specified"
     fi
     if [ -f "${HOME}/.projects" ]; then
         entry="$(jq ".projects[] | select(.name == \"${project_name}\")" "${HOME}/.projects")"
     fi
-    if [ -z "${entry}" ]; then 
+    if [ -z "${entry}" ]; then
         die "Project not found: ${project_name}"
     fi
     echo "${entry}"

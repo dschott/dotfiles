@@ -125,6 +125,11 @@
             "path": "${HOME}/projects/product360-python-client",
             "repo": "git@github.platforms.engineering:graphroots/product360-python-client",
             "url": "https://github.platforms.engineering/GraphRoots/product360-python-client"
+        },{
+            "name": "generators",
+            "path": "${HOME}/projects/generators",
+            "repo": "git@github.platforms.engineering:graphroots/generators",
+            "url": "https://github.platforms.engineering/GraphRoots/generators"
         }
     ]
 }
