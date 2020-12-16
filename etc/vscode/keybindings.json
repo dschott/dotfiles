@@ -12,7 +12,8 @@
     { "key": "cmd+k p",         "command": "merge-conflict.previous"},
 
     { "key": "ctrl+.",          "command": "workbench.action.terminal.focus"},
-    { "key": "ctrl+.",          "command": "workbench.action.focusActiveEditorGroup",   "when": "terminalFocus" },
+    { "key": "ctrl+.",          "command": "workbench.action.terminal.toggleTerminal",   "when": "terminalFocus" },
+    { "key": "ctrl+`",          "command": "workbench.action.focusActiveEditorGroup",   "when": "terminalFocus" },
     { "key": "ctrl+cmd+up",     "command": "workbench.action.terminal.resizePaneUp"},
     { "key": "ctrl+cmd+down",   "command": "workbench.action.terminal.resizePaneDown"},
     { "key": "alt+cmd+up",      "command": "workbench.action.toggleMaximizedPanel",     "when": "terminalFocus" },
@@ -22,9 +23,10 @@
     { "key": "cmd+alt+left",    "command": "workbench.action.terminal.focusPrevious",   "when": "terminalFocus" },
 
     { "key": "alt+cmd+c",       "command": "githd.diffUncommittedFile"},
-
-    { "key": "cmd+g",           "command": "textPowerTools.filterLinesIncludingStringToNewEditor",         "when": "editorTextFocus && !findWidgetVisible" },
-    { "key": "shift+cmd+g",     "command": "textPowerTools.filterLinesNotIncludingStringToNewEditor",      "when": "editorTextFocus && !findWidgetVisible" },
+    { "key": "alt+enter",       "command": "editor.action.revealDefinition", "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor" },
+    // { "key": "cmd+g",           "command": "textPowerTools.filterLinesIncludingStringToNewEditor",         "when": "editorTextFocus && !findWidgetVisible" },
+    // { "key": "shift+cmd+g",     "command": "textPowerTools.filterLinesNotIncludingStringToNewEditor",      "when": "editorTextFocus && !findWidgetVisible" },
     { "key": "cmd+r",           "command": "textPowerTools.filterLinesMatchingRegexToNewEditor",           "when": "editorTextFocus && !findWidgetVisible" },
-    { "key": "shift+cmd+r",     "command": "textPowerTools.filterLinesNotMatchingRegexToNewEditor",        "when": "editorTextFocus && !findWidgetVisible" }
+    { "key": "shift+cmd+r",     "command": "textPowerTools.filterLinesNotMatchingRegexToNewEditor",        "when": "editorTextFocus && !findWidgetVisible" },
+    { "key": "shift+cmd+f",     "command": "search.action.openNewEditor" },
 ]

@@ -1,7 +1,7 @@
 {
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 2,
     "editor.minimap.enabled": false,
     "explorer.confirmDelete": false,
     "go.formatFlags": [ "-local", "github.platforms.engineering" ],
@@ -36,7 +36,6 @@
     "gitlens.advanced.messages": {
         "suppressShowKeyBindingsNotice": true
     },
-    "terminal.integrated.shell.osx": "/usr/local/bin/bash",
     "workbench.editor.highlightModifiedTabs": true,
     "workbench.editor.showTabs": false,
     "editor.cursorStyle": "line",
@@ -53,7 +52,6 @@
     "dateTime.showDayOfWeek": true,
     "dateTime.showMonth": true,
     "rest-client.previewResponseInUntitledDocument": true,
-    "terminal.integrated.showExitAlert": false,
     "journal.base": "${homeDir}/notes/journal/",
     "editor.tokenColorCustomizations": {
         "textMateRules": [{
@@ -140,15 +138,38 @@
         "**/.classpath": true,
         "**/.project": true,
         "**/.settings": true,
-        "**/.factorypath": true
+        "**/.factorypath": true,
+        "**/.cache": true,
+        "**/.gocache": true,
     },
-    "go.useLanguageServer": false,
-    "window.menuBarVisibility": "toggle",
     "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.iconTheme": "Monokai Seti Icons",
     "shellcheck.exclude": [
-        1090,
-        1091
+        "1090",
+        "1091"
     ],
-    "textPowerTools.caseSensitiveFiltering": true
+    "textPowerTools.caseSensitiveFiltering": true,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.autoClosingQuotes": "never",
+    "editor.autoClosingBrackets": "never",
+    "editor.multiCursorModifier": "alt",
+    "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.inheritEnv": false,
+    "terminal.integrated.shell.osx": "/usr/local/bin/bash",
+    "terminal.integrated.shellArgs.osx": [
+		"--login"
+	],
+    "terminal.integrated.showExitAlert": false,
+    "workbench.list.openMode": "doubleClick",
+    "python.languageServer": "Microsoft",
+    "files.trimTrailingWhitespace": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "go.overwriteGoplsMiddleware": {
+        "codelens": {
+            "test": true
+        },
+    },
+    "editor.renderControlCharacters": true,
 }
