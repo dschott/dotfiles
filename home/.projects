@@ -130,6 +130,11 @@
             "path": "${HOME}/projects/generators",
             "repo": "git@github.platforms.engineering:graphroots/generators",
             "url": "https://github.platforms.engineering/GraphRoots/generators"
+        },{
+            "name": "ocelot",
+            "path": "${HOME}/projects/ocelot",
+            "repo": "git@github.platforms.engineering:graphroots/ocelot",
+            "url": "https://github.platforms.engineering/GraphRoots/ocelot"
         }
     ]
 }
