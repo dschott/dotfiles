@@ -13,3 +13,10 @@ rm -r "${latest}/cmdline-tools"
 
 ${latest}/bin/sdkmanager --update
 ${latest}/bin/sdkmanager --install "tools" "build-tools;29.0.3" "platforms;android-29" "platform-tools"
+${latest}/bin/sdkmanager --licenses
+
+touch ~/.android/repositories.cfg
+
+adb --version
+adb kill-server
+adb devices
