@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+latest=${HOME}/Android-Sdk/cmdline-tools/latest
+mkdir -p "${latest}"
+rm -rf "${latest}/*"
+
+wget https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip
+unzip commandlinetools-linux-6858069_latest.zip -d "${latest}"
+rm commandlinetools-linux-6858069_latest.zip
+
+mv ${latest}/cmdline-tools/* ${latest}
+rm -r "${latest}/cmdline-tools"
+
+${latest}/bin/sdkmanager --install "platform-tools" "platforms;android-29" # Anrdoid 10
