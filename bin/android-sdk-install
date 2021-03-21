@@ -11,4 +11,5 @@ rm commandlinetools-linux-6858069_latest.zip
 mv ${latest}/cmdline-tools/* ${latest}
 rm -r "${latest}/cmdline-tools"
 
-${latest}/bin/sdkmanager --install "platform-tools" "platforms;android-29" # Anrdoid 10
+${latest}/bin/sdkmanager --update
+${latest}/bin/sdkmanager --install "tools" "build-tools;29.0.3" "platforms;android-29" "platform-tools"
