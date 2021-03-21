@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+if ! check-command wslpath; then
+    exit 1
+fi
+
+CMD=$1
+shift;
+
+win_pwd=$(wslpath -w "$(pwd)")
+win_c_path=$(wslpath -u 'c:\')
+
+cd "${win_c_path}" || exit 1
+
+cmd.exe /c "pushd ${win_pwd} && ${CMD} ${*}"
