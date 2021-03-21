@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
 if check-command -q gcloud; then
-     source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
-     source "$(brew --prefix)/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
-     export CLOUDSDK_PYTHON=/usr/local/opt/python@3.7/bin/python3
+     export CLOUDSDK_PYTHON=$(realpath "$(which python3)")
+     gcloud_path=$(dirname "$(realpath "$(which gcloud)")")
+
+     if [[ -f ${gcloud_path}/../path.bash.inc ]]; then
+          source "${gcloud_path}/../path.bash.inc"
+     fi
+        if [[ -f ${gcloud_path}/../completion.bash.inc ]]; then
+          source "${gcloud_path}/../completion.bash.inc"
+     fi
+     
+     unset gcloud_path
 fi
