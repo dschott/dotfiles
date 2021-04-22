@@ -6,116 +6,97 @@
             "path": "${HOME}/projects/mix",
             "repo": "git@github.com:dschott/mix",
             "url":  "https://github.com/dschott/mix"
-        },
-        {
+        },{
             "name": "notes",
             "path": "${HOME}/projects/notes",
             "repo": "git@github.com:dschott/notes",
             "url":  "https://github.com/dschott/notes"
-        },
-        {
+        },{
             "name": "dotfiles",
             "path": "${DOTPATH}",
             "repo": "git@github.com:dschott/dotfiles",
             "url":  "https://github.com/dschott/dotfiles"
-        },
-        {
+        },{
             "name": "scripts",
             "path": "${HOME}/scripts",
             "repo": "git@github.com:dschott/scripts",
             "url": "https://github.com/dschott/scripts"
-        },
-        {
+        },{
             "name": "genomics",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/genomics",
             "repo": "git@github.platforms.engineering:graphroots/genomics",
             "url": "https://github.platforms.engineering/graphroots/genomics"
-        },
-        {
+        },{
             "name": "genomics-deploy",
             "path": "${HOME}/projects/genomics-deploy",
             "repo": "git@github.platforms.engineering:graphroots/genomics-deploy",
             "url": "https://github.platforms.engineering/graphroots/genomics-deploy"
-        },
-        {
+        },{
             "name": "genomics-wiki",
             "path": "${HOME}/projects/genomics.wiki",
             "repo": "git@github.platforms.engineering:graphroots/genomics.wiki",
             "url": "https://github.platforms.engineering/graphroots/genomics/wiki"
-        },
-        {
+        },{
             "name": "gokit",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/gokit",
             "repo": "git@github.platforms.engineering:graphroots/gokit",
             "url": "https://github.platforms.engineering/graphroots/gokit"
-        },
-        {
+        },{
             "name": "docs",
             "path": "${HOME}/projects/docs",
             "repo": "git@github.platforms.engineering:graphroots/docs",
             "url": "https://github.platforms.engineering/graphroots/docs"
-        },
-        {
+        },{
             "name": "golang-build",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/golang-build",
             "repo": "git@github.platforms.engineering:graphroots/golang-build",
             "url": "https://github.platforms.engineering/graphroots/golang-build"
-        },
-        {
+        },{
             "name": "product360-cli",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/product360-cli",
             "repo": "git@github.platforms.engineering:graphroots/product360-cli",
             "url": "https://github.platforms.engineering/graphroots/product360-cli"
-        },
-        {
+        },{
             "name": "product360-apis",
             "path": "${HOME}/projects/product360-apis",
             "repo": "git@github.platforms.engineering:GraphRoots/product360-apis",
             "url": "https://github.platforms.engineering/graphroots/product360-apis"
-        },
-        {
+        },{
             "name": "srekit",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/srekit",
             "repo": "git@github.platforms.engineering:GraphRoots/srekit",
             "url": "https://github.platforms.engineering/GraphRoots/srekit"
-        },
-        {
+        },{
             "name": "api-docs",
             "path": "${HOME}/projects/api-docs",
             "repo": "git@github.platforms.engineering:GraphRoots/api-docs",
             "url": "https://github.platforms.engineering/GraphRoots/api-docs"
-        },
-        {
+        },{
             "name": "pctl",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/pctl",
             "repo": "git@github.platforms.engineering:graphroots/pctl",
             "url": "https://github.platforms.engineering/graphroots/pctl"
-        },
-        {
+        },{
             "name": "product360-admin-apis",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/product360-admin-apis",
             "repo": "git@github.platforms.engineering:graphroots/product360-admin-apis",
             "url": "https://github.platforms.engineering/graphroots/product360-admin-apis"
-        },
-        {
+        },{
             "name": "ops",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/ops",
             "repo": "git@github.platforms.engineering:graphroots/ops",
             "url": "https://github.platforms.engineering/graphroots/ops"
-        },
-        {
+        },{
             "name": "p360-tainted",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/p360-tainted",
             "repo": "git@github.platforms.engineering:graphroots/p360-tainted",
             "url": "https://github.platforms.engineering/graphroots/p360-tainted"
-        },
-        {
+        },{
             "name": "private-apis",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/private-apis",
             "repo": "git@github.platforms.engineering:graphroots/private-apis",
             "url": "https://github.platforms.engineering/GraphRoots/private-apis"
-        },
-        {
+        },{
             "name": "integration-harness",
             "path": "${GOPATH}/src/github.platforms.engineering/graphroots/integration-harness",
             "repo": "git@github.platforms.engineering:graphroots/integration-harness",
@@ -135,6 +116,31 @@
             "path": "${HOME}/projects/ocelot",
             "repo": "git@github.platforms.engineering:graphroots/ocelot",
             "url": "https://github.platforms.engineering/GraphRoots/ocelot"
+        },{
+            "name": "ibd-cache",
+            "path": "${HOME}/projects/ibd-cache",
+            "repo": "git@github.platforms.engineering:GraphRoots/ibd-cache.git",
+            "url": "https://github.platforms.engineering/GraphRoots/ibd-cache"
+        },{
+            "name": "tap",
+            "path": "${HOME}/projects/tap",
+            "repo": "git@github.platforms.engineering:GraphRoots/tap.git",
+            "url": "https://github.platforms.engineering/GraphRoots/tap"
+        },{
+            "name": "platform",
+            "path": "${HOME}/projects/platform",
+            "repo": "git@github.platforms.engineering:GraphRoots/platform.git",
+            "url": "https://github.platforms.engineering/GraphRoots/platform"
+        },{
+            "name": "monorepo",
+            "path": "${HOME}/projects/monorepo",
+            "repo": "git@github.platforms.engineering:graphroots/monorepo.git",
+            "url": "https://github.platforms.engineering/graphroots/monorepo"
+        },{
+            "name": "authtokens",
+            "path": "${HOME}/projects/authtokens",
+            "repo": "git@github.platforms.engineering:graphroots/authtokens.git",
+            "url": "https://github.platforms.engineering/graphroots/authtokens"
         }
     ]
 }
