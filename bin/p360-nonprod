@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-export P360_TOKEN_URL="https://test.amp.monsanto.com/as/token.oauth2"
-
-export P360_CLIENT_ID=$(vault read --format json secret/product360-genomics/nonprod/tools/test.amp.monsanto.com | jq -r '.data.client_id')
-
-export P360_CLIENT_SECRET=$(vault read --format json secret/product360-genomics/nonprod/tools/test.amp.monsanto.com | jq -r '.data.client_secret')
-
-p360 config set --env=nonprod
