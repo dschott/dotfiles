@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ "$(hostname)" = "C02XP0MFJGH5" ]; then
+if [[ $USER == gkrps ]]; then
     export USER_FULLNAME="Schott, Douglas"
     export USER_EMAIL="douglas.schott.ext@bayer.com"
     export VAULT_ADDR=https://vault.agro.services:443
@@ -10,7 +10,7 @@ if [ "$(hostname)" = "C02XP0MFJGH5" ]; then
 
     path-add "/usr/local/opt/protobuf@3.6/bin"
     path-add "/usr/local/opt/protoc-gen-go@1.0/bin"
-    
+
 else
     export USER_FULLNAME="Schott, Douglas"
     export USER_EMAIL="douglas.schott@gmail.com"
