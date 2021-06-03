@@ -1,3 +1,9 @@
 #!/usr/bin/env sh
 
-ag -A5 -B5 --pager 'less -R' "${@}"
+# BUG: Terminal state screwed if pager is set and regex is invalid
+#   No longer using silver search because this bug has been around for 7 years
+#   https://github.com/ggreer/the_silver_searcher/issues/492
+#   https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=900655
+# ag -A5 -B5 --pager 'less -R' "${@}"
+
+rg --color always --line-buffered --heading --line-number -C4 "${@}" | less -R
