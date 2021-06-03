@@ -141,6 +141,11 @@
             "path": "${HOME}/projects/authtokens",
             "repo": "git@github.platforms.engineering:graphroots/authtokens.git",
             "url": "https://github.platforms.engineering/graphroots/authtokens"
+        },{
+            "name": "monorepo-test",
+            "path": "${HOME}/projects/monorepo-test",
+            "repo": "git@github.platforms.engineering:graphroots/monorepo-test.git",
+            "url": "https://github.platforms.engineering/graphroots/monorepo-test"
         }
     ]
 }
