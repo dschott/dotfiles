@@ -18,7 +18,7 @@ if [[ $USER == gkrps ]]; then
 
     proxy-on-bayer() {
         proxy-on
-        proxy-seturl "http://pac.hybrid-web.global.blackspider.com/proxy.pac?p=4m92bzff"
+        proxy-seturl "http://asb-proxy.bayerbbs.net/mcp.pac"
     }
 
     bayernet-open() {
