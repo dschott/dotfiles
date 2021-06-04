@@ -146,6 +146,11 @@
             "path": "${HOME}/projects/monorepo-test",
             "repo": "git@github.platforms.engineering:graphroots/monorepo-test.git",
             "url": "https://github.platforms.engineering/graphroots/monorepo-test"
+        },{
+            "name": "certstrap",
+            "path": "${HOME}/projects/certstrap",
+            "repo": "git@github.platforms.engineering:graphroots/certstrap.git",
+            "url": "https://github.platforms.engineering/graphroots/certstrap"
         }
     ]
 }

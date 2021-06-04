@@ -6,31 +6,13 @@ if [[ $USER == gkrps ]]; then
         vault login -method=oidc
     }
 
-    vpn-connect-bayer() {
-        vpn-connect "Standard VPN - IRV"
-        proxy-off
-    }
-
-    vpn-disconnect-bayer() {
-        vpn-disconnect
-        proxy-off
-    }
-
     proxy-on-bayer() {
-        proxy-on
         proxy-seturl "http://asb-proxy.bayerbbs.net/mcp.pac"
-    }
-
-    bayernet-open() {
-        vpn-disconnect
-        proxy-on-bayer
-        vpn-connect "Standard VPN - IRV"
-        open "https://new.bayernet.cnb/en"
+        proxy-on
     }
 
     export AWS_PROFILE=saml
     alias aws-sso='/Users/gkrps/Library/Python/3.9/bin/aws-sso -u douglas.schott.ext@bayer.com'
-
 
     vpn-proxy-pass() {
         echo 'Please enter your Bayer password.  It will be encrypted in your keychain. '
