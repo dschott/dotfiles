@@ -27,6 +27,11 @@
             "repo": "git@github.platforms.engineering:graphroots/genomics",
             "url": "https://github.platforms.engineering/graphroots/genomics"
         },{
+            "name": "germplasm",
+            "path": "${GOPATH}/src/github.platforms.engineering/graphroots/germplasm",
+            "repo": "git@github.platforms.engineering:graphroots/germplasm",
+            "url": "https://github.platforms.engineering/graphroots/germplasm"
+        },{
             "name": "genomics-deploy",
             "path": "${HOME}/projects/genomics-deploy",
             "repo": "git@github.platforms.engineering:graphroots/genomics-deploy",
@@ -151,6 +156,11 @@
             "path": "${HOME}/projects/certstrap",
             "repo": "git@github.platforms.engineering:graphroots/certstrap.git",
             "url": "https://github.platforms.engineering/graphroots/certstrap"
+        },{
+            "name": "tfmodules",
+            "path": "${HOME}/projects/tfmodules",
+            "repo": "git@github.platforms.engineering:graphroots/tfmodules",
+            "url": "https://github.platforms.engineering/graphroots/tfmodules"
         }
     ]
 }
