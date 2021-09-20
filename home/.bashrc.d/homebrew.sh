@@ -21,6 +21,6 @@ else
   done
 fi
 
-## After upgrade, git completion through Homebrew has stopped working
-# TODO: figure out the problem with git completion
-# . /usr/local/etc/bash_completion.d/git-completion.bash
+if [[ -r "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-completion.bash" ]]; then
+  . "${HOMEBREW_PREFIX}/etc/bash_completion.d/git-completion.bash"
+fi
