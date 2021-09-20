@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-gcloud builds submit "$(git rev-parse --show-toplevel)" \
-    --config="${DOTPATH}/etc/cloudbuild/bayer-integration.yaml" \
-    --substitutions="_CURRENT_DIR=$(git rev-parse --show-prefix),_ARGS=${*}"

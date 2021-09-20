@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if check-command -q gcloud; then
+if check-command -q gcloud realpath; then
      export CLOUDSDK_PYTHON=$(realpath "$(which python3)")
      gcloud_path=$(dirname "$(realpath "$(which gcloud)")")
 

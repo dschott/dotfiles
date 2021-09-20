@@ -22,10 +22,14 @@ if ! echo "${PATH}" | grep -q "${DOTPATH}/bin"; then
 fi
 
 # Login shell functions
-. "${HOME}/.bash_lib"
+if [[ -r "${HOME}/.bash_lib" ]]; then
+    . "${HOME}/.bash_lib"
+fi
 
 # User settings
-. "${HOME}/.bash_settings"
+if [[ -r "${HOME}/.bash_settings" ]]; then
+    . "${HOME}/.bash_settings"
+fi
 
 # Source remaining bashrc files
 for f in "${HOME}"/.bashrc.d/*; do

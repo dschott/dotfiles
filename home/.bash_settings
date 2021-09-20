@@ -1,19 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ $USER == gkrps ]]; then
-    export USER_FULLNAME="Schott, Douglas"
-    export USER_EMAIL="douglas.schott.ext@bayer.com"
-    export VAULT_ADDR=https://vault.agro.services:443
-
-    export CGO_LDFLAGS="-g -O2 -L/usr/local/opt/openssl/lib"
-    export CGO_CFLAGS="-g -O2 -I/usr/local/opt/openssl/include"
-
-    path-add "/usr/local/opt/protobuf@3.6/bin"
-    path-add "/usr/local/opt/protoc-gen-go@1.0/bin"
-
-else
-    export USER_FULLNAME="Schott, Douglas"
-    export USER_EMAIL="douglas.schott@gmail.com"
-fi
+export USER_FULLNAME="Schott, Douglas"
+export USER_EMAIL="douglas.schott@gmail.com"
 
 git-config || true
