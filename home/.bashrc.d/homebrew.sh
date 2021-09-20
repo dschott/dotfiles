@@ -2,9 +2,12 @@
 
 brew_binary=/usr/local/bin/brew
 if [[ ! -f ${brew_binary} ]]; then
-  brew_binary=/home/linuxbrew/.linuxbrew/bin/brew
+  brew_binary=/opt/homebrew/bin/brew
   if [[ ! -f ${brew_binary} ]]; then
-    exit
+    brew_binary=/home/linuxbrew/.linuxbrew/bin/brew
+    if [[ ! -f ${brew_binary} ]]; then
+      exit
+    fi
   fi
 fi
 
@@ -20,4 +23,4 @@ fi
 
 ## After upgrade, git completion through Homebrew has stopped working
 # TODO: figure out the problem with git completion
-. /usr/local/etc/bash_completion.d/git-completion.bash
+# . /usr/local/etc/bash_completion.d/git-completion.bash
