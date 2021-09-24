@@ -23,7 +23,6 @@ brew "go@1.12", link: true
 brew "go@1.9"
 brew "helm"
 brew "htop"
-brew "hub"
 brew "imagemagick"
 brew "jq"
 brew "kubernetes-cli"
