@@ -39,7 +39,7 @@ SUBDIRECTORY_OK=1
 OPTIONS_SPEC="\
 ${0##*/} [options] <expresssion>
 
-Find an ssm instance by regex over ComputerName
+Find ssm instances whose ComputerName matches a regex pattern
 
 --
 h,help       show the help
