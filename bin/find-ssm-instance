@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -o errexit -o pipefail
+
+ensure_cache() {
+    if [ "${1}" == true ] || ! stat -q "${2}" > /dev/null
+    then
+        mkdir -p "$(dirname "${2}")"
+        aws ssm describe-instance-information > "${2}"
+    fi
+}
+
+main() {
+    while [ $# -gt 0 ]
+    do
+        local opt="${1}"
+        shift
+        case ${opt} in
+            --) break ;;
+            -r) local refresh=true;;
+        esac
+    done
+
+    cache_path="/tmp/${0##*/}/cache"
+    ensure_cache "${refresh}" "${cache_path}"
+    jq --arg id "${1}" -r '.InstanceInformationList[] | select(.ComputerName | test($id)) | [ .ComputerName, .InstanceId ] | @tsv' "${cache_path}" | column -t
+}
+
+# shellcheck disable=SC2034
+# NONGIT_OK is used by `git-sh-setup`.
+NONGIT_OK=1
+
+# shellcheck disable=2034
+# SUBDIRECTORY_OK is used by `git-sh-setup`.
+SUBDIRECTORY_OK=1
+
+# shellcheck disable=2034
+# OPTIONS_SPEC is used by `git-sh-setup`.
+OPTIONS_SPEC="\
+${0##*/} [options] <expresssion>
+
+Find an ssm instance by regex over ComputerName
+
+--
+h,help       show the help
+r,refresh    refresh local instance information cache
+"
+
+# shellcheck disable=1090
+source "$(git --exec-path)/git-sh-setup"
+
+main "$@"

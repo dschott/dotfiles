@@ -17,6 +17,13 @@ Darwin)
     alias less='less -R'
     alias more='more -R'
     alias ag='ag --color'
+
+    export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/bzip2/lib ${LDFLAGS}"
+    export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/bzip2/include ${CPPFLAGS}"
+
+    export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/zlib/lib ${LDFLAGS}"
+    export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/zlib/include ${CPPFLAGS}"
+
     ;;
 
 Linux)
