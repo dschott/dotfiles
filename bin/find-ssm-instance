@@ -5,7 +5,8 @@ ensure_cache() {
     if [ "${1}" == true ] || ! stat -q "${2}" > /dev/null
     then
         mkdir -p "$(dirname "${2}")"
-        aws ssm describe-instance-information > "${2}"
+        aws ssm describe-instance-information |
+        jq '[ .InstanceInformationList[] | . + {ReverseComputerName: (.ComputerName | split(".") | reverse | join("."))} ] | sort_by(.ReverseComputerName)' > "${2}"
     fi
 }
 
@@ -22,7 +23,7 @@ main() {
 
     cache_path="/tmp/${0##*/}/cache"
     ensure_cache "${refresh}" "${cache_path}"
-    jq --arg id "${1}" -r '.InstanceInformationList[] | select(.ComputerName | test($id)) | [ .ComputerName, .InstanceId ] | @tsv' "${cache_path}" | column -t
+    jq --arg id "${1}" -r '.[] | select(.ComputerName | test($id)) | [ .ReverseComputerName, .InstanceId ] | @tsv' "${cache_path}" | column -t
 }
 
 # shellcheck disable=SC2034
