@@ -23,7 +23,7 @@ main() {
 
     cache_path="/tmp/${0##*/}/cache"
     ensure_cache "${refresh}" "${cache_path}"
-    jq --arg id "${1}" -r '.[] | select(.ComputerName | test($id)) | [ .ReverseComputerName, .InstanceId ] | @tsv' "${cache_path}" | column -t
+    jq --arg id "${1}" -r '.[] | select(.ReverseComputerName | test($id)) | [ .ReverseComputerName, .InstanceId ] | @tsv' "${cache_path}" | column -t
 }
 
 # shellcheck disable=SC2034
@@ -39,7 +39,7 @@ SUBDIRECTORY_OK=1
 OPTIONS_SPEC="\
 ${0##*/} [options] <expresssion>
 
-Find ssm instances whose ComputerName matches a regex pattern
+Find ssm instances where ComputerName matches a regex pattern
 
 --
 h,help       show the help
