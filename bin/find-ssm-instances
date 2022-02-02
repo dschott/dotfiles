@@ -18,12 +18,18 @@ main() {
         case ${opt} in
             --) break ;;
             -r) local refresh=true;;
+            -n) local name=true;;
         esac
     done
 
     cache_path="/tmp/${0##*/}/cache"
     ensure_cache "${refresh}" "${cache_path}"
-    jq --arg id "${1}" -r '.[] | select(.ReverseComputerName | test($id)) | [ .ReverseComputerName, .InstanceId ] | @tsv' "${cache_path}" | column -t
+    if [ "${name}" == true ]
+    then
+        jq --arg id "${1}" -r '.[] | select(.ReverseComputerName | test($id)) | [ .ComputerName, .InstanceId ] | @tsv' "${cache_path}" | column -t
+    else
+        jq --arg id "${1}" -r '.[] | select(.ReverseComputerName | test($id)) | [ .ReverseComputerName, .InstanceId ] | @tsv' "${cache_path}" | column -t
+    fi
 }
 
 # shellcheck disable=SC2034
@@ -39,11 +45,12 @@ SUBDIRECTORY_OK=1
 OPTIONS_SPEC="\
 ${0##*/} [options] <expresssion>
 
-Find ssm instances where ComputerName matches a regex pattern
+Find ssm instances where reversed DNS ComputerName matches a regex pattern
 
 --
 h,help       show the help
 r,refresh    refresh local instance information cache
+n,name       print ComputerName instead of reversed DNS ComputerName
 "
 
 # shellcheck disable=1090
