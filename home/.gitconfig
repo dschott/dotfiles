@@ -28,14 +28,14 @@
     d = diff
     dc = diff --cached
     cl = clone
-    p = pull
-    pr = pull --rebase
+    p = push
     rn = !git config "branch.$(git bn).remote"
     bn = !git rev-parse --abbrev-ref HEAD 2> /dev/null
     s = status -s -b
     st = stash
     r = reset
     c = commit
+    cf = commit --fixup
     cm = commit -m
     co = checkout
     rb = rebase
@@ -50,5 +50,5 @@
     sub = "!git submodule deinit ${@} --all --force && git submodule update ${@} --init"
     isrepo = "!git rev-parse ${@} --is-inside-work-tree > /dev/null 2>&1"
     ischanged = "! ! git diff-index ${@} --quiet HEAD --"
-    rb-develop = "!git fetch origin develop:develop && git rebase -i --autosquash"
-    rb-master = "!git fetch origin master:master && git rebase -i --autosquash"
+    rb-develop = "!git fetch origin develop:develop && git rebase -i --autosquash origin/develop"
+    rb-master = "!git fetch origin master:master && git rebase -i --autosquash origin/master"
