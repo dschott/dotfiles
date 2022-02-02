@@ -50,3 +50,5 @@
     sub = "!git submodule deinit ${@} --all --force && git submodule update ${@} --init"
     isrepo = "!git rev-parse ${@} --is-inside-work-tree > /dev/null 2>&1"
     ischanged = "! ! git diff-index ${@} --quiet HEAD --"
+    rb-develop = "!git fetch origin develop:develop && git rebase -i --autosquash"
+    rb-master = "!git fetch origin master:master && git rebase -i --autosquash"
