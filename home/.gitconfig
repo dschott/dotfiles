@@ -47,12 +47,47 @@
     td = tag -dg
     l = log --decorate=short --decorate-refs="refs/tags/*" --pretty=format:'%C(3)%h %C(250)%<(12,trunc)%aN %C(245)%<(18)%ad %C(11)%d %Creset%s' --date=format:'%Y-%m-%d %I:%M:%S %p'
     lr = l --relative-date
-    sub = "!git submodule deinit ${@} --all --force && git submodule update ${@} --init"
-    isrepo = "!git rev-parse ${@} --is-inside-work-tree > /dev/null 2>&1"
-    ischanged = "! ! git diff-index ${@} --quiet HEAD --"
-    rbd = "!git fetch origin develop:develop  && git rebase -i --autosquash origin/develop"
-    rbm = "!git fetch origin master:master && git rebase -i --autosquash origin/master"
-    bd = "!git fetch --update-head-ok origin develop:develop && git checkout -b ${1:?Branch name missing} develop && git push -u origin"
-    bm = "!git fetch --update-head-ok origin master:master && git checkout -b ${1:?Branch name missing} master && git push -u origin"
-    ld = !git l develop..
-    lm = !git l master..
+    sub = ! git submodule deinit --all --force && git submodule update --init
+    isrepo = ! git rev-parse --is-inside-work-tree > /dev/null 2>&1
+    ischanged = ! ! git diff-index --quiet HEAD --
+    rbd = ! git rbremote origin develop
+    rbm = ! git rbremote origin master
+    rbremote = ! \
+        "remote=${1:?\nRemote name missing} && shift \
+        && branch=${1:?\nBranch name missing} && shift \
+        && ( git fetch ${remote} ${branch} 2> /dev/null || echo \"${red}Fetch from ${remote} ${branch} failed!${clear}\n\" ) \
+        && git rebase -i --autosquash remotes/${remote}/${branch}"
+    bd = ! git bremote origin develop
+    bm = ! git bremote origin master
+    bremote = ! \
+        "remote=${1:?\nRemote name missing} && shift \
+        && from=${1:?\nFrom branch name missing} && shift \
+        && branch=${1:?\nBranch name missing} && shift \
+        && ( git fetch ${remote} ${from} 2> /dev/null || echo \"${red}Fetch from ${remote} ${from} failed!${clear}\n\" ) \
+        && git checkout --no-track -b ${branch} remotes/${remote}/${from} \
+        && git push -u ${remote} ${branch}"
+    ld = ! git lremote origin develop
+    lm = ! git lremote origin master
+    lremote = ! \
+        "left=$(git rev-parse --abbrev-ref head) \
+        && remote=${1:-origin} && if test ${#} -gt 0; then shift; fi \
+        && right=${1:-${left}}  && if test ${#} -gt 0; then shift; fi \
+        && green=\\\\033[32m \
+        && red=\\\\033[31m \
+        && clear=\\\\033[0m \
+        && ( git fetch ${remote} ${right} 2> /dev/null || echo \"${red}Fetch from ${remote} ${right} failed!${clear}\n\" ) \
+        && ahead_count=$(git rev-list --left-only --count ${left}...${remote}/${right}) \
+        && behind_count=$(git rev-list --right-only --count ${left}...${remote}/${right}) \
+        && header=\"## ${green}${left}${clear}...${red}${remote}/${right}${clear}\" \
+        && if test \"${ahead_count}\" != 0; then \
+            header+=\" [ahead ${green}${ahead_count}${clear}\"; \
+            if test \"${behind_count}\" != 0; then \
+                header+=\", behind ${red}${behind_count}${clear}]\"; \
+            else \
+                header+=\"]\"; \
+            fi; \
+        elif test \"${behind_count}\" != 0; then \
+            header+=\" [behind ${red}${behind_count}${clear}]\"; \
+        fi \
+        && echo \"${header}\" \
+        && git l --left-right --graph ${left}...${remote}/${right}"
