@@ -1,5 +1,20 @@
 [core]
     excludesfile = ~/.gitignore
+    pager = delta --syntax-theme='gruvbox-dark'
+    # pager = delta --dark --show-syntax-themes
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    side-by-side = false
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
 
 [push]
     default = simple
@@ -12,7 +27,7 @@
     path = ~/.gitconfig.local
 
 [rerere]
-	enabled = true
+    enabled = true
 
 [filter "lfs"]
     required = true
@@ -50,6 +65,14 @@
     sub = ! git submodule deinit --all --force && git submodule update --init
     isrepo = ! git rev-parse --is-inside-work-tree > /dev/null 2>&1
     ischanged = ! ! git diff-index --quiet HEAD --
+    dd = ! \
+        "for commit in $(git rev-list --reverse --left-only transcoding...origin/develop); do \
+            git show ${commit}~..${commit}; \
+        done"
+    dm = ! \
+        "for commit in $(git rev-list --reverse --left-only transcoding...origin/develop); do \
+            git show ${commit}~..${commit}; \
+        done"
     rbd = ! git rbremote origin develop
     rbm = ! git rbremote origin master
     rbremote = ! \
