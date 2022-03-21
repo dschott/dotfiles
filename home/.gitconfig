@@ -78,7 +78,7 @@
         && branch=${1:?\nBranch name missing} && shift \
         && ( git fetch ${remote} ${from} 2> /dev/null || echo \"${red}Fetch from ${remote} ${from} failed!${clear}\n\" ) \
         && for commit in $(git rev-list --reverse --left-only head...${remote}/${branch}); do \
-            git show -p -X --stat=100 -U10 ${commit}~..${commit}; \
+            DELTA_PAGER=${DELTA_PAGER_PAGED} git show -p -X --stat=100 -U10 ${commit}~..${commit}; \
         done \
         && echo "
     rebase-remote = ! \
@@ -115,4 +115,4 @@
             header+=\" [behind ${red}${behind_count}${clear}]\"; \
         fi \
         && echo \"${header}\" \
-        && DELTA_PAGER=\"less -R\" && git l --left-right --graph ${left}...${remote}/${right}"
+        && git l --left-right --graph ${left}...${remote}/${right}"
