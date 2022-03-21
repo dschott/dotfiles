@@ -9,6 +9,7 @@
 [delta]
     navigate = true
     side-by-side = false
+    line-numbers = true
 
 [merge]
     conflictstyle = diff3
@@ -53,8 +54,7 @@
     cf = commit --fixup
     cm = commit -m
     co = checkout
-    rb = rebase
-    rbi = rebase -i
+    rb = rebase -i --autosquash
     rba = rebase --abort
     rbc = rebase --continue
     cp = cherry-pick
@@ -65,33 +65,35 @@
     sub = ! git submodule deinit --all --force && git submodule update --init
     isrepo = ! git rev-parse --is-inside-work-tree > /dev/null 2>&1
     ischanged = ! ! git diff-index --quiet HEAD --
-    dd = ! \
-        "for commit in $(git rev-list --reverse --left-only transcoding...origin/develop); do \
-            git show ${commit}~..${commit}; \
-        done"
-    dm = ! \
-        "for commit in $(git rev-list --reverse --left-only transcoding...origin/develop); do \
-            git show ${commit}~..${commit}; \
-        done"
-    rbd = ! git rbremote origin develop
-    rbm = ! git rbremote origin master
-    rbremote = ! \
+    bd = ! git branch-remote origin develop
+    bm = ! git branch-remote origin master
+    ld = ! git log-remote origin develop
+    lm = ! git log-remote origin master
+    dd = ! git diff-remote origin develop
+    dm = ! git diff-remote origin master
+    rbd = ! git rebase-remote origin develop
+    rbm = ! git rebase-remote origin master
+    diff-remote = ! \
+        "remote=${1:?\nRemote name missing} && shift \
+        && branch=${1:?\nBranch name missing} && shift \
+        && ( git fetch ${remote} ${from} 2> /dev/null || echo \"${red}Fetch from ${remote} ${from} failed!${clear}\n\" ) \
+        && for commit in $(git rev-list --reverse --left-only head...${remote}/${branch}); do \
+            git show -p -X --stat=100 -U10 ${commit}~..${commit}; \
+        done \
+        && echo "
+    rebase-remote = ! \
         "remote=${1:?\nRemote name missing} && shift \
         && branch=${1:?\nBranch name missing} && shift \
         && ( git fetch ${remote} ${branch} 2> /dev/null || echo \"${red}Fetch from ${remote} ${branch} failed!${clear}\n\" ) \
         && git rebase -i --autosquash remotes/${remote}/${branch}"
-    bd = ! git bremote origin develop
-    bm = ! git bremote origin master
-    bremote = ! \
+    branch-remote = ! \
         "remote=${1:?\nRemote name missing} && shift \
         && from=${1:?\nFrom branch name missing} && shift \
         && branch=${1:?\nBranch name missing} && shift \
         && ( git fetch ${remote} ${from} 2> /dev/null || echo \"${red}Fetch from ${remote} ${from} failed!${clear}\n\" ) \
         && git checkout --no-track -b ${branch} remotes/${remote}/${from} \
         && git push -u ${remote} ${branch}"
-    ld = ! git lremote origin develop
-    lm = ! git lremote origin master
-    lremote = ! \
+    log-remote = ! \
         "left=$(git rev-parse --abbrev-ref head) \
         && remote=${1:-origin} && if test ${#} -gt 0; then shift; fi \
         && right=${1:-${left}}  && if test ${#} -gt 0; then shift; fi \
@@ -113,4 +115,4 @@
             header+=\" [behind ${red}${behind_count}${clear}]\"; \
         fi \
         && echo \"${header}\" \
-        && git l --left-right --graph ${left}...${remote}/${right}"
+        && DELTA_PAGER=\"less -R\" && git l --left-right --graph ${left}...${remote}/${right}"
