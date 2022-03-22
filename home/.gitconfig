@@ -54,7 +54,8 @@
     cf = commit --fixup
     cm = commit -m
     co = checkout
-    rb = rebase -i --autosquash
+    rb = rebase
+    rbi = rebase -i --autosquash
     rba = rebase --abort
     rbc = rebase --continue
     cp = cherry-pick
