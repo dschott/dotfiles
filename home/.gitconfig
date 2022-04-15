@@ -1,7 +1,6 @@
 [core]
     excludesfile = ~/.gitignore
-    pager = delta --syntax-theme='gruvbox-dark'
-    # pager = delta --dark --show-syntax-themes
+    pager = delta --syntax-theme="gruvbox-dark"
 
 [interactive]
     diffFilter = delta --color-only
@@ -79,7 +78,7 @@
         && branch=${1:?\nBranch name missing} && shift \
         && ( git fetch ${remote} ${from} 2> /dev/null || echo \"${red}Fetch from ${remote} ${from} failed!${clear}\n\" ) \
         && for commit in $(git rev-list --reverse --left-only head...${remote}/${branch}); do \
-            DELTA_PAGER=${DELTA_PAGER_PAGED} git show -p -X --stat=100 -U10 ${commit}~..${commit}; \
+            DELTA_PAGER=${DELTA_PAGER_PAGED:-DELTA_PAGER} git show -p -X --stat=100 -U10 ${commit}~..${commit}; \
         done \
         && echo "
     rebase-remote = ! \
