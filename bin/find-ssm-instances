@@ -6,7 +6,7 @@ ensure_cache() {
     then
         mkdir -p "$(dirname "${2}")"
         aws ssm describe-instance-information |
-        jq '[ .InstanceInformationList[] | . + {ReverseComputerName: (.ComputerName | split(".") | reverse | join("."))} ] | sort_by(.ReverseComputerName)' > "${2}"
+        jq '[ .InstanceInformationList[] | . + {ReverseComputerName: (.ComputerName // "" | split(".") | reverse | join("."))} ] | sort_by(.ReverseComputerName)' > "${2}"
     fi
 }
 
