@@ -42,7 +42,7 @@
     f = fetch
     d = diff
     dc = diff --cached
-    cl = clone
+    cl = clean -dfix
     p = pull
     rn = !git config "branch.$(git bn).remote"
     bn = !git rev-parse --abbrev-ref HEAD 2> /dev/null
