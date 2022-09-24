@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-if ! check-command networksetup; then
-    exit 1
-fi
-
-networksetup -getautoproxyurl Wi-Fi

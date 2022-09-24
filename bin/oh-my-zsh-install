@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+if [ -d "${ZSH}" ]
+then
+    rm -rf "${ZSH}"
+fi
+
+sh -c "RUNZSH=no KEEP_ZSHRC=yes $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+zsh -c 'ln -svf "${DOTPATH}/etc/doug.zsh-theme" "${HOME}/.oh-my-zsh/themes/doug.zsh-theme"'

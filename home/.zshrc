@@ -1,14 +1,14 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # setup PATH for this dir
-DOTPATH="$(cd "$(dirname "$(readlink "${HOME}/.bashrc")")/.." && pwd)"
+DOTPATH="$(cd "$(dirname "$(readlink "${HOME}/.zshrc")")/.." && pwd)"
 PATH="${DOTPATH}/bin:/usr/local/sbin:${PATH}"
 export DOTPATH PATH
 
 # load local shell config
-if [ -r "${HOME}/.bashrc.local" ]
+if [ -r "${HOME}/.zshrc.local" ]
 then
-    . "${HOME}/.bashrc.local"
+    . "${HOME}/.zshrc.local"
 fi
 
 # homebrew env vars
@@ -17,10 +17,7 @@ then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
     # Include homebrew completion functions
-    if [ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]
-    then
-        . "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-    fi
+    fpath+="$(brew --prefix)/share/zsh/site-functions"
 fi
 
 # git
@@ -30,7 +27,6 @@ then
     DELTA_PAGER="less -R --tabs 4"
     DELTA_PAGER_PAGED="less -+FX -R --tabs 4 -c"
     export DELTA_PAGER DELTA_PAGER_PAGED
-    complete -F _complete_alias g
 fi
 
 # docker 
@@ -48,8 +44,6 @@ then
     GO=${HOME}/go/src/github.com/
     PATH="${GOBIN}:${PATH}"
     export GOPATH GOBIN GO PATH
-
-    complete -o nospace -C gocomplete go
 fi
 
 # java
@@ -59,7 +53,6 @@ java-version 12
 if command -v kubectl > /dev/null
 then
     alias k='kubectl'
-    complete -F _complete_alias k
 fi
 
 # make
@@ -67,17 +60,23 @@ if command -v gmake > /dev/null
 then
     alias m=gmake
     alias make=gmake
-    complete -F _complete_alias m
 fi
 
-if command -v aws > /dev/null
+# Init native zsh completion (uses fpath var)
+autoload -Uz compinit && compinit
+
+# Init support for bash completion
+autoload -U +X bashcompinit && bashcompinit
+
+# go completion
+if command -v go > /dev/null
 then
-    complete -C "$(which aws_completer)" aws
+    complete -o nospace -C gocomplete go
 fi
 
-if [ -d "${HOME}/.bashrc.d/" ]
+if [ -d "${HOME}/.zshrc.d/" ]
 then
-    for f in "${HOME}"/.bashrc.d/*; do
+    for f in "${HOME}"/.zshrc.d/*; do
         if [ -f "${f}" ]; then
             . "${f}"
         fi

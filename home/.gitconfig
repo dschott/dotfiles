@@ -1,3 +1,5 @@
+# delta pager installed via `brew install git-delta`
+
 [core]
     excludesfile = ~/.gitignore
     pager = delta --syntax-theme="gruvbox-dark"
@@ -23,8 +25,11 @@
     insteadOf = "https://github.com/"
 
 [include]
-    path = ~/.gitconfig.user
     path = ~/.gitconfig.local
+
+[user]
+    name = Schott, Douglas
+    email = douglas.schott@gmail.com
 
 [rerere]
     enabled = true
@@ -45,7 +50,7 @@
     cl = clean -dfix
     p = pull
     rn = !git config "branch.$(git bn).remote"
-    bn = !git rev-parse --abbrev-ref HEAD 2> /dev/null
+    bn = !git symbolic-ref --short HEAD
     s = status -s -b
     st = stash
     r = reset

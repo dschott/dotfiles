@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-
-if ! check-command wslpath; then
-    exit 1
-fi
-
-cd "$(wslpath -u 'c:\')" || exit 1
-cmd.exe /c "pushd $(wslpath -w "$(pwd)") && ${*}"

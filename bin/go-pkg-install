@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+command -v go > /dev/null || exit 1
+
+echo "installing go packages"
+
+failed=
+packages=$(cat "${DOTPATH}/etc/go-pkg")
+for package in ${packages}; do
+    if ! go install "${package}"; then
+        failed="${failed}\n\t${package}"
+    fi
+done
+
+if [ -n "${failed}" ]; then
+    printf '\nFailed to install the following packages!%b\n' "${failed}"
+    exit 1
+fi

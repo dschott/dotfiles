@@ -1,48 +1,21 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 DOTPATH="$(cd "$(dirname "$0")" && pwd -P)"
 export DOTPATH
 
 "${DOTPATH}"/bin/dotfiles-link
 
-. "${HOME}/.bashrc"
+. "${HOME}/.zshrc"
 
-git-config
-
-git sub
-
-case "$(uname -s)" in
-Linux)
-    apt-install
-    # snap-install
-    ;;
-Darwin)
-    homebrew-install
-    brewfile-install
-    keybindings-install
-    terminal-set-theme
-    ;;
-esac
-
-pip-install
-
-bin-install
-
-npm-install
-
-docker-install
-
-# hmmm...
-if ! check-command -q go; then
-    go-version "$(go-version | tail -1 | tr -d ' ')"
-fi
-
-gocomplete-install
-
-vscode-install-all
-
-sh-configure
+fonts-install
+oh-my-zsh-install
+brewfile-install
+keybindings-install
+go-pkg-install
+pip-pkg-install
+npm-pkg-install
+term-theme-install
 
 echo "Install complete!"
 
-. "$HOME/.bash_profile"
+. "${HOME}/.zshrc"

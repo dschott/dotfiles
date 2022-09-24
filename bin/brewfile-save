@@ -1,8 +1,4 @@
 #!/usr/bin/env sh
 
-if ! check-command brew; then
-    exit 1
-fi
-
-cd "${DOTPATH}/etc/homebrew" || exit 1
+cd "${DOTPATH}/etc" || exit 1
 brew bundle dump --force

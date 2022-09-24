@@ -1,4 +1,0 @@
-brew "kubectl"
-brew "helm"
-brew "vault"
-brew "minikube"

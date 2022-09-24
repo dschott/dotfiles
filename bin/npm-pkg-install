@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+command -v npm > /dev/null || exit 1
+
+echo "installing npm packages"
+
+failed=
+packages=$(cat "${DOTPATH}/etc/npm-pkg")
+for package in ${packages}; do
+    if ! sudo npm install -g -y "${package}"; then
+        failed="${failed}\n\t${package}"
+    fi
+done
+
+if [ -n "${failed}" ]; then
+    printf '\nFailed to install the following packages!%b\n' "${failed}"
+    exit 1
+fi

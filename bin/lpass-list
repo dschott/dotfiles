@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-if ! check-command lpass; then
-    exit 1
-fi
-
-lpass show --all "$@"

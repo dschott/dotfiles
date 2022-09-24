@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-if ! check-command code; then
-    exit 1
-fi
-
-vscode-install-extensions
-vscode-install-keybindings
-vscode-install-settings

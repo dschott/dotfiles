@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-
-if ! check-command go; then
-    exit 1
-fi
-
-echo "installing go completion"
-go get -u github.com/posener/complete/gocomplete

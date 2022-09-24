@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+echo "installing powerline fonts"
+
+git clone https://github.com/powerline/fonts.git --depth=1
+cd fonts || exit 1
+./install.sh
+cd .. || exit 1
+rm -rf fonts
+
+echo "installing nerd fonts"
+
+# https://www.nerdfonts.com/font-downloads
+brew tap homebrew/cask-fonts
+brew install --cask font-hack-nerd-font

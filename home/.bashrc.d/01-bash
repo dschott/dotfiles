@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+shopt -s checkwinsize
+shopt -s cdspell
+shopt -s dirspell
+shopt -s extglob
+shopt -s globstar
+
+HISTCONTROL=ignoreboth
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+export CLICOLOR=1
+
+alias less='less -R'
+alias more='more -R'
+alias ag='ag --color'
+
+export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/bzip2/lib ${LDFLAGS}"
+export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/bzip2/include ${CPPFLAGS}"
+
+export LDFLAGS="-L${HOMEBREW_PREFIX}/opt/zlib/lib ${LDFLAGS}"
+export CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/zlib/include ${CPPFLAGS}"
+
+. "${DOTPATH}/etc/complete_alias"
+
+# Splash & Prompt
+red="\e[0;31m"
+cyan="\e[0;36m"
+yellow="\e[0;33m"
+green="\e[0;32m"
+reset_color="\e[0m"
+PS1="\$([ \${?} = 0 ] || echo ❗)\[${red}\][\[${cyan}\]\u@\h\[${red}\]] \$(date +%H:%M) \w\[${yellow}\] \$(git bn | sed 's/\(.*\)/(\1)/')\n\[${green}\]\$ \[${reset_color}\]"
+
+if [ "${SHLVL}" = "1" ]; then
+    printf "%b
+ _____   _____   _____   _____
+||   || ||   || ||   || ||   ||
+|| B || || A || || S || || H ||
+||___|| ||___|| ||___|| ||___||
+|/___\| |/___\| |/___\| |/___\|
+
+%bSHELL:     %b${BASH}, version ${BASH_VERSION}
+%bHOSTNAME:  %b${HOSTNAME}
+%bHOME:      %b${HOME}
+%bUSER:      %b$(whoami)
+%bUPTIME:   %b$(uptime)%b\n\n" "${red}" "${red}" "${cyan}" "${red}" "${cyan}" "${red}" "${cyan}" "${red}" "${cyan}" "${red}" "${cyan}" "${reset_color}"
+
+    PS1="\n${PS1}"
+
+else
+    PS1="\n\[${red}\]${SHLVL}${PS1}"
+fi
+
+unset red cyan yellow green reset_color

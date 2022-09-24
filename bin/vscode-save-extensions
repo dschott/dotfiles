@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-if ! check-command code; then
-    exit 1
-fi
-
-file=${1:-${DOTPATH}/etc/vscode/extensions}
-
-code --list-extensions > "${file}"

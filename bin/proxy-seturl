@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-if ! check-command networksetup; then
-    exit 1
-fi
-
-url=${1}
-networksetup -setautoproxyurl Wi-Fi "${url}"
-echo "Auto proxy url set"

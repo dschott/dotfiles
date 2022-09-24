@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+echo "setting terminal theme"
+open "${DOTPATH}/etc/doug.terminal"

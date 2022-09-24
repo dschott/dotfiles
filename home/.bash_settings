@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-export USER_FULLNAME="Schott, Douglas"
-export USER_EMAIL="douglas.schott@gmail.com"
-
-git-config || true

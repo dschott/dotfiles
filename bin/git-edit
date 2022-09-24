@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-set -o errexit
-
-git rebase "$@" $(git merge-base @{u} HEAD)

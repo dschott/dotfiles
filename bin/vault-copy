@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-if ! check-command vault; then
-    exit 1
-fi
-
 from=${1:?Expected key to copy}
 to=${2:?Expected key to copy to}
 

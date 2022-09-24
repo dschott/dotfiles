@@ -1,6 +1,0 @@
-[submodule "tmux"]
-	path = etc/tmux
-	url = git@github.com:dschott/.tmux.git
-[submodule "terminal/macos/themes"]
-	path = etc/macos-terminal-themes
-	url = git@github.com:dschott/macos-terminal-themes.git

@@ -1,9 +1,5 @@
 #!/usr/bin/env sh
 
-if ! check-command curl; then
-    exit 1
-fi
-
 arg=${1:-ip}
 
 case $1 in
@@ -28,4 +24,4 @@ args:
     ;;
 esac
     
-curl ifconfig.me/${arg}
+curl "ifconfig.me/${arg}"
