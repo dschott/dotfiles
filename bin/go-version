@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+new_version=${1}
+
+versions=$(brew list -1 | grep -E '^go$|^go@')
+current_version=$(go version)
+
+if [ -z "${new_version}" ]; then
+    echo "current version:"
+    echo "    ${current_version}"
+    echo
+    echo "available versions:"
+    echo "${versions}" | sed 's/^/    /'
+    exit
+fi
+
+if brew info "${new_version}" > /dev/null 2>&1; then
+    for version in ${versions}; do
+        if [ "${version}" != "${new_version}" ]; then
+            brew unlink "${version}"
+        fi
+    done
+    brew link --force "${new_version}"
+else
+    echo "invalid verison: $1"
+fi

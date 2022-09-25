@@ -1,17 +1,27 @@
 #!/usr/bin/env bash
 
-# setup PATH for this dir
+# DOTPATH
 DOTPATH="$(cd "$(dirname "$(readlink "${HOME}/.bashrc")")/.." && pwd)"
 PATH="${DOTPATH}/bin:/usr/local/sbin:${PATH}"
-export DOTPATH PATH
+export DOTPATH
 
-# load local shell config
+# SHELL ENV
+if [ -d "${HOME}/.bashrc.d/" ]
+then
+    for f in "${HOME}"/.bashrc.d/*; do
+        if [ -f "${f}" ]; then
+            . "${f}"
+        fi
+    done
+fi
+
+# SHELL LOCAL ENV
 if [ -r "${HOME}/.bashrc.local" ]
 then
     . "${HOME}/.bashrc.local"
 fi
 
-# homebrew env vars
+# HOMEBREW
 if [ -x /opt/homebrew/bin/brew ]
 then
     eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -23,7 +33,7 @@ then
     fi
 fi
 
-# git
+# GIT
 if command -v git > /dev/null
 then
     alias g='git'
@@ -33,36 +43,41 @@ then
     complete -F _complete_alias g
 fi
 
-# docker 
+# DOCKER 
 if command -v docker > /dev/null
 then
     alias d='docker'
     alias dc='docker compose'
 fi
 
-# golang
+# GO
 if command -v go > /dev/null
 then
     GOPATH=${HOME}/go
     GOBIN=${GOPATH}/bin
     GO=${HOME}/go/src/github.com/
     PATH="${GOBIN}:${PATH}"
-    export GOPATH GOBIN GO PATH
+    export GOPATH GOBIN GO
 
     complete -o nospace -C gocomplete go
 fi
 
-# java
-java-version 12
+# JAVA
+if [ -d "${HOMEBREW_PREFIX}/opt/openjdk/bin" ]
+then
+    PATH="${HOMEBREW_PREFIX}/opt/openjdk/bin:$PATH"
+    CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/openjdk/include"
+    export CPPFLAGS
+fi
 
-# kubernetes
+# KUBECTL
 if command -v kubectl > /dev/null
 then
     alias k='kubectl'
     complete -F _complete_alias k
 fi
 
-# make
+# MAKE
 if command -v gmake > /dev/null
 then
     alias m=gmake
@@ -70,17 +85,10 @@ then
     complete -F _complete_alias m
 fi
 
+# AWS
 if command -v aws > /dev/null
 then
     complete -C "$(which aws_completer)" aws
 fi
 
-if [ -d "${HOME}/.bashrc.d/" ]
-then
-    for f in "${HOME}"/.bashrc.d/*; do
-        if [ -f "${f}" ]; then
-            . "${f}"
-        fi
-    done
-fi
-
+export PATH

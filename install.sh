@@ -1,9 +1,6 @@
 #!/usr/bin/env zsh
 
-DOTPATH="$(cd "$(dirname "$0")" && pwd -P)"
-export DOTPATH
-
-"${DOTPATH}"/bin/dotfiles-link
+find "$(cd "$(dirname "$0")" && pwd -P)/home" -maxdepth 1 -mindepth 1 -name '.*' -exec ln -svf {} "${HOME}" \;
 
 . "${HOME}/.zshrc"
 
@@ -16,6 +13,6 @@ pip-pkg-install
 npm-pkg-install
 term-theme-install
 
-echo "Install complete!"
-
 . "${HOME}/.zshrc"
+
+echo "Install complete!"

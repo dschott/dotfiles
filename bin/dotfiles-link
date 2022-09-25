@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-echo "linking dot files"
-
-find "${DOTPATH}/home" -maxdepth 1 -mindepth 1 -name '.*' -exec ln -svf {} "${HOME}" \;
