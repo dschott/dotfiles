@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+echo "installing AWS Session Manager plugin"
+mkdir -p tmp
+cd tmp || exit 1
+curl -s "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/mac/sessionmanager-bundle.zip" -o "sessionmanager-bundle.zip"
+unzip sessionmanager-bundle.zip
+sudo "$(command -v python3)" ./sessionmanager-bundle/install -i /usr/local/sessionmanagerplugin -b /usr/local/bin/session-manager-plugin
+cd .. || exit 1
+rm -rf tmp

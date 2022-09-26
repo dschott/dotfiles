@@ -11,6 +11,7 @@ keybindings-install
 go-pkg-install
 pip-pkg-install
 npm-pkg-install
+bin-install
 term-theme-install
 
 . "${HOME}/.zshrc"
