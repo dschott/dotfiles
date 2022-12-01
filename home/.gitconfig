@@ -50,7 +50,7 @@
     cl = clean -dfix
     p = pull
     rn = !git config "branch.$(git bn).remote"
-    bn = !git symbolic-ref --short HEAD
+    bn = !git symbolic-ref --short HEAD 2> /dev/null
     s = status -s -b
     st = stash
     r = reset
