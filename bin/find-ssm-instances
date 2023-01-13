@@ -26,9 +26,9 @@ main() {
     ensure_cache "${refresh}" "${cache_path}"
     if [ "${name}" == true ]
     then
-        jq --arg id "${1}" -r '.[] | select(.ReverseComputerName | test($id)) | [ .ComputerName, .InstanceId ] | @tsv' "${cache_path}" | column -t
+        jq --arg id "${1}" -r '.[] | select( (.ReverseComputerName | test($id)) or (.InstanceId | test($id)) ) | [ .ComputerName, .InstanceId ] | @tsv' "${cache_path}" | column -t
     else
-        jq --arg id "${1}" -r '.[] | select(.ReverseComputerName | test($id)) | [ .ReverseComputerName, .InstanceId ] | @tsv' "${cache_path}" | column -t
+        jq --arg id "${1}" -r '.[] | select( (.ReverseComputerName | test($id)) or (.InstanceId | test($id)) ) | [ .ReverseComputerName, .InstanceId ] | @tsv' "${cache_path}" | column -t
     fi
 }
 
