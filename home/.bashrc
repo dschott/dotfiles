@@ -43,7 +43,7 @@ then
     complete -F _complete_alias g
 fi
 
-# DOCKER 
+# DOCKER
 if command -v docker > /dev/null
 then
     alias d='docker'
@@ -90,5 +90,26 @@ if command -v aws > /dev/null
 then
     complete -C "$(which aws_completer)" aws
 fi
+
+# SSH-AGENT
+ssh-agent-start() {
+    if [ ! -S ~/.ssh/ssh_auth_sock ]
+    then
+        eval $(ssh-agent -a ~/.ssh/ssh_auth_sock) > /dev/null
+        echo ${SSH_AGENT_PID} > ~/.ssh/ssh_agent.pid
+        echo "SSH agent started: ${SSH_AGENT_PID}"
+        ssh-add
+    else
+        SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+        export SSH_AUTH_SOCK
+
+        if [ -r ~/.ssh/ssh_agent.pid ]
+        then
+            SSH_AGENT_PID=$(cat ~/.ssh/ssh_agent.pid)
+            export SSH_AGENT_PID
+        fi
+    fi
+}
+ssh-agent-start
 
 export PATH

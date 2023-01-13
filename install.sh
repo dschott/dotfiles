@@ -1,6 +1,10 @@
 #!/usr/bin/env zsh
 
-find "$(cd "$(dirname "$0")" && pwd -P)/home" -maxdepth 1 -mindepth 1 -name '.*' -exec ln -svf {} "${HOME}" \;
+dothome=$(cd "$(dirname "$0")" && pwd -P)/home
+
+find "${dothome}" -maxdepth 1 -mindepth 1 -name '.*' -exec ln -svf {} "${HOME}" \;
+
+ln -svf "${dothome}/.ssh/config" "${HOME}/.ssh/config"
 
 . "${HOME}/.zshrc"
 
