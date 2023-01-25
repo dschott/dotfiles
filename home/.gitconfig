@@ -73,12 +73,16 @@
     ischanged = ! ! git diff-index --quiet HEAD --
     bd = ! git branch-remote origin develop
     bm = ! git branch-remote origin master
+    bmn = ! git branch-remote origin main
     ld = ! git log-remote origin develop
     lm = ! git log-remote origin master
+    lmn = ! git log-remote origin main
     dd = ! git diff-remote origin develop
     dm = ! git diff-remote origin master
+    dmn = ! git diff-remote origin main
     rbd = ! git rebase-remote origin develop
     rbm = ! git rebase-remote origin master
+    rbmn = ! git rebase-remote origin main
     diff-remote = ! \
         "remote=${1:?\nRemote name missing} && shift \
         && branch=${1:?\nBranch name missing} && shift \
