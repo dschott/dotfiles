@@ -87,7 +87,7 @@
         "remote=${1:?\nRemote name missing} && shift \
         && branch=${1:?\nBranch name missing} && shift \
         && ( git fetch ${remote} ${from} 2> /dev/null || echo \"${red}Fetch from ${remote} ${from} failed!${clear}\n\" ) \
-        && for commit in $(git rev-list --reverse --left-only head...${remote}/${branch}); do \
+        && for commit in $(git rev-list --reverse --left-only HEAD...${remote}/${branch}); do \
             DELTA_PAGER=${DELTA_PAGER_PAGED:-DELTA_PAGER} git show -p -X --stat=100 -U10 ${commit}~..${commit}; \
         done \
         && echo "
@@ -104,7 +104,7 @@
         && git checkout --no-track -b ${branch} remotes/${remote}/${from} \
         && git push -u ${remote} ${branch}"
     log-remote = ! \
-        "left=$(git rev-parse --abbrev-ref head) \
+        "left=$(git rev-parse --abbrev-ref HEAD) \
         && remote=${1:-origin} && if test ${#} -gt 0; then shift; fi \
         && right=${1:-${left}}  && if test ${#} -gt 0; then shift; fi \
         && green=\\\\033[32m \
