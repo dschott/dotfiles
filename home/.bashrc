@@ -29,7 +29,8 @@ then
     # Include homebrew completion functions
     if [ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]
     then
-        . "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+        # Fix for syft: https://github.com/anchore/syft/issues/962
+        . "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" 2>&1 | grep -v 'complete: usage:'
     fi
 fi
 
@@ -113,3 +114,5 @@ ssh-agent-start() {
 ssh-agent-start
 
 export PATH
+
+source /Users/doug/.docker/init-bash.sh || true # Added by Docker Desktop

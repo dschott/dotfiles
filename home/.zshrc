@@ -109,3 +109,6 @@ ssh-agent-start() {
 ssh-agent-start
 
 export PATH
+
+source /Users/doug/.docker/init-zsh.sh || true # Added by Docker Desktop
+export AWS_PAGER=''
