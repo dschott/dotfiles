@@ -115,4 +115,4 @@ ssh-agent-start
 
 export PATH
 
-source /Users/doug/.docker/init-bash.sh || true # Added by Docker Desktop
+export AWS_PAGER=''

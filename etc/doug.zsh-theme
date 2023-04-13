@@ -1,5 +1,4 @@
-PROMPT=$'
-%(?, ,❗)%{$fg[red]%}[%{$fg[cyan]%}%n@%m%{$fg[red]%}] %T %~ $(git_prompt_info)$(bzr_prompt_info)
+PROMPT=$'%(?, ,❗)%{$fg[red]%}[%{$fg[cyan]%}%n@%m%{$fg[red]%}] %T %~ $(git_prompt_info)$(bzr_prompt_info)
 %{$fg_bold[black]%}>%{$reset_color%} '
 
 PROMPT2="%{$fg_bold[black]%}%_> %{$reset_color%}"

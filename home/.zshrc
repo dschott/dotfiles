@@ -1,24 +1,24 @@
 #!/usr/bin/env zsh
 
 # DOTPATH
-DOTPATH="$(cd "$(dirname "$(readlink "${HOME}/.zshrc")")/.." && pwd)"
-PATH="${DOTPATH}/bin:/usr/local/sbin:${PATH}"
+DOTPATH="$(cd "$(dirname "$(readlink "$HOME/.zshrc")")/.." && pwd)"
+PATH="$DOTPATH/bin:/usr/local/sbin:$HOME/.local/bin:$PATH"
 export DOTPATH
 
 # SHELL ENV
-if [ -d "${HOME}/.zshrc.d/" ]
+if [ -d "$HOME/.zshrc.d/" ]
 then
-    for f in "${HOME}"/.zshrc.d/*; do
-        if [ -f "${f}" ]; then
-            . "${f}"
+    for f in "$HOME"/.zshrc.d/*; do
+        if [ -f "$f" ]; then
+            . "$f"
         fi
     done
 fi
 
 # SHELL LOCAL ENV
-if [ -r "${HOME}/.zshrc.local" ]
+if [ -r "$HOME/.zshrc.local" ]
 then
-    . "${HOME}/.zshrc.local"
+    . "$HOME/.zshrc.local"
 fi
 
 # HOMEBREW
@@ -49,18 +49,18 @@ fi
 # GO
 if command -v go > /dev/null
 then
-    GOPATH=${HOME}/go
-    GOBIN=${GOPATH}/bin
-    GO=${HOME}/go/src/github.com/
-    PATH="${GOBIN}:${PATH}"
+    GOPATH=$HOME/go
+    GOBIN=$GOPATH/bin
+    GO=$HOME/go/src/github.com/
+    PATH="$GOBIN:$PATH"
     export GOPATH GOBIN GO
 fi
 
 # JAVA
-if [ -d "${HOMEBREW_PREFIX}/opt/openjdk/bin" ]
+if [ -d "$HOMEBREW_PREFIX/opt/openjdk/bin" ]
 then
-    PATH="${HOMEBREW_PREFIX}/opt/openjdk/bin:$PATH"
-    CPPFLAGS="-I${HOMEBREW_PREFIX}/opt/openjdk/include"
+    PATH="$HOMEBREW_PREFIX/opt/openjdk/bin:$PATH"
+    CPPFLAGS="-I$HOMEBREW_PREFIX/opt/openjdk/include"
     export CPPFLAGS
 fi
 
@@ -92,8 +92,8 @@ ssh-agent-start() {
     if [ ! -S ~/.ssh/ssh_auth_sock ]
     then
         eval $(ssh-agent -a ~/.ssh/ssh_auth_sock) > /dev/null
-        echo ${SSH_AGENT_PID} > ~/.ssh/ssh_agent.pid
-        echo "SSH agent started: ${SSH_AGENT_PID}"
+        echo $SSH_AGENT_PID > ~/.ssh/ssh_agent.pid
+        echo "SSH agent started: $SSH_AGENT_PID"
         ssh-add
     else
         SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
@@ -109,6 +109,3 @@ ssh-agent-start() {
 ssh-agent-start
 
 export PATH
-
-source /Users/doug/.docker/init-zsh.sh || true # Added by Docker Desktop
-export AWS_PAGER=''
