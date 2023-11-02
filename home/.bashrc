@@ -2,7 +2,7 @@
 
 # DOTPATH
 DOTPATH="$(cd "$(dirname "$(readlink "${HOME}/.bashrc")")/.." && pwd)"
-PATH="${DOTPATH}/bin:/usr/local/sbin:${PATH}"
+PATH="${DOTPATH}/bin:$PATH"
 export DOTPATH
 
 # SHELL ENV
@@ -113,6 +113,12 @@ ssh-agent-start() {
 }
 ssh-agent-start
 
-export PATH
+SU_UID=$(id -u)
+SU_GID=$(id -g)
+export SU_UID
+export SU_GID
 
 export AWS_PAGER=''
+
+PATH="$DOTPATH/bin:$HOME/.local/bin:/usr/local/sbin:$PATH"
+export PATH

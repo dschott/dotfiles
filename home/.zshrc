@@ -2,7 +2,7 @@
 
 # DOTPATH
 DOTPATH="$(cd "$(dirname "$(readlink "$HOME/.zshrc")")/.." && pwd)"
-PATH="$DOTPATH/bin:/usr/local/sbin:$HOME/.local/bin:$PATH"
+PATH="$DOTPATH/bin:$PATH"
 export DOTPATH
 
 # SHELL ENV
@@ -108,4 +108,10 @@ ssh-agent-start() {
 }
 ssh-agent-start
 
+SU_UID=$(id -u)
+SU_GID=$(id -g)
+export SU_UID
+export SU_GID
+
+PATH="$DOTPATH/bin:$HOME/.local/bin:/usr/local/sbin:$PATH"
 export PATH
