@@ -35,12 +35,6 @@
 [rerere]
     enabled = true
 
-[filter "lfs"]
-    required = true
-    clean = git-lfs clean -- %f
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-
 [alias]
     a = add
     aa = add -A
@@ -130,3 +124,8 @@
         fi \
         && echo \"${header}\" \
         && git l --left-right --graph ${left}...${remote}/${right}"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

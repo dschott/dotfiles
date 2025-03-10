@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+read -ra images < <(docker images -f dangling=true -q)
+
+if [ ${#images[@]} -eq 0 ]; then
+  >&2 echo "no dangling images found"
+  exit 0
+fi
+
+docker image rm -f "${images[@]}"
