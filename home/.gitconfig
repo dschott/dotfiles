@@ -23,7 +23,7 @@
     default = simple
 
 [url "git@github.com:"]
-    insteadOf = "https://github.com/"
+    insteadOf = https://github.com/
 
 [include]
     path = ~/.gitconfig.local
@@ -125,7 +125,7 @@
         && echo \"${header}\" \
         && git l --left-right --graph ${left}...${remote}/${right}"
 [filter "lfs"]
+	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
-	required = true

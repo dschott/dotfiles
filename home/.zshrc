@@ -115,3 +115,4 @@ export SU_GID
 
 PATH="$DOTPATH/bin:$HOME/.local/bin:/usr/local/sbin:$PATH"
 export PATH
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
